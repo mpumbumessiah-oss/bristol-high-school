@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+    <title>Bristol High School Admission Portal</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/body.css">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
+
+    <!-- EmailJS -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+</head>
+
+<body class="admissions-portal-bg">
+
+    <!-- ================= NAVBAR ================= -->
+
+    <nav>
+
+        <div class="topbar">
+
+            <div class="container topbar__container">
+
+                <div class="topbar__left">
+
+                    <a href="tel:+256775831844">
+                        <i class="uil uil-phone"></i>
+                        +256-775-831844
+                    </a>
+
+                    <a href="mailto:info@bristolhighschool.com">
+                        <i class="uil uil-envelope"></i>
+                        info@bristolhighschool.com
+                    </a>
+
+                </div>
+
+                <div class="topbar__right">
+
+                    <span>Follow us</span>
+
+                    <a href="https://www.tiktok.com/@bristolhighsch" target="_blank">
+                        <i class="uil uil-music-note"></i>
+                    </a>
+
+                    <a href="https://x.com/bristolhighschool" target="_blank">
+                        <i class="uil uil-twitter"></i>
+                    </a>
+
+                    <a href="https://www.facebook.com/bristolhighschool" target="_blank">
+                        <i class="uil uil-facebook-f"></i>
+                    </a>
+
+                    <a href="https://www.linkedin.com/company/bristol-high-school" target="_blank">
+                        <i class="uil uil-linkedin-alt"></i>
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="container nav__container">
+
+            <a href="../index.html" class="nav__logo">
+
+                <img src="../images/logo.jpeg" alt="School Logo">
+
+                <div>
+                    <h4>BRISTOL HIGH SCHOOL</h4>
+                    <small>"Education Leads to victory"</small>
+                </div>
+
+            </a>
+
+            <ul class="nav__menu">
+
+                <li><a href="../index.html">Home</a></li>
+
+                <li><a href="../pages/about.html">About BHS</a></li>
+
+                <li><a href="../pages/courses.html">Courses</a></li>
+
+                <li class="dropdown">
+
+                    <button class="dropbtn" type="button">
+                        Explore
+                    </button>
+
+                    <div class="dropdown-content">
+
+                        <a href="../pages/documents.html">Fees, Rules & Calendar</a>
+
+                        <a href="../pages/students_leadership.html">Student Leadership</a>
+
+                        <a href="../pages/staff.html">Our Staff</a>
+
+                        <a href="../pages/gallery.html">Gallery</a>
+
+                    </div>
+
+                </li>
+
+                <li class="dropdown">
+
+                    <button class="dropbtn" type="button">
+                        eCampus
+                    </button>
+
+                    <div class="dropdown-content">
+
+                        <a href="../pages/e-library.html">e-Library</a>
+
+                        <a href="../pages/e-learning.html">e-Teaching</a>
+
+                    </div>
+
+                </li>
+
+                <li><a href="../pages/contact.html">Contact</a></li>
+
+            </ul>
+
+            <div class="nav__actions">
+
+                <a href="../pages/admissions.html" class="admission-btn">
+                    Admissions
+                </a>
+
+                <a href="../pages/e-learning.html" class="elearning-btn">
+                    eLearning
+                </a>
+
+            </div>
+
+            <button id="open-menu-btn">
+                <i class="uil uil-bars"></i>
+            </button>
+
+            <button id="close-menu-btn">
+                <i class="uil uil-multiply"></i>
+            </button>
+
+        </div>
+
+    </nav>
+
+    <!-- ================= HERO SECTION ================= -->
+
+    <section class="admission-form-wrapper">
+
+        <div class="container">
+
+            <div class="admission-header">
+
+                <h1>Admission Application Form</h1>
+
+                <p>
+                    Join Bristol High School and begin your journey
+                    towards academic excellence and leadership.
+                </p>
+
+            </div>
+
+            <!-- ================= FORM ================= -->
+
+            <form id="admissionForm">
+
+                <!-- STUDENT INFO -->
+
+                <h3>Student Information</h3>
+
+                <div class="grid card">
+
+                    <div>
+
+                        <label>Full Name</label>
+
+                        <input type="text" name="student_name" required>
+
+                    </div>
+
+                    <div>
+
+                        <label>Date of Birth</label>
+
+                        <input type="date" name="student_dob" required>
+
+                    </div>
+
+                    <div>
+
+                        <label>Gender</label>
+
+                        <select name="student_gender" required>
+
+                            <option value="">Select Gender</option>
+
+                            <option>Male</option>
+
+                            <option>Female</option>
+
+                        </select>
+
+                    </div>
+
+                    <div>
+
+                        <label>Class Applying For</label>
+
+                        <select name="target_class" required>
+
+                            <option value="">Select Class</option>
+
+                            <option>Senior 1</option>
+
+                            <option>Senior 2</option>
+
+                            <option>Senior 3</option>
+
+                            <option>Senior 4</option>
+
+                            <option>Senior 5</option>
+
+                            <option>Senior 6</option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+                <!-- PARENT INFO -->
+
+                <h3>Parent / Guardian Information</h3>
+
+                <div class="grid card">
+
+                    <div>
+
+                        <label>Parent Name</label>
+
+                        <input type="text" name="parent_name" required>
+
+                    </div>
+
+                    <div>
+
+                        <label>Phone Number</label>
+
+                        <input type="tel" name="parent_phone" required>
+
+                    </div>
+
+                    <div class="full-width">
+
+                        <label>Email Address</label>
+
+                        <input type="email" name="parent_email" required>
+
+                    </div>
+
+                </div>
+
+                <!-- BUTTON -->
+
+                <button type="submit" id="btn">
+
+                    Submit Application
+
+                </button>
+
+                <!-- STATUS -->
+
+                <div id="status" class="status"></div>
+
+            </form>
+
+        </div>
+
+    </section>
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer class="site-footer">
+
+        <div class="footer-container">
+
+            <div class="footer-col">
+
+                <h3>About Bristol High</h3>
+
+                <p class="school-name">
+                    Bristol High School
+                </p>
+
+                <p>
+                    Providing holistic education built on quality training,
+                    dedication, moral focus, and continuous academic achievement.
+                </p>
+
+            </div>
+
+            <div class="footer-col">
+
+                <h3>Quick Access</h3>
+
+                <ul class="footer-links">
+
+                    <li><a href="../pages/about.html">About BHS</a></li>
+
+                    <li><a href="../pages/courses.html">Academic Courses</a></li>
+
+                    <li><a href="../pages/documents.html">Fees & Documents</a></li>
+
+                    <li><a href="../pages/admissions.html">Admission Portal</a></li>
+
+                    <li><a href="../pages/career.html">Work With Us</a></li>
+
+                </ul>
+
+            </div>
+
+            <div class="footer-col">
+
+                <h3>eCampus Portals</h3>
+
+                <ul class="footer-links">
+
+                    <li><a href="../pages/e-learning.html">Live eLearning Matrix</a></li>
+
+                    <li><a href="../pages/e-library.html">Digital Library Archive</a></li>
+
+                    <li><a href="../pages/academic-giants.html">Wall of Fame</a></li>
+
+                    <li><a href="../pages/anthem.html">School Anthem</a></li>
+
+                </ul>
+
+            </div>
+
+            <div class="footer-col">
+
+                <h3>Location & Contact</h3>
+
+                <p>Matugga, Wakiso District, Uganda</p>
+
+                <p class="contact-label">Call Info Line:</p>
+
+                <a href="tel:+256775831844" class="highlight-text">
+                    +256-775-831844
+                </a>
+
+                <p class="connect-label">Connect Socially:</p>
+
+                <div class="social-icons">
+
+                    <a href="https://www.tiktok.com/@bristolhighsch" target="_blank">
+                        <i class="uil uil-music-note"></i>
+                    </a>
+
+                    <a href="https://x.com/bristolhighschool" target="_blank">
+                        <i class="uil uil-twitter"></i>
+                    </a>
+
+                    <a href="https://www.facebook.com/bristolhighschool" target="_blank">
+                        <i class="uil uil-facebook-f"></i>
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+    <!-- ================= EMAIL JS ================= -->
+
+    <script>
+
+        emailjs.init("WKDRAtjrFN-FTAfG4");
+
+        document.getElementById("admissionForm")
+        .addEventListener("submit", function(e){
+
+            e.preventDefault();
+
+            let btn = document.getElementById("btn");
+
+            let status = document.getElementById("status");
+
+            btn.innerText = "Submitting...";
+
+            btn.disabled = true;
+
+            emailjs.sendForm(
+                "service_c1l41rc",
+                "template_mp9r9zp",
+                this
+            )
+
+            .then(() => {
+
+                status.className = "status success";
+
+                status.style.display = "block";
+
+                status.innerText =
+                "Application submitted successfully!";
+
+                this.reset();
+
+            })
+
+            .catch(() => {
+
+                status.className = "status error";
+
+                status.style.display = "block";
+
+                status.innerText =
+                "Submission failed. Try again.";
+
+            })
+
+            .finally(() => {
+
+                btn.innerText = "Submit Application";
+
+                btn.disabled = false;
+
+            });
+
+        });
+
+    </script>
+
+</body>
+
+</html>

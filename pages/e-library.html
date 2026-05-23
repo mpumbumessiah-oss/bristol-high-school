@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>eLearning Portal | BRISTOL HIGH SCHOOL</title>
+    <!-- IconScout CDN for icons -->
+     <link rel="stylesheet" href="../css/style.css">
+
+     <link rel="stylesheet" href="../css/body.css">
+
+    <link
+  rel="stylesheet"href="https://unicons.iconscout.com/release/v4.0.8/css/line.css"/>     
+    <style>
+        :root {
+            --primary-color: #0d47a1; /* Classic School Blue */
+            --accent-color: #ffca28;  /* Gold Accent */
+            --dark-color: #1a252f;
+            --light-bg: #f4f6f9;
+            --card-bg: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        body {
+            background-color: var(--light-bg);
+            color: var(--dark-color);
+        }
+
+        /* Top Header Styling */
+        .elearning-header {
+            background: linear-gradient(rgba(13, 71, 161, 0.9), rgba(13, 71, 161, 0.95)), url('images/header.jpg') center/cover;
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .elearning-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .elearning-header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        /* Container Layout */
+        .portal-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 2rem;
+        }
+
+        /* Search & Filter Sidebar */
+        .sidebar {
+            background: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            height: fit-content;
+        }
+
+        .search-box {
+            position: relative;
+            margin-bottom: 1.5rem;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 0.8rem 1rem 0.8rem 2.5rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            outline: none;
+            font-size: 0.95rem;
+        }
+
+        .search-box i {
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #888;
+        }
+
+        .filter-group h3 {
+            margin-bottom: 0.8rem;
+            font-size: 1.1rem;
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 4px;
+            display: inline-block;
+        }
+
+        .filter-btn {
+            display: block;
+            width: 100%;
+            text-align: left;
+            background: none;
+            border: none;
+            padding: 0.6rem 0.8rem;
+            margin-bottom: 0.3rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: 0.2s;
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        /* Materials Grid Dashboard */
+        .materials-section h2 {
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+        }
+
+        .materials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        /* Card Component Styling */
+        .material-card {
+            background: var(--card-bg);
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border-top: 4px solid var(--primary-color);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.2s;
+        }
+
+        .material-card:hover {
+            transform: translateY(-3px);
+        }
+
+        .subject-badge {
+            background: #e3f2fd;
+            color: var(--primary-color);
+            padding: 0.2rem 0.6rem;
+            font-size: 0.75rem;
+            font-weight: bold;
+            border-radius: 4px;
+            text-transform: uppercase;
+            width: fit-content;
+            margin-bottom: 0.8rem;
+        }
+
+        .material-card h4 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .material-card p {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 1rem;
+            line-height: 1.4;
+        }
+
+        .card-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-top: 1px solid #eee;
+            padding-top: 0.8rem;
+        }
+
+        .class-tag {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: #555;
+        }
+
+        .download-btn {
+            background-color: var(--accent-color);
+            color: var(--dark-color);
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            font-weight: bold;
+            font-size: 0.85rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            transition: 0.2s;
+        }
+
+        .download-btn:hover {
+            background-color: #ffb300;
+        }
+
+        /* Responsive Layout breakpoint */
+        @media (max-width: 768px) {
+            .portal-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+    <div class="topbar">
+        <div class="container topbar__container">
+            <div class="topbar__left">
+                <a href="tel:+256775831844"><i class="uil uil-phone"></i> +256-775-831844</a>
+                <a href="mailto:info@bristolhighschool.com"><i class="uil uil-envelope"></i> info@bristolhighschool.com</a>
+            </div>
+            <div class="topbar__right">
+                <span>Follow us</span>
+                <a href="https://www.tiktok.com/@bristolhighsch" target="_blank"><i class="uil uil-music-note"></i></a>
+                <a href="https://x.com/bristolhighschool" target="_blank"><i class="uil uil-twitter"></i></a>
+                <a href="https://www.facebook.com/bristolhighschool" target="_blank"><i class="uil uil-facebook-f"></i></a>
+                <a href="https://www.linkedin.com/company/bristol-high-school" target="_blank"><i class="uil uil-linkedin-alt"></i></a>
+            </div>
+        </div>
+    </div>
+    <div class="container nav__container">
+        <a href="../index.html" class="nav__logo">
+            <img src="../images/logo.jpeg" loading="lazy" alt="School Logo">
+            <div>
+                <h4>BRISTOL HIGH SCHOOL</h4>
+                <small>"Education Leads to victory"</small>
+            </div>
+        </a>
+        <ul class="nav__menu">
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="../pages/about.html">About BHS</a></li>
+            <li><a href="../pages/courses.html">Courses</a></li>
+            <li class="dropdown">
+                <button class="dropbtn" type="button">Explore</button>
+                <div class="dropdown-content">
+                    <a href="../pages/documents.html">Fees, Rules & Calendar</a>
+                    <a href="../pages/students_leadership.html">Student Leadership</a>
+                    <a href="../pages/staff.html">Our Staff</a>
+                    <a href="../pages/gallery.html">Gallery</a>
+                </div>
+            </li>
+            <li class="dropdown">
+                <button class="dropbtn" type="button">eCampus</button>
+                <div class="dropdown-content">
+                    <a href="../pages/e-library.html">e-Library</a>
+                    <a href="../pages/e-learning.html">e-Teaching</a>
+                </div>
+            </li>
+            <li><a href="../pages/contact.html">Contact</a></li>
+        </ul>
+        <div class="nav__actions">
+            <a href="../pages/admissions.html" class="admission-btn">Admissions</a>
+            <a href="../pages/e-learning.html" class="elearning-btn">eLearning</a>
+        </div>
+        <button id="open-menu-btn"><i class="uil uil-bars"></i></button>
+        <button id="close-menu-btn"><i class="uil uil-multiply"></i></button>
+    </div>
+</nav>
+
+    <!-- PORTAL HERO HEADER -->
+    <header class="elearning-header">
+        <h1>Bristol High School eLearning</h1>
+        <p>Access and download your academic notes, revisions, and reading assignments instantly.</p>
+    </header>
+
+    <!-- CONTENT PORTAL GRID -->
+    <div class="portal-container">
+        
+        <!-- SIDEBAR CONTROLS -->
+        <aside class="sidebar">
+            <div class="search-box">
+                <i class="uil uil-search"></i>
+                <input type="text" id="searchInput" placeholder="Search resources...">
+            </div>
+
+            <div class="filter-group">
+                <h3>Filter by Class</h3>
+                <button class="filter-btn active" onclick="filterClass('all', this)">All Classes</button>
+                <button class="filter-btn" onclick="filterClass('Senior 1', this)">Senior 1</button>
+                <button class="filter-btn" onclick="filterClass('Senior 2', this)">Senior 2</button>
+                <button class="filter-btn" onclick="filterClass('Senior 3', this)">Senior 3</button>
+                <button class="filter-btn" onclick="filterClass('Senior 4', this)">Senior 4</button>
+                <button class="filter-btn" onclick="filterClass('Senior 5', this)">Senior 5</button>
+                <button class="filter-btn" onclick="filterClass('Senior 6', this)">Senior 6</button>
+            </div>
+        </aside>
+
+        <!-- DOWNLOADABLE GRID DISPLAY -->
+        <main class="materials-section">
+            <h2 id="sectionTitle">All Resources</h2>
+            <div class="materials-grid" id="materialsGrid">
+                <!-- JavaScript automatically injects file loops here -->
+            </div>
+        </main>
+    </div>
+
+   <footer class="site-footer">
+    <div class="footer-container">
+        <div class="footer-col">
+            <h3>About Bristol High</h3>
+            <p class="school-name">Bristol High School</p>
+            <p>Providing holistic education built on quality training, dedication, moral focus, and continuous academic achievement.</p>
+        </div>
+        <div class="footer-col">
+            <h3>Quick Access</h3>
+            <ul class="footer-links">
+                <li><a href="../pages/about.html">About BHS</a></li>
+                <li><a href="../pages/courses.html">Academic Courses</a></li>
+                <li><a href="../pages/documents.html">Fees & Documents</a></li>
+                <li><a href="../pages/admissions.html">Admission Portal</a></li>
+                <li><a href="../pages/career.html">Work With Us</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h3>eCampus Portals</h3>
+            <ul class="footer-links">
+                <li><a href="../pages/e-learning.html">Live eLearning Matrix</a></li>
+                <li><a href="../pages/e-library.html">Digital Library Archive</a></li>
+                <li><a href="../pages/academic-giants.html">Wall of Fame</a></li>
+                <li><a href="../pages/anthem.html">School Anthem</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h3>Location & Contact</h3>
+            <p>Matugga, Wakiso District, Uganda</p>
+            <p class="contact-label">Call Info Line:</p>
+            <a href="tel:+256775831844" class="highlight-text">+256-775-831844</a>
+            <p class="connect-label">Connect Socially:</p>
+            <div class="social-icons">
+                <a href="https://www.tiktok.com/@bristolhighsch" target="_blank"><i class="uil uil-music-note"></i></a>
+                <a href="https://x.com/bristolhighschool" target="_blank"><i class="uil uil-twitter"></i></a>
+                <a href="https://www.facebook.com/bristolhighschool" target="_blank"><i class="uil uil-facebook-f"></i></a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+    <!-- LIVE DATABASE LOGIC & ROUTING SCRIPT -->
+    <script>
+        // 1. Data Store array mapping your curriculum
+        const resourcesData = [
+            { title: "Algebra Fundamentals", subject: "Mathematics", classLevel: "Senior 1", file: "../documents/Software Documentation in testing.pdf", desc: "Introduction to algebraic expressions and foundational operations." },
+            { title: "Plant Cells & Systems", subject: "Biology", classLevel: "Senior 1", file: "../documents/Software Test Report Template.pdf", desc: "Detailed breakdown of cell parts under basic light microscopes." },
+            { title: "Introduction to HTML", subject: "Computer Studies", classLevel: "Senior 2", file: "../documents/Software Documentation in testing.pdf", desc: "Learn layout tags, structuring web documents, and navigation links." },
+            { title: "Chemical Equations", subject: "Chemistry", classLevel: "Senior 3", file: "../documents/STD TOPIC 4-BUGS.pdf", desc: "Balancing equations and learning core reaction types step-by-step." },
+            { title: "Light Reflection Notes", subject: "Physics", classLevel: "Senior 4", file: "../documents/Tester's Workbench and CAST.pdf", desc: "O-Level complete notes covering concave mirrors and ray drawings." },
+            { title: "Macroeconomics Principles", subject: "Economics", classLevel: "Senior 5", file: "../documents/Testing Practice Question.pdf", desc: "A-Level introductory notes assessing national income calculations." },
+            { title: "Calculus Optimization", subject: "Mathematics", classLevel: "Senior 6", file: "../documents/Types of Software Testing.pdf", desc: "Advanced integration and differentiation applications for standard exams." }
+        ];
+
+        const grid = document.getElementById('materialsGrid');
+        const searchInput = document.getElementById('searchInput');
+        let currentFilter = 'all';
+
+        // 2. Render Engine mapping objects to HTML blocks
+        function renderCards(data) {
+            grid.innerHTML = "";
+            if (data.length === 0) {
+                grid.innerHTML = "<p style='grid-column: 1/-1; text-align: center; padding: 2rem; color: #777;'>No reading materials found matching your requirements.</p>";
+                return;
+            }
+
+            data.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'material-card';
+                card.setAttribute('data-class', item.classLevel);
+
+                card.innerHTML = `
+                    <div>
+                        <div class="subject-badge">${item.subject}</div>
+                        <h4>${item.title}</h4>
+                        <p>${item.desc}</p>
+                    </div>
+                    <div class="card-footer">
+                        <span class="class-tag"><i class="uil uil-book-open"></i> ${item.classLevel}</span>
+                        <a href="${item.file}" class="download-btn" download>
+                            <i class="uil uil-file-download"></i> Download
+                        </a>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        // 3. Category Filter Controller
+        function filterClass(className, buttonEl) {
+            currentFilter = className;
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            buttonEl.classList.add('active');
+            
+            document.getElementById('sectionTitle').textContent = className === 'all' ? "All Resources" : `${className} Resources`;
+            runSearchAndFilter();
+        }
+
+        // 4. Combined Execution Engine (Search Bar + Sidebar Filter)
+        function runSearchAndFilter() {
+            const query = searchInput.value.toLowerCase();
+            
+            const filtered = resourcesData.filter(item => {
+                const matchesClass = (currentFilter === 'all' || item.classLevel === currentFilter);
+                const matchesSearch = item.title.toLowerCase().includes(query) || 
+                                      item.subject.toLowerCase().includes(query) ||
+                                      item.desc.toLowerCase().includes(query);
+                return matchesClass && matchesSearch;
+            });
+
+            renderCards(filtered);
+        }
+
+        // Bind keyboard event input
+        searchInput.addEventListener('input', runSearchAndFilter);
+
+        // Initial paint execution sequence
+        renderCards(resourcesData);
+    </script>
+</body>
+</html>
