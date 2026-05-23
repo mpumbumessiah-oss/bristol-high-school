@@ -977,6 +977,21 @@ body.admissions-portal-bg {
 }
 
 
+@media (max-width: 768px) {
+  .hero-video-section {
+    height: 55vh !important;
+  }
+
+  .hero-text-overlay h1 {
+    font-size: 2rem !important;
+  }
+
+  .hero-text-overlay p {
+    font-size: 1rem !important;
+  }
+}
+
+
 
 
 
