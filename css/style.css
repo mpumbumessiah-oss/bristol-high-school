@@ -836,6 +836,75 @@ body.admissions-portal-bg {
   font-size: 1rem;
 }
 
+
+
+
+
+/* Container for the entire hero banner area */
+.hero-video-section {
+  position: relative;
+  width: 100%;
+  height: 60vh; /* Adjusts banner height */
+  overflow: hidden;
+  background-color: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Forces the YouTube player to scale as a background layer */
+.video-background-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none; /* Prevents users from clicking or pausing the video background */
+}
+
+.video-background-wrapper iframe {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.25); /* Zooms slightly to hide native YouTube title or progress bars */
+}
+
+/* Polished semi-transparent dark blue overlay box for text readability */
+.hero-text-overlay {
+  position: relative;
+  z-index: 2; /* Forces text to float ABOVE the running video frame */
+  text-align: center;
+  color: #ffffff;
+  padding: 2.5rem;
+  background: rgba(0, 36, 125, 0.45); /* High-contrast overlay matching school theme colors */
+  border-radius: 8px;
+  max-width: 800px;
+  width: 90%;
+}
+
+.hero-text-overlay h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7); /* Adds drop-shadow contrast against changing light video clips */
+}
+
+.hero-text-overlay p {
+  font-size: 1.25rem;
+  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7);
+}
+
+
+
+
+
+
+
+
+
+
+
+
 /* ==========================================================================
    10. MOBILE & TABLET RESPONSIVENESS MATRICES
    ========================================================================== */
@@ -894,5 +963,11 @@ body.admissions-portal-bg {
   .form-group-full { grid-column: span 1; }
   .admission-form-wrapper { padding: 1.5rem; }
 }
+
+
+
+
+
+
 
 
