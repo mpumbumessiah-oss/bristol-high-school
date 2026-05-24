@@ -439,7 +439,7 @@ textarea{
     align-items:flex-start;
     gap:0;
     padding:1rem 0;
-    transition:0.4s ea
+    transition:0.4s ease
     box-shadow:-4px 0 15px rgba(0,0,0,0.1);
     z-index:999;
   }
@@ -476,40 +476,28 @@ textarea{
   display:block;
 }
 
-/* =========================
-   MOBILE FIX
-========================= */
+
 @media screen and (max-width:1024px){
 
- .dropdown-content{
-    position:relative;
-    display:none;
-    width:100%;
-    box-shadow:none;
-    border-radius:0;
-    background:#f1f5f9;
-  }
-
-  .dropdown.active .dropdown-content{
-    display:block;
-  }
-
-  /* IMPORTANT: prevent hover conflict */
-  .dropdown:hover .dropdown-content{
-    display:none;
-  }
-}
+  /* ================= NAV ================= */
 
   .nav__actions{
     display:none;
   }
 
+  /* MOBILE MENU FIX */
   .content-container,
   .anthem-container,
   .dashboard-layout-matrix{
     grid-template-columns:1fr;
   }
 
+  /* TOPBAR */
+  .topbar{
+    display:none;
+  }
+
+  /* HERO */
   .hero-video-section{
     height:55vh;
   }
@@ -526,11 +514,71 @@ textarea{
     font-size:1.1rem;
   }
 
+  /* ================= DROPDOWN MOBILE FIX ================= */
+
+  .dropdown-content{
+    position:relative;
+    display:none;
+    width:100%;
+    box-shadow:none;
+    border-radius:0;
+    background:#f1f5f9;
+  }
+
+  .dropdown.active .dropdown-content{
+    display:block;
+  }
+
+  /* FORCE REMOVE HOVER ON MOBILE */
+  .dropdown:hover .dropdown-content{
+    display:none !important;
+  }
+
+  /* ================= MOBILE NAV BUTTON ================= */
+
+  #open-menu-btn{
+    display:inline-block;
+  }
+
+  #close-menu-btn{
+    display:none;
+  }
+
+  .nav__menu{
+    position:fixed;
+    top:5.2rem;
+    right:-100%;
+    width:300px;
+    height:calc(100vh - 5.2rem);
+    background:#f8efc7;
+    flex-direction:column;
+    align-items:flex-start;
+    gap:0;
+    padding:1rem 0;
+    transition:0.4s ease;
+    box-shadow:-4px 0 15px rgba(0,0,0,0.1);
+    z-index:999;
+  }
+
+  .nav__menu.open{
+    right:0;
+  }
+
+  .nav__menu li{
+    width:100%;
+  }
+
+  .nav__menu li a,
+  .dropbtn{
+    display:block;
+    width:100%;
+    padding:1rem 2rem;
+  }
+
 }
 
-/* ==========================================================================
-   SMALL MOBILE
-========================================================================== */
+/* ========================================================================== SMALL MOBILE ========================================================================== */
+   
 
 @media screen and (max-width:600px){
 
@@ -558,4 +606,4 @@ textarea{
     padding:3rem 0;
   }
 
-} 
+}
