@@ -1,80 +1,4 @@
 // ======================================
-// VIDEO PLAYLIST
-// ======================================
-
-const videoPlayer = document.getElementById("video-player");
-
-const videoSources = [
-    "images/.mp4/Nze 0438.mp4",
-    "images/.mp4/Nze 0914.mp4"
-];
-
-let currentVideoIndex = 0;
-
-const VIDEO_DURATION_LIMIT = 30;
-
-
-// PLAY NEXT VIDEO
-function playNextVideo() {
-
-    if (!videoPlayer) return;
-
-    currentVideoIndex =
-        (currentVideoIndex + 1) % videoSources.length;
-
-    const source =
-        videoPlayer.querySelector("source");
-
-    if (source) {
-
-        source.src =
-            videoSources[currentVideoIndex];
-
-        videoPlayer.load();
-
-        videoPlayer.play().catch(error => {
-
-            console.log(
-                "Autoplay blocked:",
-                error
-            );
-
-        });
-
-    }
-
-}
-
-
-// VIDEO EVENTS
-if (videoPlayer) {
-
-    videoPlayer.addEventListener(
-        "timeupdate",
-        () => {
-
-            if (
-                videoPlayer.currentTime >=
-                VIDEO_DURATION_LIMIT
-            ) {
-
-                playNextVideo();
-
-            }
-
-        }
-    );
-
-    videoPlayer.addEventListener(
-        "ended",
-        playNextVideo
-    );
-
-}
-
-
-
-// ======================================
 // NEWS MODAL
 // ======================================
 
@@ -171,90 +95,103 @@ const newsData = {
 
 
 // OPEN MODAL
-newsCards.forEach(card => {
+if (
+    newsCards.length &&
+    newsModal
+) {
 
-    card.addEventListener("click", () => {
+    newsCards.forEach(card => {
 
-        const cardId =
-            card.getAttribute("data-id");
+        card.addEventListener(
+            "click",
+            () => {
 
-        const data =
-            newsData[cardId];
+                const cardId =
+                    card.getAttribute(
+                        "data-id"
+                    );
 
-        if (!data) return;
+                const data =
+                    newsData[cardId];
 
-
-        const imageElement =
-            card.querySelector(
-                ".news__card-image img"
-            );
-
-        const paragraph =
-            card.querySelector(
-                ".news__card-content p"
-            );
+                if (!data) return;
 
 
-        // SET MODAL CONTENT
-        if (modalTitle) {
+                const imageElement =
+                    card.querySelector(
+                        ".news__card-image img"
+                    );
 
-            modalTitle.textContent =
-                data.title;
-
-        }
-
-        if (modalDescription) {
-
-            modalDescription.textContent =
-                paragraph
-                    ? paragraph.textContent
-                    : "";
-
-        }
-
-        if (modalFullText) {
-
-            modalFullText.textContent =
-                data.fullText;
-
-        }
-
-        if (modalImage && imageElement) {
-
-            modalImage.src =
-                imageElement.src;
-
-        }
+                const paragraph =
+                    card.querySelector(
+                        ".news__card-content p"
+                    );
 
 
-        // OPEN MODAL
-        if (newsModal) {
+                // SET MODAL CONTENT
+                if (modalTitle) {
 
-            newsModal.classList.add(
-                "active"
-            );
+                    modalTitle.textContent =
+                        data.title;
 
-        }
+                }
+
+                if (modalDescription) {
+
+                    modalDescription.textContent =
+                        paragraph
+                            ? paragraph.textContent
+                            : "";
+
+                }
+
+                if (modalFullText) {
+
+                    modalFullText.textContent =
+                        data.fullText;
+
+                }
+
+                if (
+                    modalImage &&
+                    imageElement
+                ) {
+
+                    modalImage.src =
+                        imageElement.src;
+
+                    modalImage.alt =
+                        data.title;
+
+                }
+
+
+                // OPEN MODAL
+                newsModal.classList.add(
+                    "active"
+                );
+
+            }
+        );
 
     });
 
-});
+}
 
 
 // CLOSE MODAL BUTTON
-if (closeModalBtn) {
+if (
+    closeModalBtn &&
+    newsModal
+) {
 
     closeModalBtn.addEventListener(
         "click",
         () => {
 
-            if (newsModal) {
-
-                newsModal.classList.remove(
-                    "active"
-                );
-
-            }
+            newsModal.classList.remove(
+                "active"
+            );
 
         }
     );
@@ -269,7 +206,9 @@ if (newsModal) {
         "click",
         (e) => {
 
-            if (e.target === newsModal) {
+            if (
+                e.target === newsModal
+            ) {
 
                 newsModal.classList.remove(
                     "active"
@@ -301,13 +240,15 @@ if (featuredTrack) {
         );
 
 
-    // DUPLICATE FIRST CARDS
+    // DUPLICATE CARDS
     featuredCards.forEach(card => {
 
         const clone =
             card.cloneNode(true);
 
-        featuredTrack.appendChild(clone);
+        featuredTrack.appendChild(
+            clone
+        );
 
     });
 
@@ -367,15 +308,20 @@ const closeBtn =
     );
 
 
-if (menu && openBtn && closeBtn) {
+if (
+    menu &&
+    openBtn &&
+    closeBtn
+) {
 
     // OPEN MENU
     openBtn.addEventListener(
         "click",
         () => {
 
-            menu.style.display =
-                "flex";
+            menu.classList.add(
+                "open"
+            );
 
             openBtn.style.display =
                 "none";
@@ -392,8 +338,9 @@ if (menu && openBtn && closeBtn) {
         "click",
         () => {
 
-            menu.style.display =
-                "none";
+            menu.classList.remove(
+                "open"
+            );
 
             closeBtn.style.display =
                 "none";
