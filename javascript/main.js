@@ -24,7 +24,10 @@ const modalImage =
     document.getElementById("modal-image");
 
 
+// ======================================
 // NEWS DATA
+// ======================================
+
 const newsData = {
 
     1: {
@@ -94,7 +97,10 @@ const newsData = {
 };
 
 
-// OPEN MODAL
+// ======================================
+// OPEN NEWS MODAL
+// ======================================
+
 if (
     newsCards.length &&
     newsModal
@@ -128,7 +134,7 @@ if (
                     );
 
 
-                // SET MODAL CONTENT
+                // TITLE
                 if (modalTitle) {
 
                     modalTitle.textContent =
@@ -136,6 +142,8 @@ if (
 
                 }
 
+
+                // DESCRIPTION
                 if (modalDescription) {
 
                     modalDescription.textContent =
@@ -145,6 +153,8 @@ if (
 
                 }
 
+
+                // FULL TEXT
                 if (modalFullText) {
 
                     modalFullText.textContent =
@@ -152,6 +162,8 @@ if (
 
                 }
 
+
+                // IMAGE
                 if (
                     modalImage &&
                     imageElement
@@ -179,7 +191,10 @@ if (
 }
 
 
+// ======================================
 // CLOSE MODAL BUTTON
+// ======================================
+
 if (
     closeModalBtn &&
     newsModal
@@ -199,7 +214,10 @@ if (
 }
 
 
-// CLOSE MODAL ON OUTSIDE CLICK
+// ======================================
+// CLOSE MODAL OUTSIDE CLICK
+// ======================================
+
 if (newsModal) {
 
     newsModal.addEventListener(
@@ -307,6 +325,15 @@ const closeBtn =
         "#close-menu-btn"
     );
 
+const dropdowns =
+    document.querySelectorAll(
+        ".dropdown"
+    );
+
+
+// ======================================
+// OPEN/CLOSE MENU
+// ======================================
 
 if (
     menu &&
@@ -348,7 +375,103 @@ if (
             openBtn.style.display =
                 "inline-block";
 
+
+            // CLOSE ALL DROPDOWNS
+            dropdowns.forEach(
+                dropdown => {
+
+                    dropdown.classList.remove(
+                        "active"
+                    );
+
+                }
+            );
+
         }
     );
 
 }
+
+
+
+// ======================================
+// MOBILE DROPDOWNS
+// ======================================
+
+dropdowns.forEach(dropdown => {
+
+    const button =
+        dropdown.querySelector(
+            ".dropbtn"
+        );
+
+    if (button) {
+
+        button.addEventListener(
+            "click",
+            (e) => {
+
+                e.preventDefault();
+
+
+                // CLOSE OTHER DROPDOWNS
+                dropdowns.forEach(
+                    item => {
+
+                        if (
+                            item !== dropdown
+                        ) {
+
+                            item.classList.remove(
+                                "active"
+                            );
+
+                        }
+
+                    }
+                );
+
+
+                // TOGGLE CURRENT
+                dropdown.classList.toggle(
+                    "active"
+                );
+
+            }
+        );
+
+    }
+
+});
+
+
+
+// ======================================
+// CLOSE MENU WHEN LINK CLICKED
+// ======================================
+
+const navLinks =
+    document.querySelectorAll(
+        ".nav__menu a"
+    );
+
+navLinks.forEach(link => {
+
+    link.addEventListener(
+        "click",
+        () => {
+
+            menu.classList.remove(
+                "open"
+            );
+
+            closeBtn.style.display =
+                "none";
+
+            openBtn.style.display =
+                "inline-block";
+
+        }
+    );
+
+});
