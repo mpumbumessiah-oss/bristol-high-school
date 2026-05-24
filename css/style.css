@@ -8,6 +8,7 @@
   margin:0;
   padding:0;
   box-sizing:border-box;
+  max-width:100%;
 }
 
 :root{
@@ -125,6 +126,29 @@ p{
   gap:1rem;
 }
 
+.topbar__left a{
+  display:flex;
+  align-items:center;
+  gap:0.5rem;
+  font-size:0.95rem;
+}
+
+.topbar__right a{
+  width:40px;
+  height:40px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:rgba(255,255,255,0.1);
+  transition:var(--transition);
+}
+
+.topbar__right a:hover{
+  background:#facc15;
+  color:#072c63;
+}
+
 /* ==========================================================================
    NAVBAR
 ========================================================================== */
@@ -145,6 +169,28 @@ nav{
   gap:1rem;
 }
 
+.nav__logo{
+  display:flex;
+  align-items:center;
+  gap:0.8rem;
+}
+
+.nav__logo img{
+  width:55px;
+  height:55px;
+  object-fit:cover;
+}
+
+.nav__logo h4{
+  font-size:1.4rem;
+  margin-bottom:0.1rem;
+}
+
+.nav__logo small{
+  font-size:0.8rem;
+  color:#555;
+}
+
 .nav__menu{
   display:flex;
   align-items:center;
@@ -152,8 +198,17 @@ nav{
   margin-left:auto;
 }
 
+.nav__menu a{
+  font-weight:500;
+  transition:var(--transition);
+}
+
+.nav__menu a:hover{
+  color:var(--color-primary);
+}
+
 /* ==========================================================================
-   DROPDOWN (DESKTOP DEFAULT)
+   DROPDOWN
 ========================================================================== */
 
 .dropdown{
@@ -164,8 +219,9 @@ nav{
   background:none;
   border:none;
   font-size:1rem;
-  font-weight:500;
   cursor:pointer;
+  font-family:inherit;
+  font-weight:500;
 }
 
 .dropdown-content{
@@ -178,14 +234,19 @@ nav{
   border-radius:12px;
   box-shadow:0 10px 25px rgba(0,0,0,0.1);
   overflow:hidden;
-  z-index:1000;
 }
 
-/* ONLY DESKTOP HOVER */
-@media (min-width:1025px){
-  .dropdown:hover .dropdown-content{
-    display:block;
-  }
+.dropdown-content a{
+  display:block;
+  padding:0.9rem 1rem;
+}
+
+.dropdown-content a:hover{
+  background:#f1f5f9;
+}
+
+.dropdown:hover .dropdown-content{
+  display:block;
 }
 
 /* ==========================================================================
@@ -194,7 +255,25 @@ nav{
 
 .nav__actions{
   display:flex;
+  align-items:center;
   gap:1rem;
+}
+
+.admission-btn,
+.elearning-btn{
+  padding:0.7rem 1.3rem;
+  border-radius:50px;
+  font-weight:700;
+}
+
+.admission-btn{
+  background:#facc15;
+  color:#072c63;
+}
+
+.elearning-btn{
+  background:var(--color-primary);
+  color:white;
 }
 
 #open-menu-btn,
@@ -206,55 +285,31 @@ nav{
   cursor:pointer;
 }
 
-/* ==========================================================================
-   HERO VIDEO (FIXED)
-========================================================================== */
 
-.hero-video-section{
-  position:relative;
-  height:65vh;
-  overflow:hidden;
-  background:black;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-}
-
-.video-background-wrapper{
-  position:absolute;
-  inset:0;
-  z-index:1;
-  pointer-events:none;
-}
-
-.video-background-wrapper iframe{
-  position:absolute;
-  top:50%;
-  left:50%;
-  width:100vw;
-  height:56.25vw;
-  min-width:177vh;
-  min-height:100vh;
-  transform:translate(-50%,-50%);
-}
-
-.hero-text-overlay{
-  position:relative;
-  z-index:2;
-  text-align:center;
-  padding:2rem;
-  background:rgba(7,44,99,0.6);
-  border-radius:var(--radius);
-  color:white;
-}
+/* ========================================================================== 5. VIDEO HERO BANNER ENGINE ========================================================================== */ .hero-video-section { position: relative !important; width: 100% !important; height: 65vh !important; /* Locks structural banner section window height */ padding: 0 !important; /* Overrides global section padding forcing video flush */ margin: 0 !important; overflow: hidden !important; background-color: #000000 !important; display: flex !important; align-items: center !important; justify-content: center !important; } /* Forces structural frame directly beneath floating text elements */ .video-background-wrapper { position: absolute !important; top: 0 !important; left: 0 !important; width: 100% !important; height: 100% !important; z-index: 1 !important; /* Pushes video underneath overlay text context */ pointer-events: none !important; /* Prevents playback block interactions */ } /* Forces responsive YouTube scaling container frame */ .video-background-wrapper iframe { position: absolute !important; top: 50% !important; left: 50% !important; width: 100vw !important; height: 56.25vw !important; /* Dictates fixed aspect ratio parameter lock */ min-height: 100vh !important; min-width: 177.77vh !important; transform: translate(-50%, -50%) scale(1.3) !important; /* Centers and crops edges */ } /* Transparent floating content module panel */ .hero-text-overlay { position: relative !important; z-index: 2 !important; /* Locks text onto upper layer */ text-align: center !important; padding: 2.5rem !important; background: rgba(7, 44, 99, 0.6) !important; /* Styled semi-transparent brand blue tint */ border-radius: var(--radius) !important; /* Matches your custom theme border radii */ border: 1px solid var(--color-border) !important; max-width: 750px !important; width: 90% !important; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4) !important; } .hero-text-overlay h1 { font-size: 3rem !important; font-weight: 900 !important; margin-bottom: 1rem !important; color: #ffffff !important; /* Explicit white text visibility override */ text-shadow: 2px 2px 12px rgba(0, 0, 0, 0.8) !important; } .hero-text-overlay p { font-size: 1.2rem !important; font-weight: 400 !important; color: #f8fafc !important; /* Light slate text string variant matching system metrics */ text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.8) !important; line-height: 1.5 !important; } @media (max-width: 768px) { .hero-video-section { height: 55vh !important; } .hero-text-overlay h1 { font-size: 2rem !important; } .hero-text-overlay p { font-size: 1rem !important; } } this is my css help me fix all
 
 /* ==========================================================================
    FEATURED SLIDER
 ========================================================================== */
 
-.featured-slider{overflow:hidden;}
-.featured-track{display:flex;gap:1.5rem;}
-.featured-card{min-width:320px;}
+.featured-slider{
+  overflow:hidden;
+  position:relative;
+}
+
+.featured-track{
+  display:flex;
+  gap:1.5rem;
+  will-change:transform;
+}
+
+.featured-card{
+  min-width:320px;
+  background:white;
+  border-radius:var(--radius);
+  overflow:hidden;
+  box-shadow:0 4px 20px rgba(0,0,0,0.05);
+}
 
 /* ==========================================================================
    STAFF GRID
@@ -264,6 +319,33 @@ nav{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
   gap:2rem;
+}
+
+.profile-card{
+  background:white;
+  border-radius:var(--radius);
+  padding:2rem;
+  text-align:center;
+  border:1px solid var(--color-border);
+  transition:var(--transition);
+}
+
+.profile-card:hover{
+  transform:translateY(-5px);
+}
+
+.avatar-frame{
+  width:150px;
+  height:150px;
+  margin:0 auto;
+  border-radius:50%;
+  overflow:hidden;
+}
+
+.avatar-img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
 }
 
 /* ==========================================================================
@@ -276,6 +358,23 @@ nav{
   gap:1rem;
 }
 
+.photo-card-item{
+  overflow:hidden;
+  border-radius:18px;
+  aspect-ratio:1/1;
+}
+
+.gallery-img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  transition:0.4s ease;
+}
+
+.photo-card-item:hover .gallery-img{
+  transform:scale(1.05);
+}
+
 /* ==========================================================================
    FORMS
 ========================================================================== */
@@ -286,24 +385,46 @@ nav{
   gap:1.5rem;
 }
 
-.form-group-full{grid-column:span 2;}
+.form-group-full{
+  grid-column:span 2;
+}
 
-input,select,textarea{
+input,
+select,
+textarea{
   width:100%;
   padding:0.8rem 1rem;
   border:1px solid #cbd5e1;
   border-radius:10px;
+  font-family:inherit;
 }
 
 /* ==========================================================================
-   MOBILE MENU + DROPDOWNS (FIXED)
+   ADMISSION FORM
+========================================================================== */
+
+.admission-form-wrapper{
+  max-width:850px;
+  margin:4rem auto;
+  background:rgba(255,255,255,0.98);
+  padding:3rem;
+  border-radius:var(--radius);
+  box-shadow:0 10px 40px rgba(0,0,0,0.15);
+}
+
+/* ==========================================================================
+   MOBILE MENU
 ========================================================================== */
 
 @media screen and (max-width:1024px){
 
-  .topbar{display:none;}
+  .topbar{
+    display:none;
+  }
 
-  #open-menu-btn{display:inline-block;}
+  #open-menu-btn{
+    display:inline-block;
+  }
 
   .nav__menu{
     position:fixed;
@@ -313,24 +434,71 @@ input,select,textarea{
     height:calc(100vh - 5.2rem);
     background:#f8efc7;
     flex-direction:column;
+    align-items:flex-start;
+    gap:0;
+    padding:1rem 0;
     transition:0.4s ease;
+    box-shadow:-4px 0 15px rgba(0,0,0,0.1);
+    z-index:999;
   }
 
-  .nav__menu.open{right:0;}
+  .nav__menu.open{
+    right:0;
+  }
+
+  .nav__menu li{
+    width:100%;
+  }
+
+  .nav__menu li a,
+  .dropbtn{
+    display:block;
+    width:100%;
+    padding:1rem 2rem;
+  }
 
   .dropdown-content{
     position:relative;
-    display:none;
-    background:#f1f5f9;
     width:100%;
     box-shadow:none;
+    border-radius:0;
+    background:#f1f5f9;
+  }
+
+  .dropdown:hover .dropdown-content{
+    display:none;
   }
 
   .dropdown.active .dropdown-content{
     display:block;
   }
 
-  .nav__actions{display:none;}
+  .nav__actions{
+    display:none;
+  }
+
+  .content-container,
+  .anthem-container,
+  .dashboard-layout-matrix{
+    grid-template-columns:1fr;
+  }
+
+  .hero-video-section{
+    height:55vh;
+  }
+
+  .hero-text-overlay h1{
+    font-size:2rem;
+  }
+
+  .hero-text-overlay p{
+    font-size:1rem;
+  }
+
+  .nav__logo h4{
+    font-size:1.1rem;
+  }
+
 }
 
 /* ==========================================================================
@@ -339,11 +507,28 @@ input,select,textarea{
 
 @media screen and (max-width:600px){
 
-  .form-grid-layout{grid-template-columns:1fr;}
+  .form-grid-layout{
+    grid-template-columns:1fr;
+  }
 
-  .form-group-full{grid-column:span 1;}
+  .form-group-full{
+    grid-column:span 1;
+  }
 
-  .hero-text-overlay h1{font-size:1.6rem;}
+  .admission-form-wrapper{
+    padding:1.5rem;
+  }
 
-  section{padding:3rem 0;}
-}
+  .hero-text-overlay{
+    padding:1.5rem;
+  }
+
+  .hero-text-overlay h1{
+    font-size:1.6rem;
+  }
+
+  section{
+    padding:3rem 0;
+  }
+
+} apply the css fixes
