@@ -3,240 +3,417 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Live eTeaching Portal | BRISTOL HIGH SCHOOL</title>
-    <!-- IconScout CDN for line icons -->
-     <link rel="stylesheet" href="../css/style.css">
-
-<link rel="stylesheet" href="../css/body.css">
-
-        <link
-  rel="stylesheet"href="https://unicons.iconscout.com/release/v4.0.8/css/line.css"/> 
-    
+    <title>Live eTeaching Portal | Bristol High School - Virtual Classrooms</title>
+    <!-- Tailwind CSS + Google Fonts + Unicons -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
+    <style>
+        * {
+            font-family: 'Poppins', sans-serif;
+        }
+        /* Custom dropdown styles */
+        .dropdown:hover .dropdown-menu {
+            display: block;
+        }
+        .dropdown-menu {
+            display: none;
+        }
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+        /* Custom pulse animation for live badge */
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        .live-pulse {
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+        /* Card hover effects */
+        .class-card {
+            transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+        }
+        .class-card:hover {
+            transform: translateX(4px);
+        }
+    </style>
 </head>
-<body>
+<body class="bg-gradient-to-br from-gray-50 to-indigo-50/20 text-gray-800 overflow-x-hidden">
 
-    <nav>
-    <div class="topbar">
-        <div class="container topbar__container">
-            <div class="topbar__left">
-                <a href="tel:+256775831844"><i class="uil uil-phone"></i> +256-775-831844</a>
-                <a href="mailto:info@bristolhighschool.com"><i class="uil uil-envelope"></i> info@bristolhighschool.com</a>
-            </div>
-            <div class="topbar__right">
-                <span>Follow us</span>
-                <a href="https://www.tiktok.com/@bristolhighsch" target="_blank"><i class="uil uil-music-note"></i></a>
-                <a href="https://x.com/bristolhighschool" target="_blank"><i class="uil uil-twitter"></i></a>
-                <a href="https://www.facebook.com/bristolhighschool" target="_blank"><i class="uil uil-facebook-f"></i></a>
-                <a href="https://www.linkedin.com/company/bristol-high-school" target="_blank"><i class="uil uil-linkedin-alt"></i></a>
-            </div>
+<!-- Topbar -->
+<div class="bg-[#0f172a] text-gray-200 text-sm py-2.5">
+    <div class="container mx-auto px-5 flex flex-wrap justify-between items-center gap-3 max-w-7xl">
+        <div class="flex flex-wrap items-center gap-5">
+            <a href="tel:+256775831844" class="flex items-center gap-2 hover:text-amber-400 transition"><i class="uil uil-phone"></i> +256-775-831844</a>
+            <a href="mailto:info@bristolhighschool.com" class="flex items-center gap-2 hover:text-amber-400 transition"><i class="uil uil-envelope"></i> info@bristolhighschool.com</a>
+        </div>
+        <div class="flex items-center gap-3">
+            <span class="text-xs">Follow us</span>
+            <a href="#" class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-amber-400 hover:text-[#0f172a] transition"><i class="uil uil-music-note"></i></a>
+            <a href="#" class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-amber-400 hover:text-[#0f172a] transition"><i class="uil uil-twitter"></i></a>
+            <a href="#" class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-amber-400 hover:text-[#0f172a] transition"><i class="uil uil-facebook-f"></i></a>
+            <a href="#" class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-amber-400 hover:text-[#0f172a] transition"><i class="uil uil-linkedin-alt"></i></a>
         </div>
     </div>
-    <div class="container nav__container">
-        <a href="../index.html" class="nav__logo">
-            <img src="../images/logo.jpeg" loading="lazy" alt="School Logo">
+</div>
+
+<!-- Navbar (Sticky) -->
+<nav class="sticky top-0 z-50 bg-[#fef9e6] shadow-md border-b border-gray-200">
+    <div class="container mx-auto px-5 max-w-7xl flex justify-between items-center h-20">
+        <a href="../index.html" class="flex items-center gap-3">
+            <img src="../images/logo.jpeg" width="55" height="55" class="rounded-xl shadow-sm object-cover" alt="School Logo">
             <div>
-                <h4>BRISTOL HIGH SCHOOL</h4>
-                <small>"Education Leads to victory"</small>
+                <h4 class="font-extrabold text-xl bg-gradient-to-r from-indigo-800 to-indigo-600 bg-clip-text text-transparent">BRISTOL HIGH SCHOOL</h4>
+                <small class="text-gray-500 text-xs">"Education Leads to victory"</small>
             </div>
         </a>
-        <ul class="nav__menu">
-            <li><a href="../index.html">Home</a></li>
-            <li><a href="../pages/about.html">About BHS</a></li>
-            <li><a href="../pages/courses.html">Courses</a></li>
-            <li class="dropdown">
-                <button class="dropbtn" type="button">Explore</button>
-                <div class="dropdown-content">
-                    <a href="../pages/documents.html">Fees, Rules & Calendar</a>
-                    <a href="../pages/students_leadership.html">Student Leadership</a>
-                    <a href="../pages/staff.html">Our Staff</a>
-                    <a href="../pages/gallery.html">Gallery</a>
+        
+        <!-- Desktop Menu -->
+        <ul class="hidden md:flex items-center gap-6 font-medium">
+            <li><a href="../index.html" class="hover:text-indigo-700 transition">Home</a></li>
+            <li><a href="../pages/about.html" class="hover:text-indigo-700 transition">About BHS</a></li>
+            <li><a href="../pages/courses.html" class="hover:text-indigo-700 transition">Courses</a></li>
+            <li class="dropdown relative group">
+                <button class="flex items-center gap-1 hover:text-indigo-700">Explore <i class="uil uil-angle-down"></i></button>
+                <div class="dropdown-menu absolute top-full left-0 w-56 bg-white shadow-xl rounded-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 py-2 border border-gray-100">
+                    <a href="../pages/documents.html" class="block px-5 py-2.5 hover:bg-indigo-50 transition">Fees, Rules & Calendar</a>
+                    <a href="../pages/students_leadership.html" class="block px-5 py-2.5 hover:bg-indigo-50 transition">Student Leadership</a>
+                    <a href="../pages/staff.html" class="block px-5 py-2.5 hover:bg-indigo-50 transition">Our Staff</a>
+                    <a href="../pages/gallery.html" class="block px-5 py-2.5 hover:bg-indigo-50 transition">Gallery</a>
                 </div>
             </li>
-            <li class="dropdown">
-                <button class="dropbtn" type="button">eCampus</button>
-                <div class="dropdown-content">
-                    <a href="../pages/e-library.html">e-Library</a>
-                    <a href="../pages/e-learning.html">e-Teaching</a>
+            <li class="dropdown relative group">
+                <button class="flex items-center gap-1 hover:text-indigo-700">eCampus <i class="uil uil-angle-down"></i></button>
+                <div class="dropdown-menu absolute top-full left-0 w-56 bg-white shadow-xl rounded-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 py-2">
+                    <a href="../pages/e-library.html" class="block px-5 py-2.5 hover:bg-indigo-50 transition">e-Library</a>
+                    <a href="../pages/e-learning.html" class="block px-5 py-2.5 hover:bg-indigo-50 transition font-semibold text-indigo-700">e-Teaching</a>
                 </div>
             </li>
-            <li><a href="../pages/contact.html">Contact</a></li>
+            <li><a href="../pages/contact.html" class="hover:text-indigo-700 transition">Contact</a></li>
         </ul>
-        <div class="nav__actions">
-            <a href="../pages/admissions.html" class="admission-btn">Admissions</a>
-            <a href="../pages/e-learning.html" class="elearning-btn">eLearning</a>
+        
+        <!-- Action Buttons Desktop -->
+        <div class="hidden md:flex items-center gap-3">
+            <a href="../pages/admissions.html" class="bg-amber-400 hover:bg-amber-500 text-gray-900 font-bold px-5 py-2 rounded-full transition shadow-md">Admissions</a>
+            <a href="../pages/e-learning.html" class="bg-indigo-700 hover:bg-indigo-800 text-white font-bold px-5 py-2 rounded-full transition shadow-md">eLearning</a>
         </div>
-        <button id="open-menu-btn"><i class="uil uil-bars"></i></button>
-        <button id="close-menu-btn"><i class="uil uil-multiply"></i></button>
+        
+        <!-- Mobile Menu Buttons -->
+        <button id="open-menu-btn" class="md:hidden text-3xl text-gray-700"><i class="uil uil-bars"></i></button>
+        <button id="close-menu-btn" class="md:hidden text-3xl text-gray-700 hidden"><i class="uil uil-multiply"></i></button>
     </div>
+    
+    <!-- Mobile Menu Slider -->
+    <ul id="mobile-menu" class="fixed top-20 right-[-100%] w-72 h-[calc(100vh-5rem)] bg-[#fef9e6] shadow-2xl flex flex-col z-40 transition-all duration-300 ease-in-out px-6 py-6 gap-4 font-medium md:hidden overflow-y-auto">
+        <li><a href="../index.html" class="block py-2 border-b border-gray-200">Home</a></li>
+        <li><a href="../pages/about.html" class="block py-2 border-b border-gray-200">About BHS</a></li>
+        <li><a href="../pages/courses.html" class="block py-2 border-b border-gray-200">Courses</a></li>
+        <li class="dropdown-mobile">
+            <button class="dropbtn-mobile w-full text-left py-2 flex justify-between items-center">Explore <i class="uil uil-angle-down"></i></button>
+            <div class="mobile-dropdown-content hidden pl-4 flex flex-col gap-2 mt-1">
+                <a href="../pages/documents.html" class="py-1.5 text-gray-600">Fees, Rules & Calendar</a>
+                <a href="../pages/students_leadership.html" class="py-1.5 text-gray-600">Student Leadership</a>
+                <a href="../pages/staff.html" class="py-1.5 text-gray-600">Our Staff</a>
+                <a href="../pages/gallery.html" class="py-1.5 text-gray-600">Gallery</a>
+            </div>
+        </li>
+        <li class="dropdown-mobile">
+            <button class="dropbtn-mobile w-full text-left py-2 flex justify-between items-center">eCampus <i class="uil uil-angle-down"></i></button>
+            <div class="mobile-dropdown-content hidden pl-4 flex flex-col gap-2 mt-1">
+                <a href="../pages/e-library.html" class="py-1.5 text-gray-600">e-Library</a>
+                <a href="../pages/e-learning.html" class="py-1.5 text-gray-600 font-semibold text-indigo-700">e-Teaching</a>
+            </div>
+        </li>
+        <li><a href="../pages/contact.html" class="block py-2 border-b border-gray-200">Contact</a></li>
+        <div class="flex flex-col gap-3 mt-4">
+            <a href="../pages/admissions.html" class="bg-amber-400 text-center font-bold py-2 rounded-full">Admissions</a>
+            <a href="../pages/e-learning.html" class="bg-indigo-700 text-white text-center font-bold py-2 rounded-full">eLearning</a>
+        </div>
+    </ul>
 </nav>
 
-    <!-- PORTAL BANNER -->
-    <header class="eteaching-header">
-        <h1>Bristol High Live eTeaching</h1>
-        <p>Connect instantly with your teachers and classmates via secure video conference lecture pipelines.</p>
-    </header>
+<!-- Hero Banner -->
+<section class="relative bg-gradient-to-r from-indigo-900 via-indigo-800 to-indigo-900 py-20 md:py-24 overflow-hidden">
+    <div class="absolute inset-0 opacity-10 bg-[url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"%3E%3Cpolygon points="100,0 120,80 200,80 135,130 160,210 100,160 40,210 65,130 0,80 80,80" fill="white"/%3E%3C/svg%3E')] bg-repeat"></div>
+    <div class="absolute top-10 right-10 text-6xl opacity-5 animate-pulse">🎥</div>
+    <div class="container mx-auto px-5 max-w-7xl text-center relative z-10">
+        <div class="inline-block bg-amber-400/20 backdrop-blur-sm rounded-full px-6 py-2 mb-6">
+            <span class="text-amber-300 font-semibold text-sm tracking-wide"><i class="uil uil-presentation-play text-base mr-1"></i> Virtual Classrooms</span>
+        </div>
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white mb-5 drop-shadow-lg">Bristol High Live eTeaching</h1>
+        <p class="text-indigo-100 text-lg md:text-xl max-w-2xl mx-auto">Connect instantly with your teachers and classmates via secure video conference lecture pipelines.</p>
+        <div class="flex justify-center gap-3 mt-8">
+            <div class="w-16 h-1 bg-amber-400 rounded-full"></div>
+            <div class="w-8 h-1 bg-indigo-300 rounded-full"></div>
+        </div>
+    </div>
+</section>
 
-    <!-- CONTENT PORTAL WORKSPACE -->
-    <div class="portal-layout">
+<!-- Portal Content -->
+<div class="container mx-auto px-5 max-w-7xl py-12 md:py-16">
+    <div class="flex flex-col lg:flex-row gap-8">
         
-        <!-- LEFT: CURRENT LIVE VIDEO STREAM FOCUS WINDOW -->
-        <main class="video-showcase-box">
-            <div class="video-wrapper">
-                <!-- If streaming via YouTube Live embed, use this iframe structure below -->
-                <!-- <iframe src="https://youtube.com" allowfullscreen></iframe> -->
+        <!-- LEFT: Video Showcase / Active Stream Window -->
+        <main class="flex-1">
+            <div class="bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-100 sticky top-28">
+                <!-- Video Container -->
+                <div class="aspect-video bg-gradient-to-br from-gray-900 to-gray-800 relative flex items-center justify-center">
+                    <!-- YouTube Live Embed Placeholder (can be replaced with actual embed) -->
+                    <div class="text-center p-8" id="activeStreamPlaceholder">
+                        <i class="uil uil-video text-white text-6xl mb-4 block opacity-50"></i>
+                        <h3 class="text-white text-xl font-semibold mb-2">No Active General Broadcast Stream</h3>
+                        <p class="text-gray-400 text-sm">Select your class from the live timetable menu to launch your video conference room.</p>
+                    </div>
+                    <!-- Hidden iframe for future live stream integration -->
+                    <iframe id="liveStreamFrame" class="hidden absolute inset-0 w-full h-full" frameborder="0" allowfullscreen></iframe>
+                </div>
                 
-                <!-- Default structural view container placeholder when no static live stream is running -->
-                <div class="placeholder-box" id="activeStreamPlaceholder">
-                    <i class="uil uil-video"></i>
-                    <h3>No Active General Broadcast Stream</h3>
-                    <p>Select your class from the live timetable menu to launch your video conference room.</p>
+                <!-- Stream Metadata -->
+                <div class="p-5 flex justify-between items-center flex-wrap gap-3 border-t border-gray-100">
+                    <div>
+                        <h3 id="focusedClassName" class="text-xl font-bold text-gray-800">Virtual Lecture Theater</h3>
+                        <p class="text-gray-500 text-sm mt-1">Click any active session button to launch Zoom or Google Meet links.</p>
+                    </div>
+                    <div id="focusedStatusBadge" class="hidden bg-red-500 text-white text-xs font-bold px-3 py-1.5 rounded-full flex items-center gap-2">
+                        <span class="w-2 h-2 bg-white rounded-full live-pulse"></span>
+                        LIVE NOW
+                    </div>
                 </div>
             </div>
-
-            <div class="stream-meta">
-                <div>
-                    <h3 id="focusedClassName">Virtual Lecture Theater</h3>
-                    <p style="color: #666; font-size: 0.9rem; margin-top: 4px;">Click any active session button to launch Zoom or Google Meet links.</p>
-                </div>
-                <div class="live-badge" id="focusedStatusBadge" style="display: none;">LIVE</div>
+            
+            <!-- Info Note -->
+            <div class="mt-4 bg-amber-50 rounded-xl p-3 flex items-center gap-3 text-sm">
+                <i class="uil uil-info-circle text-amber-600 text-lg"></i>
+                <span class="text-amber-800">For best experience, use Google Chrome or Firefox. Ensure microphone and camera permissions are enabled.</span>
             </div>
         </main>
-
-        <!-- RIGHT: TIMETABLE & CLASS CONNECTIONS LIST -->
-        <aside class="timetable-section">
-            <h2>Today's Live Classes</h2>
-            <div class="timetable-list" id="timetableContainer">
-                <!-- Dynamic JavaScript injection maps here -->
+        
+        <!-- RIGHT: Timetable & Class Connections List -->
+        <aside class="lg:w-96 flex-shrink-0">
+            <div class="bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100 sticky top-28">
+                <div class="bg-gradient-to-r from-indigo-600 to-indigo-700 px-6 py-4">
+                    <h2 class="text-white text-xl font-bold flex items-center gap-2">
+                        <i class="uil uil-schedule"></i> Today's Live Classes
+                    </h2>
+                    <p class="text-indigo-200 text-xs mt-1">Join your scheduled sessions</p>
+                </div>
+                <div id="timetableContainer" class="divide-y divide-gray-100 max-h-[600px] overflow-y-auto">
+                    <!-- Dynamic JavaScript injection maps here -->
+                </div>
+                <div class="p-4 bg-gray-50 border-t border-gray-100 text-center">
+                    <p class="text-xs text-gray-500">⏰ All times are in East Africa Time (EAT)</p>
+                </div>
             </div>
         </aside>
-
     </div>
+</div>
 
-
-     <footer class="site-footer">
-    <div class="footer-container">
-        <div class="footer-col">
-            <h3>About Bristol High</h3>
-            <p class="school-name">Bristol High School</p>
-            <p>Providing holistic education built on quality training, dedication, moral focus, and continuous academic achievement.</p>
+<!-- Footer -->
+<footer class="bg-[#0f172a] text-gray-300 pt-14 pb-8 mt-8">
+    <div class="container mx-auto px-5 max-w-7xl grid md:grid-cols-4 gap-8">
+        <div>
+            <h3 class="text-white text-xl font-bold mb-4">About Bristol High</h3>
+            <p class="text-sm leading-relaxed">Providing holistic education built on quality training, dedication, moral focus, and continuous academic achievement.</p>
         </div>
-        <div class="footer-col">
-            <h3>Quick Access</h3>
-            <ul class="footer-links">
-                <li><a href="../pages/about.html">About BHS</a></li>
-                <li><a href="../pages/courses.html">Academic Courses</a></li>
-                <li><a href="../pages/documents.html">Fees & Documents</a></li>
-                <li><a href="../pages/admissions.html">Admission Portal</a></li>
-                <li><a href="../pages/career.html">Work With Us</a></li>
+        <div>
+            <h3 class="text-white text-xl font-bold mb-4">Quick Access</h3>
+            <ul class="space-y-2 text-sm">
+                <li><a href="../pages/about.html" class="hover:text-amber-400 transition">About BHS</a></li>
+                <li><a href="../pages/courses.html" class="hover:text-amber-400 transition">Academic Courses</a></li>
+                <li><a href="../pages/documents.html" class="hover:text-amber-400 transition">Fees & Documents</a></li>
+                <li><a href="../pages/admissions.html" class="hover:text-amber-400 transition">Admission Portal</a></li>
+                <li><a href="../pages/career.html" class="hover:text-amber-400 transition">Work With Us</a></li>
             </ul>
         </div>
-        <div class="footer-col">
-            <h3>eCampus Portals</h3>
-            <ul class="footer-links">
-                <li><a href="../pages/e-learning.html">Live eLearning Matrix</a></li>
-                <li><a href="../pages/e-library.html">Digital Library Archive</a></li>
-                <li><a href="../pages/academic-giants.html">Wall of Fame</a></li>
-                <li><a href="../pages/anthem.html">School Anthem</a></li>
+        <div>
+            <h3 class="text-white text-xl font-bold mb-4">eCampus Portals</h3>
+            <ul class="space-y-2 text-sm">
+                <li><a href="../pages/e-learning.html" class="hover:text-amber-400 transition">Live eLearning Matrix</a></li>
+                <li><a href="../pages/e-library.html" class="hover:text-amber-400 transition">Digital Library Archive</a></li>
+                <li><a href="../pages/academic-giants.html" class="hover:text-amber-400 transition">Wall of Fame</a></li>
+                <li><a href="../pages/anthem.html" class="hover:text-amber-400 transition">School Anthem</a></li>
             </ul>
         </div>
-        <div class="footer-col">
-            <h3>Location & Contact</h3>
+        <div>
+            <h3 class="text-white text-xl font-bold mb-4">Location & Contact</h3>
             <p>Matugga, Wakiso District, Uganda</p>
-            <p class="contact-label">Call Info Line:</p>
-            <a href="tel:+256775831844" class="highlight-text">+256-775-831844</a>
-            <p class="connect-label">Connect Socially:</p>
-            <div class="social-icons">
-                <a href="https://www.tiktok.com/@bristolhighsch" target="_blank"><i class="uil uil-music-note"></i></a>
-                <a href="https://x.com/bristolhighschool" target="_blank"><i class="uil uil-twitter"></i></a>
-                <a href="https://www.facebook.com/bristolhighschool" target="_blank"><i class="uil uil-facebook-f"></i></a>
+            <p class="mt-2 font-semibold">Call Info Line:</p>
+            <a href="tel:+256775831844" class="text-amber-400 hover:underline">+256-775-831844</a>
+            <p class="mt-3 font-semibold">Connect Socially:</p>
+            <div class="flex gap-4 mt-2">
+                <a href="#" class="text-xl hover:text-amber-400 transition"><i class="uil uil-music-note"></i></a>
+                <a href="#" class="text-xl hover:text-amber-400 transition"><i class="uil uil-twitter"></i></a>
+                <a href="#" class="text-xl hover:text-amber-400 transition"><i class="uil uil-facebook-f"></i></a>
             </div>
         </div>
+    </div>
+    <div class="text-center text-gray-500 text-xs pt-10 border-t border-gray-800 mt-8">
+        © 2025 Bristol High School. All rights reserved. | "Education Leads to Victory"
     </div>
 </footer>
 
-    <!-- PORTAL ROUTING LOGIC & DATA SCRIPT -->
-    <script>
-        // 1. Data Store containing the day's class conferencing configurations
-        const classesSchedule = [
-            {
-                id: 1,
-                subject: "Physics: Wave Mechanics",
-                classLevel: "Senior 4",
-                time: "09:00 AM - 10:00 AM",
-                teacher: "Mr. Okello David",
-                status: "ended", // Options: live, upcoming, ended
-                platform: "Zoom",
-                link: "https://zoom.us"
-            },
-            {
-                id: 2,
-                subject: "Mathematics: Calculus Integration",
-                classLevel: "Senior 6",
-                time: "11:30 AM - 12:30 PM",
-                teacher: "Mrs. Nsubuga Joan",
-                status: "live",
-                platform: "Google Meet",
-                link: "https://meet.google.com/dac-bhfp-xbz"
-            },
-            {
-                id: 3,
-                subject: "Computer Studies: Web Design Basics",
-                classLevel: "Senior 2",
-                time: "02:00 PM - 03:00 PM",
-                teacher: "Mr. Mukasa Mark",
-                status: "upcoming",
-                platform: "Teams",
-                link: "https://microsoft.com..."
+<!-- Portal Routing Logic & Data Script -->
+<script>
+    // Data Store containing the day's class conferencing configurations
+    const classesSchedule = [
+        {
+            id: 1,
+            subject: "Physics: Wave Mechanics",
+            classLevel: "Senior 4",
+            time: "09:00 AM - 10:00 AM",
+            teacher: "Mr. Okello David",
+            status: "ended", // Options: live, upcoming, ended
+            platform: "Zoom",
+            link: "https://zoom.us/j/example"
+        },
+        {
+            id: 2,
+            subject: "Mathematics: Calculus Integration",
+            classLevel: "Senior 6",
+            time: "11:30 AM - 12:30 PM",
+            teacher: "Mrs. Nsubuga Joan",
+            status: "live",
+            platform: "Google Meet",
+            link: "https://meet.google.com/dac-bhfp-xbz"
+        },
+        {
+            id: 3,
+            subject: "Computer Studies: Web Design Basics",
+            classLevel: "Senior 2",
+            time: "02:00 PM - 03:00 PM",
+            teacher: "Mr. Mukasa Mark",
+            status: "upcoming",
+            platform: "Teams",
+            link: "https://teams.microsoft.com/l/meetup-join/example"
+        },
+        {
+            id: 4,
+            subject: "Chemistry: Organic Compounds",
+            classLevel: "Senior 5",
+            time: "10:30 AM - 11:30 AM",
+            teacher: "Ms. Atim Florence",
+            status: "upcoming",
+            platform: "Zoom",
+            link: "https://zoom.us/j/example2"
+        },
+        {
+            id: 5,
+            subject: "Literature: Poetry Analysis",
+            classLevel: "Senior 3",
+            time: "12:00 PM - 01:00 PM",
+            teacher: "Mr. Wasswa Robert",
+            status: "ended",
+            platform: "Google Meet",
+            link: "https://meet.google.com/abc-defg-hij"
+        }
+    ];
+
+    function renderTimetable() {
+        const container = document.getElementById('timetableContainer');
+        if (!container) return;
+        container.innerHTML = "";
+
+        classesSchedule.forEach(session => {
+            const card = document.createElement('div');
+            card.className = "p-4 hover:bg-gray-50 transition-colors class-card";
+            
+            let statusBadge = "";
+            let statusColor = "";
+            let btnDisabled = false;
+            let btnLink = session.link;
+            
+            if (session.status === 'live') {
+                statusBadge = `<span class="inline-flex items-center gap-1 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-full"><span class="w-1.5 h-1.5 bg-white rounded-full live-pulse"></span> LIVE NOW</span>`;
+                statusColor = "border-l-4 border-red-500";
+            } else if (session.status === 'ended') {
+                statusBadge = `<span class="bg-gray-300 text-gray-600 text-xs font-bold px-2 py-1 rounded-full">Ended</span>`;
+                btnDisabled = true;
+                btnLink = "#";
+                statusColor = "border-l-4 border-gray-300";
+            } else {
+                statusBadge = `<span class="bg-amber-400 text-gray-800 text-xs font-bold px-2 py-1 rounded-full">Upcoming</span>`;
+                statusColor = "border-l-4 border-amber-400";
             }
-        ];
-
-        function renderTimetable() {
-            const container = document.getElementById('timetableContainer');
-            container.innerHTML = "";
-
-            classesSchedule.forEach(session => {
-                const card = document.createElement('div');
-                
-                // Assign matching CSS modifier strings depending on live state
-                let statusClass = "upcoming";
-                let btnText = `Join via ${session.platform}`;
-                let btnStyleClass = session.platform.toLowerCase().replace(" ", "-");
-                let disabledAttr = "";
-
-                if (session.status === 'live') {
-                    statusClass = "active";
-                } else if (session.status === 'ended') {
-                    statusClass = "ended";
-                    btnText = "Class Concluded";
-                    btnStyleClass = "disabled";
-                    disabledAttr = "disabled";
-                }
-
-                card.className = `class-card ${statusClass}`;
-                card.innerHTML = `
-                    <div class="class-info">
-                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
-                            <span style="font-weight: bold; color: #555; font-size: 0.85rem;">${session.classLevel}</span>
-                            ${session.status === 'live' ? '<span class="live-badge">LIVE NOW</span>' : ''}
-                        </div>
-                        <h4>${session.subject}</h4>
-                        <div class="class-meta">
-                            <span><i class="uil uil-clock"></i> ${session.time}</span>
-                            <span><i class="uil uil-user"></i> ${session.teacher}</span>
-                        </div>
+            
+            let btnText = session.status === 'ended' ? "Concluded" : `Join via ${session.platform}`;
+            let btnClass = session.status === 'ended' 
+                ? "bg-gray-200 text-gray-400 cursor-not-allowed" 
+                : "bg-indigo-600 hover:bg-indigo-700 text-white shadow-sm";
+            
+            card.innerHTML = `
+                <div class="${statusColor} pl-3">
+                    <div class="flex justify-between items-start mb-2">
+                        <span class="text-xs font-semibold text-gray-500">${session.classLevel}</span>
+                        ${statusBadge}
                     </div>
-                    <a href="${session.link}" target="_blank" rel="noopener noreferrer" class="join-btn ${btnStyleClass}" ${disabledAttr}>
+                    <h4 class="font-bold text-gray-800 mb-1">${session.subject}</h4>
+                    <div class="flex flex-wrap gap-3 text-xs text-gray-500 mb-3">
+                        <span class="flex items-center gap-1"><i class="uil uil-clock text-sm"></i> ${session.time}</span>
+                        <span class="flex items-center gap-1"><i class="uil uil-user text-sm"></i> ${session.teacher}</span>
+                        <span class="flex items-center gap-1"><i class="uil uil-video text-sm"></i> ${session.platform}</span>
+                    </div>
+                    <a href="${btnLink}" target="_blank" rel="noopener noreferrer" 
+                       class="flex items-center justify-center gap-2 ${btnClass} font-semibold py-2 px-4 rounded-lg transition text-sm ${session.status === 'ended' ? 'pointer-events-none' : ''}">
                         <i class="uil uil-external-link-alt"></i> ${btnText}
                     </a>
-                `;
-                
-                container.appendChild(card);
-            });
-        }
+                </div>
+            `;
+            
+            container.appendChild(card);
+        });
+    }
 
-        // Run the script assembly process on load
-        renderTimetable();
-    </script>
-    <script defer src="../javascript/nav.js"></script>
+    // Update focused class display when hovering/clicking (optional enhancement)
+    function updateFocusedClass(subject, isLive) {
+        const focusedName = document.getElementById('focusedClassName');
+        const focusedBadge = document.getElementById('focusedStatusBadge');
+        if (focusedName) focusedName.textContent = subject || "Virtual Lecture Theater";
+        if (focusedBadge) {
+            if (isLive) {
+                focusedBadge.classList.remove('hidden');
+            } else {
+                focusedBadge.classList.add('hidden');
+            }
+        }
+    }
+
+    // Find live session and set it as focused initially
+    const liveSession = classesSchedule.find(s => s.status === 'live');
+    if (liveSession) {
+        updateFocusedClass(liveSession.subject, true);
+    }
+
+    // Run the script assembly process on load
+    renderTimetable();
+
+    // Mobile Menu Script
+    const openBtn = document.getElementById('open-menu-btn');
+    const closeBtn = document.getElementById('close-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    
+    if(openBtn && closeBtn && mobileMenu) {
+        openBtn.onclick = () => { 
+            mobileMenu.style.right = '0'; 
+            openBtn.style.display = 'none'; 
+            closeBtn.style.display = 'inline-block'; 
+        };
+        closeBtn.onclick = () => { 
+            mobileMenu.style.right = '-100%'; 
+            openBtn.style.display = 'inline-block'; 
+            closeBtn.style.display = 'none'; 
+        };
+    }
+    
+    // Mobile dropdown toggles
+    document.querySelectorAll('.dropdown-mobile button').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            const content = btn.nextElementSibling;
+            if(content) content.classList.toggle('hidden');
+        });
+    });
+</script>
 </body>
 </html>
