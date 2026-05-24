@@ -3,252 +3,403 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/body.css">
-
-        <link
-  rel="stylesheet"href="https://unicons.iconscout.com/release/v4.0.8/css/line.css"/> 
-    <title>School Uniform</title>
+    <title>School Uniform | Bristol High School - Dress Code & Identity</title>
+    <!-- Tailwind CSS + Google Fonts + Unicons -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
+    <style>
+        * {
+            font-family: 'Poppins', sans-serif;
+        }
+        /* Custom dropdown styles */
+        .dropdown:hover .dropdown-menu {
+            display: block;
+        }
+        .dropdown-menu {
+            display: none;
+        }
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+        /* Card hover effects */
+        .uniform-card {
+            transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+        }
+        .uniform-card:hover {
+            transform: translateY(-5px);
+        }
+        /* Custom checkmark styling */
+        .check-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 20px;
+            height: 20px;
+            background-color: #10b981;
+            color: white;
+            border-radius: 50%;
+            font-size: 12px;
+            margin-right: 10px;
+            flex-shrink: 0;
+        }
+    </style>
 </head>
-<body>
+<body class="bg-gradient-to-br from-gray-50 to-indigo-50/20 text-gray-800 overflow-x-hidden">
 
-
-  <nav>
-    <div class="topbar">
-        <div class="container topbar__container">
-            <div class="topbar__left">
-                <a href="tel:+256775831844"><i class="uil uil-phone"></i> +256-775-831844</a>
-                <a href="mailto:info@bristolhighschool.com"><i class="uil uil-envelope"></i> info@bristolhighschool.com</a>
-            </div>
-            <div class="topbar__right">
-                <span>Follow us</span>
-                <a href="https://www.tiktok.com/@bristolhighsch" target="_blank"><i class="uil uil-music-note"></i></a>
-                <a href="https://x.com/bristolhighschool" target="_blank"><i class="uil uil-twitter"></i></a>
-                <a href="https://www.facebook.com/bristolhighschool" target="_blank"><i class="uil uil-facebook-f"></i></a>
-                <a href="https://www.linkedin.com/company/bristol-high-school" target="_blank"><i class="uil uil-linkedin-alt"></i></a>
-            </div>
+<!-- Topbar -->
+<div class="bg-[#0f172a] text-gray-200 text-sm py-2.5">
+    <div class="container mx-auto px-5 flex flex-wrap justify-between items-center gap-3 max-w-7xl">
+        <div class="flex flex-wrap items-center gap-5">
+            <a href="tel:+256775831844" class="flex items-center gap-2 hover:text-amber-400 transition"><i class="uil uil-phone"></i> +256-775-831844</a>
+            <a href="mailto:info@bristolhighschool.com" class="flex items-center gap-2 hover:text-amber-400 transition"><i class="uil uil-envelope"></i> info@bristolhighschool.com</a>
+        </div>
+        <div class="flex items-center gap-3">
+            <span class="text-xs">Follow us</span>
+            <a href="#" class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-amber-400 hover:text-[#0f172a] transition"><i class="uil uil-music-note"></i></a>
+            <a href="#" class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-amber-400 hover:text-[#0f172a] transition"><i class="uil uil-twitter"></i></a>
+            <a href="#" class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-amber-400 hover:text-[#0f172a] transition"><i class="uil uil-facebook-f"></i></a>
+            <a href="#" class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-amber-400 hover:text-[#0f172a] transition"><i class="uil uil-linkedin-alt"></i></a>
         </div>
     </div>
-    <div class="container nav__container">
-        <a href="../index.html" class="nav__logo">
-            <img src="../images/logo.jpeg" loading="lazy" alt="School Logo">
+</div>
+
+<!-- Navbar (Sticky) -->
+<nav class="sticky top-0 z-50 bg-[#fef9e6] shadow-md border-b border-gray-200">
+    <div class="container mx-auto px-5 max-w-7xl flex justify-between items-center h-20">
+        <a href="../index.html" class="flex items-center gap-3">
+            <img src="../images/logo.jpeg" width="55" height="55" class="rounded-xl shadow-sm object-cover" alt="School Logo">
             <div>
-                <h4>BRISTOL HIGH SCHOOL</h4>
-                <small>"Education Leads to victory"</small>
+                <h4 class="font-extrabold text-xl bg-gradient-to-r from-indigo-800 to-indigo-600 bg-clip-text text-transparent">BRISTOL HIGH SCHOOL</h4>
+                <small class="text-gray-500 text-xs">"Education Leads to victory"</small>
             </div>
         </a>
-        <ul class="nav__menu">
-            <li><a href="../index.html">Home</a></li>
-            <li><a href="../pages/about.html">About BHS</a></li>
-            <li><a href="../pages/courses.html">Courses</a></li>
-            <li class="dropdown">
-                <button class="dropbtn" type="button">Explore</button>
-                <div class="dropdown-content">
-                    <a href="../pages/documents.html">Fees, Rules & Calendar</a>
-                    <a href="../pages/students_leadership.html">Student Leadership</a>
-                    <a href="../pages/staff.html">Our Staff</a>
-                    <a href="../pages/gallery.html">Gallery</a>
+        
+        <!-- Desktop Menu -->
+        <ul class="hidden md:flex items-center gap-6 font-medium">
+            <li><a href="../index.html" class="hover:text-indigo-700 transition">Home</a></li>
+            <li><a href="../pages/about.html" class="hover:text-indigo-700 transition">About BHS</a></li>
+            <li><a href="../pages/courses.html" class="hover:text-indigo-700 transition">Courses</a></li>
+            <li class="dropdown relative group">
+                <button class="flex items-center gap-1 hover:text-indigo-700">Explore <i class="uil uil-angle-down"></i></button>
+                <div class="dropdown-menu absolute top-full left-0 w-56 bg-white shadow-xl rounded-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 py-2 border border-gray-100">
+                    <a href="../pages/documents.html" class="block px-5 py-2.5 hover:bg-indigo-50 transition">Fees, Rules & Calendar</a>
+                    <a href="../pages/students_leadership.html" class="block px-5 py-2.5 hover:bg-indigo-50 transition">Student Leadership</a>
+                    <a href="../pages/staff.html" class="block px-5 py-2.5 hover:bg-indigo-50 transition">Our Staff</a>
+                    <a href="../pages/gallery.html" class="block px-5 py-2.5 hover:bg-indigo-50 transition">Gallery</a>
                 </div>
             </li>
-            <li class="dropdown">
-                <button class="dropbtn" type="button">eCampus</button>
-                <div class="dropdown-content">
-                    <a href="../pages/e-library.html">e-Library</a>
-                    <a href="../pages/e-learning.html">e-Teaching</a>
+            <li class="dropdown relative group">
+                <button class="flex items-center gap-1 hover:text-indigo-700">eCampus <i class="uil uil-angle-down"></i></button>
+                <div class="dropdown-menu absolute top-full left-0 w-56 bg-white shadow-xl rounded-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 py-2">
+                    <a href="../pages/e-library.html" class="block px-5 py-2.5 hover:bg-indigo-50 transition">e-Library</a>
+                    <a href="../pages/e-learning.html" class="block px-5 py-2.5 hover:bg-indigo-50 transition">e-Teaching</a>
                 </div>
             </li>
-            <li><a href="../pages/contact.html">Contact</a></li>
+            <li><a href="../pages/contact.html" class="hover:text-indigo-700 transition">Contact</a></li>
         </ul>
-        <div class="nav__actions">
-            <a href="../pages/admissions.html" class="admission-btn">Admissions</a>
-            <a href="../pages/e-learning.html" class="elearning-btn">eLearning</a>
+        
+        <!-- Action Buttons Desktop -->
+        <div class="hidden md:flex items-center gap-3">
+            <a href="../pages/admissions.html" class="bg-amber-400 hover:bg-amber-500 text-gray-900 font-bold px-5 py-2 rounded-full transition shadow-md">Admissions</a>
+            <a href="../pages/e-learning.html" class="bg-indigo-700 hover:bg-indigo-800 text-white font-bold px-5 py-2 rounded-full transition shadow-md">eLearning</a>
         </div>
-        <button id="open-menu-btn"><i class="uil uil-bars"></i></button>
-        <button id="close-menu-btn"><i class="uil uil-multiply"></i></button>
+        
+        <!-- Mobile Menu Buttons -->
+        <button id="open-menu-btn" class="md:hidden text-3xl text-gray-700"><i class="uil uil-bars"></i></button>
+        <button id="close-menu-btn" class="md:hidden text-3xl text-gray-700 hidden"><i class="uil uil-multiply"></i></button>
     </div>
+    
+    <!-- Mobile Menu Slider -->
+    <ul id="mobile-menu" class="fixed top-20 right-[-100%] w-72 h-[calc(100vh-5rem)] bg-[#fef9e6] shadow-2xl flex flex-col z-40 transition-all duration-300 ease-in-out px-6 py-6 gap-4 font-medium md:hidden overflow-y-auto">
+        <li><a href="../index.html" class="block py-2 border-b border-gray-200">Home</a></li>
+        <li><a href="../pages/about.html" class="block py-2 border-b border-gray-200">About BHS</a></li>
+        <li><a href="../pages/courses.html" class="block py-2 border-b border-gray-200">Courses</a></li>
+        <li class="dropdown-mobile">
+            <button class="dropbtn-mobile w-full text-left py-2 flex justify-between items-center">Explore <i class="uil uil-angle-down"></i></button>
+            <div class="mobile-dropdown-content hidden pl-4 flex flex-col gap-2 mt-1">
+                <a href="../pages/documents.html" class="py-1.5 text-gray-600">Fees, Rules & Calendar</a>
+                <a href="../pages/students_leadership.html" class="py-1.5 text-gray-600">Student Leadership</a>
+                <a href="../pages/staff.html" class="py-1.5 text-gray-600">Our Staff</a>
+                <a href="../pages/gallery.html" class="py-1.5 text-gray-600">Gallery</a>
+            </div>
+        </li>
+        <li class="dropdown-mobile">
+            <button class="dropbtn-mobile w-full text-left py-2 flex justify-between items-center">eCampus <i class="uil uil-angle-down"></i></button>
+            <div class="mobile-dropdown-content hidden pl-4 flex flex-col gap-2 mt-1">
+                <a href="../pages/e-library.html" class="py-1.5 text-gray-600">e-Library</a>
+                <a href="../pages/e-learning.html" class="py-1.5 text-gray-600">e-Teaching</a>
+            </div>
+        </li>
+        <li><a href="../pages/contact.html" class="block py-2 border-b border-gray-200">Contact</a></li>
+        <div class="flex flex-col gap-3 mt-4">
+            <a href="../pages/admissions.html" class="bg-amber-400 text-center font-bold py-2 rounded-full">Admissions</a>
+            <a href="../pages/e-learning.html" class="bg-indigo-700 text-white text-center font-bold py-2 rounded-full">eLearning</a>
+        </div>
+    </ul>
 </nav>
 
-    <!-- Main Uniform Section Wrapper -->
-<section class="uniform-section">
-  <div class="uniform-container">
-    
-    <!-- Top Header Title and Subtitle Block -->
-    <div class="uniform-header">
-      <h1 class="main-page-title">School Uniform</h1>
-      <p class="main-page-subtitle">Our uniform reflects discipline, identity, and excellence.</p>
+<!-- Hero Banner -->
+<section class="relative bg-gradient-to-r from-indigo-900 via-indigo-800 to-indigo-900 py-20 md:py-24 overflow-hidden">
+    <div class="absolute inset-0 opacity-10 bg-[url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"%3E%3Cpolygon points="100,0 120,80 200,80 135,130 160,210 100,160 40,210 65,130 0,80 80,80" fill="white"/%3E%3C/svg%3E')] bg-repeat"></div>
+    <div class="container mx-auto px-5 max-w-7xl text-center relative z-10">
+        <div class="inline-block bg-amber-400/20 backdrop-blur-sm rounded-full px-6 py-2 mb-6">
+            <span class="text-amber-300 font-semibold text-sm tracking-wide"><i class="uil uil-shirt text-base mr-1"></i> Dress Code</span>
+        </div>
+        <h1 class="text-5xl md:text-6xl font-extrabold text-white mb-5 drop-shadow-lg">School Uniform</h1>
+        <p class="text-indigo-100 text-lg md:text-xl max-w-2xl mx-auto">Our uniform reflects discipline, identity, and excellence.</p>
+        <div class="flex justify-center gap-3 mt-8">
+            <div class="w-16 h-1 bg-amber-400 rounded-full"></div>
+            <div class="w-8 h-1 bg-indigo-300 rounded-full"></div>
+        </div>
     </div>
-
-    <!-- Subcategory Heading Context -->
-    <div class="category-block">
-      <h2 class="category-title">Academic Uniform</h2>
-    </div>
-
-    <!-- Bottom Row Grid: 3-Column Fit-Perfect Card Grid Track -->
-    <div class="uniform-grid">
-      
-      <!-- Column Card 1: O-Level Students -->
-      <div class="uniform-card">
-        <h3 class="card-heading text-blue">O-Level Students</h3>
-        <ul class="uniform-list">
-          <li><span class="check-icon">✓</span> Cream Shirts / Blouses</li>
-          <li><span class="check-icon">✓</span> Navy Blue Trousers / Skirts</li>
-        </ul>
-      </div>
-
-      <!-- Column Card 2: A-Level Students -->
-      <div class="uniform-card">
-        <h3 class="card-heading text-purple">A-Level Students</h3>
-        <ul class="uniform-list">
-          <li><span class="check-icon">✓</span> Blue Shirts / Blouses</li>
-          <li><span class="check-icon">✓</span> Navy Blue Trousers / Skirts</li>
-        </ul>
-      </div>
-
-      <!-- Column Card 3: School Sweater -->
-      <div class="uniform-card">
-        <h3 class="card-heading text-navy">School Sweater</h3>
-        <ul class="uniform-list">
-          <li><span class="check-icon">✓</span> Navy Blue Sweater</li>
-          <li><span class="check-icon">✓</span> Light Blue Stripes at the Neck and Sleeves</li>
-        </ul>
-      </div>
-
-    </div>
-
-  </div>
 </section>
 
-<section class="uniform-section">
-  <div class="uniform-container">
-    
-    <!-- Top Header Title and Subtitle Block -->
-    <div class="uniform-header">
-      <h1 class="main-page-title">School Uniform</h1>
-      <p class="main-page-subtitle">Our uniform reflects discipline, identity, and excellence.</p>
-    </div>
-
-    <!-- Subcategory Heading Context -->
-    <div class="category-block">
-      <h2 class="category-title">Out of class</h2>
-    </div>
-
-    <!-- Bottom Row Grid: 3-Column Fit-Perfect Card Grid Track -->
-    <div class="uniform-grid">
-      
-      <!-- Column Card 1: O-Level Students -->
-      <div class="uniform-card">
-        <h3 class="card-heading text-blue">O-Level Students</h3>
-        <ul class="uniform-list">
-          <li><span class="check-icon">✓</span> Cream Shirts / Blouses</li>
-          <li><span class="check-icon">✓</span> Navy Blue Trousers / Skirts</li>
-        </ul>
-      </div>
-
-      <!-- Column Card 2: A-Level Students -->
-      <div class="uniform-card">
-        <h3 class="card-heading text-purple">A-Level Students</h3>
-        <ul class="uniform-list">
-          <li><span class="check-icon">✓</span> Blue Shirts / Blouses</li>
-          <li><span class="check-icon">✓</span> Navy Blue Trousers / Skirts</li>
-        </ul>
-      </div>
-
-    </div>
-
-  </div>
-</section>
-
-<section class="notice-package-section">
-  <div class="section-container">
-
-    <!-- 1. Important Notice Callout Box -->
-    <div class="important-notice-box">
-      <h2 class="notice-title">Important Notice</h2>
-      <p class="notice-text">
-        No other form of dressing is allowed in school apart from that indicated above.
-      </p>
-    </div>
-
-    <!-- 2. Section Heading Context -->
-    <div class="package-header">
-      <h2 class="package-main-title">Uniform Package (Available at School)</h2>
-    </div>
-
-    <!-- 3. Bottom Row Grid: 3 Columns Sitting Perfectly in 1 Row -->
-    <div class="package-grid">
-      
-      <!-- Column 1 -->
-      <div class="package-column">
-        <ul class="package-list">
-          <li><span class="check-icon">✓</span> School Sweater</li>
-          <li><span class="check-icon">✓</span> 2 Shirts / Blouses</li>
-        </ul>
-      </div>
-
-      <!-- Column 2 -->
-      <div class="package-column">
-        <ul class="package-list">
-          <li><span class="check-icon">✓</span> 2 Trousers / Skirts</li>
-          <li><span class="check-icon">✓</span> Sunday Wear</li>
-        </ul>
-      </div>
-
-      <!-- Column 3 -->
-      <div class="package-column">
-        <ul class="package-list">
-          <li><span class="check-icon">✓</span> Sports Wear</li>
-          <li><span class="check-icon">✓</span> 3 T-Shirts for Out-of-Class Wear</li>
-        </ul>
-      </div>
-
-    </div>
-
-  </div>
-</section>
-
- <footer class="site-footer">
-    <div class="footer-container">
-        <div class="footer-col">
-            <h3>About Bristol High</h3>
-            <p class="school-name">Bristol High School</p>
-            <p>Providing holistic education built on quality training, dedication, moral focus, and continuous academic achievement.</p>
+<!-- Academic Uniform Section -->
+<section class="py-16 md:py-20">
+    <div class="container mx-auto px-5 max-w-6xl">
+        <div class="text-center mb-10">
+            <div class="inline-flex items-center gap-3 bg-white rounded-full px-6 py-2 shadow-md border border-gray-100">
+                <span class="w-2 h-2 bg-amber-500 rounded-full"></span>
+                <span class="text-gray-700 font-semibold tracking-wide">ACADEMIC UNIFORM</span>
+                <span class="w-2 h-2 bg-indigo-500 rounded-full"></span>
+            </div>
+            <p class="text-gray-500 mt-3 text-sm">Official dress code for classroom hours and academic activities</p>
         </div>
-        <div class="footer-col">
-            <h3>Quick Access</h3>
-            <ul class="footer-links">
-                <li><a href="../pages/about.html">About BHS</a></li>
-                <li><a href="../pages/courses.html">Academic Courses</a></li>
-                <li><a href="../pages/documents.html">Fees & Documents</a></li>
-                <li><a href="../pages/admissions.html">Admission Portal</a></li>
-                <li><a href="../pages/career.html">Work With Us</a></li>
-            </ul>
-        </div>
-        <div class="footer-col">
-            <h3>eCampus Portals</h3>
-            <ul class="footer-links">
-                <li><a href="../pages/e-learning.html">Live eLearning Matrix</a></li>
-                <li><a href="../pages/e-library.html">Digital Library Archive</a></li>
-                <li><a href="../pages/academic-giants.html">Wall of Fame</a></li>
-                <li><a href="../pages/anthem.html">School Anthem</a></li>
-            </ul>
-        </div>
-        <div class="footer-col">
-            <h3>Location & Contact</h3>
-            <p>Matugga, Wakiso District, Uganda</p>
-            <p class="contact-label">Call Info Line:</p>
-            <a href="tel:+256775831844" class="highlight-text">+256-775-831844</a>
-            <p class="connect-label">Connect Socially:</p>
-            <div class="social-icons">
-                <a href="https://www.tiktok.com/@bristolhighsch" target="_blank"><i class="uil uil-music-note"></i></a>
-                <a href="https://x.com/bristolhighschool" target="_blank"><i class="uil uil-twitter"></i></a>
-                <a href="https://www.facebook.com/bristolhighschool" target="_blank"><i class="uil uil-facebook-f"></i></a>
+        
+        <div class="grid md:grid-cols-3 gap-6">
+            <!-- Card 1: O-Level Students -->
+            <div class="uniform-card bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100">
+                <div class="bg-gradient-to-r from-blue-500 to-blue-600 p-4 text-center">
+                    <i class="uil uil-graduation-cap text-white text-3xl"></i>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-bold text-blue-600 text-center mb-4">O-Level Students</h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-start"><span class="check-icon">✓</span> <span class="text-gray-700">Cream Shirts / Blouses</span></li>
+                        <li class="flex items-start"><span class="check-icon">✓</span> <span class="text-gray-700">Navy Blue Trousers / Skirts</span></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Card 2: A-Level Students -->
+            <div class="uniform-card bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100">
+                <div class="bg-gradient-to-r from-purple-500 to-purple-600 p-4 text-center">
+                    <i class="uil uil-award text-white text-3xl"></i>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-bold text-purple-600 text-center mb-4">A-Level Students</h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-start"><span class="check-icon">✓</span> <span class="text-gray-700">Blue Shirts / Blouses</span></li>
+                        <li class="flex items-start"><span class="check-icon">✓</span> <span class="text-gray-700">Navy Blue Trousers / Skirts</span></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Card 3: School Sweater -->
+            <div class="uniform-card bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100">
+                <div class="bg-gradient-to-r from-indigo-600 to-indigo-700 p-4 text-center">
+                    <i class="uil uil-snowflake text-white text-3xl"></i>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-bold text-indigo-600 text-center mb-4">School Sweater</h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-start"><span class="check-icon">✓</span> <span class="text-gray-700">Navy Blue Sweater</span></li>
+                        <li class="flex items-start"><span class="check-icon">✓</span> <span class="text-gray-700">Light Blue Stripes at the Neck and Sleeves</span></li>
+                    </ul>
+                </div>
             </div>
         </div>
+    </div>
+</section>
+
+<!-- Out of Class Uniform Section -->
+<section class="py-16 bg-white">
+    <div class="container mx-auto px-5 max-w-6xl">
+        <div class="text-center mb-10">
+            <div class="inline-flex items-center gap-3 bg-white rounded-full px-6 py-2 shadow-md border border-gray-100">
+                <span class="w-2 h-2 bg-amber-500 rounded-full"></span>
+                <span class="text-gray-700 font-semibold tracking-wide">OUT OF CLASS WEAR</span>
+                <span class="w-2 h-2 bg-indigo-500 rounded-full"></span>
+            </div>
+            <p class="text-gray-500 mt-3 text-sm">Casual and sports attire for non-academic activities</p>
+        </div>
+        
+        <div class="grid md:grid-cols-2 gap-6 max-w-3xl mx-auto">
+            <!-- Card 1: O-Level Out of Class -->
+            <div class="uniform-card bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100">
+                <div class="bg-gradient-to-r from-blue-500 to-blue-600 p-4 text-center">
+                    <i class="uil uil-football text-white text-3xl"></i>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-bold text-blue-600 text-center mb-4">O-Level Students</h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-start"><span class="check-icon">✓</span> <span class="text-gray-700">Cream T-Shirts</span></li>
+                        <li class="flex items-start"><span class="check-icon">✓</span> <span class="text-gray-700">Navy Blue Shorts/Track Pants</span></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Card 2: A-Level Out of Class -->
+            <div class="uniform-card bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100">
+                <div class="bg-gradient-to-r from-purple-500 to-purple-600 p-4 text-center">
+                    <i class="uil uil-volleyball text-white text-3xl"></i>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-bold text-purple-600 text-center mb-4">A-Level Students</h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-start"><span class="check-icon">✓</span> <span class="text-gray-700">Blue T-Shirts</span></li>
+                        <li class="flex items-start"><span class="check-icon">✓</span> <span class="text-gray-700">Navy Blue Shorts/Track Pants</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Important Notice + Uniform Package Section -->
+<section class="py-16">
+    <div class="container mx-auto px-5 max-w-6xl">
+        <!-- Important Notice Box -->
+        <div class="mb-12 bg-amber-50 border-l-8 border-amber-500 rounded-2xl p-6 shadow-md">
+            <div class="flex items-start gap-4">
+                <div class="w-12 h-12 bg-amber-500 rounded-full flex items-center justify-center flex-shrink-0">
+                    <i class="uil uil-exclamation-triangle text-white text-xl"></i>
+                </div>
+                <div>
+                    <h2 class="text-2xl font-bold text-amber-800 mb-2">Important Notice</h2>
+                    <p class="text-amber-700">No other form of dressing is allowed in school apart from that indicated above.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Uniform Package Section -->
+        <div class="text-center mb-10">
+            <div class="inline-flex items-center gap-3 bg-white rounded-full px-6 py-2 shadow-md border border-gray-100">
+                <span class="w-2 h-2 bg-amber-500 rounded-full"></span>
+                <span class="text-gray-700 font-semibold tracking-wide">UNIFORM PACKAGE</span>
+                <span class="w-2 h-2 bg-indigo-500 rounded-full"></span>
+            </div>
+            <p class="text-gray-500 mt-3 text-sm">Available for purchase at the school</p>
+        </div>
+        
+        <div class="grid md:grid-cols-3 gap-6">
+            <!-- Column 1 -->
+            <div class="bg-white rounded-2xl shadow-lg p-6 border border-gray-100">
+                <div class="w-12 h-12 bg-indigo-100 rounded-xl flex items-center justify-center mb-4">
+                    <i class="uil uil-tshirt text-indigo-600 text-xl"></i>
+                </div>
+                <ul class="space-y-3">
+                    <li class="flex items-start"><span class="check-icon">✓</span> <span class="text-gray-700">School Sweater</span></li>
+                    <li class="flex items-start"><span class="check-icon">✓</span> <span class="text-gray-700">2 Shirts / Blouses</span></li>
+                </ul>
+            </div>
+            
+            <!-- Column 2 -->
+            <div class="bg-white rounded-2xl shadow-lg p-6 border border-gray-100">
+                <div class="w-12 h-12 bg-emerald-100 rounded-xl flex items-center justify-center mb-4">
+                    <i class="uil uil-pants text-emerald-600 text-xl"></i>
+                </div>
+                <ul class="space-y-3">
+                    <li class="flex items-start"><span class="check-icon">✓</span> <span class="text-gray-700">2 Trousers / Skirts</span></li>
+                    <li class="flex items-start"><span class="check-icon">✓</span> <span class="text-gray-700">Sunday Wear</span></li>
+                </ul>
+            </div>
+            
+            <!-- Column 3 -->
+            <div class="bg-white rounded-2xl shadow-lg p-6 border border-gray-100">
+                <div class="w-12 h-12 bg-amber-100 rounded-xl flex items-center justify-center mb-4">
+                    <i class="uil uil-shoe-prints text-amber-600 text-xl"></i>
+                </div>
+                <ul class="space-y-3">
+                    <li class="flex items-start"><span class="check-icon">✓</span> <span class="text-gray-700">Sports Wear</span></li>
+                    <li class="flex items-start"><span class="check-icon">✓</span> <span class="text-gray-700">3 T-Shirts for Out-of-Class Wear</span></li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Additional Info -->
+        <div class="mt-10 text-center bg-gray-50 rounded-2xl p-5 border border-gray-100">
+            <p class="text-sm text-gray-500">
+                <i class="uil uil-store"></i> Uniforms are available at the school's designated uniform shop. Contact the school administration for pricing and size availability.
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-[#0f172a] text-gray-300 pt-14 pb-8">
+    <div class="container mx-auto px-5 max-w-7xl grid md:grid-cols-4 gap-8">
+        <div>
+            <h3 class="text-white text-xl font-bold mb-4">About Bristol High</h3>
+            <p class="text-sm leading-relaxed">Providing holistic education built on quality training, dedication, moral focus, and continuous academic achievement.</p>
+        </div>
+        <div>
+            <h3 class="text-white text-xl font-bold mb-4">Quick Access</h3>
+            <ul class="space-y-2 text-sm">
+                <li><a href="../pages/about.html" class="hover:text-amber-400 transition">About BHS</a></li>
+                <li><a href="../pages/courses.html" class="hover:text-amber-400 transition">Academic Courses</a></li>
+                <li><a href="../pages/documents.html" class="hover:text-amber-400 transition">Fees & Documents</a></li>
+                <li><a href="../pages/admissions.html" class="hover:text-amber-400 transition">Admission Portal</a></li>
+                <li><a href="../pages/career.html" class="hover:text-amber-400 transition">Work With Us</a></li>
+            </ul>
+        </div>
+        <div>
+            <h3 class="text-white text-xl font-bold mb-4">eCampus Portals</h3>
+            <ul class="space-y-2 text-sm">
+                <li><a href="../pages/e-learning.html" class="hover:text-amber-400 transition">Live eLearning Matrix</a></li>
+                <li><a href="../pages/e-library.html" class="hover:text-amber-400 transition">Digital Library Archive</a></li>
+                <li><a href="../pages/academic-giants.html" class="hover:text-amber-400 transition">Wall of Fame</a></li>
+                <li><a href="../pages/anthem.html" class="hover:text-amber-400 transition">School Anthem</a></li>
+            </ul>
+        </div>
+        <div>
+            <h3 class="text-white text-xl font-bold mb-4">Location & Contact</h3>
+            <p>Matugga, Wakiso District, Uganda</p>
+            <p class="mt-2 font-semibold">Call Info Line:</p>
+            <a href="tel:+256775831844" class="text-amber-400 hover:underline">+256-775-831844</a>
+            <p class="mt-3 font-semibold">Connect Socially:</p>
+            <div class="flex gap-4 mt-2">
+                <a href="#" class="text-xl hover:text-amber-400 transition"><i class="uil uil-music-note"></i></a>
+                <a href="#" class="text-xl hover:text-amber-400 transition"><i class="uil uil-twitter"></i></a>
+                <a href="#" class="text-xl hover:text-amber-400 transition"><i class="uil uil-facebook-f"></i></a>
+            </div>
+        </div>
+    </div>
+    <div class="text-center text-gray-500 text-xs pt-10 border-t border-gray-800 mt-8">
+        © 2025 Bristol High School. All rights reserved. | "Education Leads to Victory"
     </div>
 </footer>
 
-
-    <script defer src="../javascript/nav.js"></script>
+<!-- Mobile Menu & Dropdown Script -->
+<script>
+    // Mobile menu toggle
+    const openBtn = document.getElementById('open-menu-btn');
+    const closeBtn = document.getElementById('close-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    
+    if(openBtn && closeBtn && mobileMenu) {
+        openBtn.onclick = () => { 
+            mobileMenu.style.right = '0'; 
+            openBtn.style.display = 'none'; 
+            closeBtn.style.display = 'inline-block'; 
+        };
+        closeBtn.onclick = () => { 
+            mobileMenu.style.right = '-100%'; 
+            openBtn.style.display = 'inline-block'; 
+            closeBtn.style.display = 'none'; 
+        };
+    }
+    
+    // Mobile dropdown toggles
+    document.querySelectorAll('.dropdown-mobile button').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            const content = btn.nextElementSibling;
+            if(content) content.classList.toggle('hidden');
+        });
+    });
+</script>
 </body>
 </html>
