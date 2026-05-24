@@ -404,54 +404,25 @@ if (
 
 dropdownButtons.forEach(button => {
 
-    button.addEventListener(
-        "click",
-        function (e) {
+    button.addEventListener("click", function (e) {
 
-            // MOBILE ONLY
-            if (
-                window.innerWidth <= 1024
-            ) {
+        if (window.innerWidth <= 1024) {
 
-                e.preventDefault();
+            e.preventDefault();
 
-                const dropdown =
-                    this.parentElement;
+            const dropdown = this.closest(".dropdown");
 
+            document.querySelectorAll(".dropdown").forEach(item => {
+                if (item !== dropdown) {
+                    item.classList.remove("active");
+                }
+            });
 
-                // CLOSE OTHER DROPDOWNS
-                document
-                    .querySelectorAll(
-                        ".dropdown"
-                    )
-                    .forEach(item => {
-
-                        if (
-                            item !== dropdown
-                        ) {
-
-                            item.classList.remove(
-                                "active"
-                            );
-
-                        }
-
-                    });
-
-
-                // TOGGLE CURRENT
-                dropdown.classList.toggle(
-                    "active"
-                );
-
-            }
-
+            dropdown.classList.toggle("active");
         }
-    );
+    });
 
 });
-
-
 
 // ======================================
 // CLOSE MENU AFTER CLICKING LINK
