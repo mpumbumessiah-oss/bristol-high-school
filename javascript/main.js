@@ -325,14 +325,14 @@ const closeBtn =
         "#close-menu-btn"
     );
 
-const dropdowns =
+const dropdownButtons =
     document.querySelectorAll(
-        ".dropdown"
+        ".dropbtn"
     );
 
 
 // ======================================
-// OPEN/CLOSE MENU
+// OPEN MENU
 // ======================================
 
 if (
@@ -341,7 +341,6 @@ if (
     closeBtn
 ) {
 
-    // OPEN MENU
     openBtn.addEventListener(
         "click",
         () => {
@@ -360,7 +359,10 @@ if (
     );
 
 
+    // ======================================
     // CLOSE MENU
+    // ======================================
+
     closeBtn.addEventListener(
         "click",
         () => {
@@ -377,15 +379,17 @@ if (
 
 
             // CLOSE ALL DROPDOWNS
-            dropdowns.forEach(
-                dropdown => {
+            document
+                .querySelectorAll(
+                    ".dropdown"
+                )
+                .forEach(dropdown => {
 
                     dropdown.classList.remove(
                         "active"
                     );
 
-                }
-            );
+                });
 
         }
     );
@@ -398,25 +402,29 @@ if (
 // MOBILE DROPDOWNS
 // ======================================
 
-dropdowns.forEach(dropdown => {
+dropdownButtons.forEach(button => {
 
-    const button =
-        dropdown.querySelector(
-            ".dropbtn"
-        );
+    button.addEventListener(
+        "click",
+        function (e) {
 
-    if (button) {
-
-        button.addEventListener(
-            "click",
-            (e) => {
+            // MOBILE ONLY
+            if (
+                window.innerWidth <= 1024
+            ) {
 
                 e.preventDefault();
 
+                const dropdown =
+                    this.parentElement;
+
 
                 // CLOSE OTHER DROPDOWNS
-                dropdowns.forEach(
-                    item => {
+                document
+                    .querySelectorAll(
+                        ".dropdown"
+                    )
+                    .forEach(item => {
 
                         if (
                             item !== dropdown
@@ -428,8 +436,7 @@ dropdowns.forEach(dropdown => {
 
                         }
 
-                    }
-                );
+                    });
 
 
                 // TOGGLE CURRENT
@@ -438,16 +445,16 @@ dropdowns.forEach(dropdown => {
                 );
 
             }
-        );
 
-    }
+        }
+    );
 
 });
 
 
 
 // ======================================
-// CLOSE MENU WHEN LINK CLICKED
+// CLOSE MENU AFTER CLICKING LINK
 // ======================================
 
 const navLinks =
@@ -461,15 +468,21 @@ navLinks.forEach(link => {
         "click",
         () => {
 
-            menu.classList.remove(
-                "open"
-            );
+            if (
+                window.innerWidth <= 1024
+            ) {
 
-            closeBtn.style.display =
-                "none";
+                menu.classList.remove(
+                    "open"
+                );
 
-            openBtn.style.display =
-                "inline-block";
+                closeBtn.style.display =
+                    "none";
+
+                openBtn.style.display =
+                    "inline-block";
+
+            }
 
         }
     );
