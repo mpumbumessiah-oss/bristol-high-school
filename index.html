@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>Bristol High School | Excellence in Education</title>
     <!-- Tailwind CSS + Google Fonts + Unicons -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -12,13 +12,21 @@
         * {
             font-family: 'Poppins', sans-serif;
         }
-        /* Custom dropdown styles */
+        
+        /* Custom dropdown styles (desktop) */
         .dropdown:hover .dropdown-menu {
             display: block;
+            opacity: 1;
+            visibility: visible;
         }
         .dropdown-menu {
-            display: none;
+            display: block;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.2s ease;
         }
+        
+        /* Modal styles */
         .news__modal {
             display: none;
             position: fixed;
@@ -27,17 +35,19 @@
             top: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0,0,0,0.8);
+            background-color: rgba(0,0,0,0.85);
             align-items: center;
             justify-content: center;
         }
         .news__modal.show {
             display: flex;
         }
+        
         /* Auto-scrolling slider styles */
         .slider-container {
             overflow: hidden;
             position: relative;
+            width: 100%;
         }
         .slider-track {
             display: flex;
@@ -56,6 +66,7 @@
                 transform: translateX(-50%);
             }
         }
+        
         /* Full-screen video container */
         .hero-video-container {
             position: relative;
@@ -75,6 +86,29 @@
             pointer-events: none;
             border: none;
         }
+        
+        /* Mobile menu styles */
+        body.menu-open {
+            overflow: hidden;
+        }
+        
+        #mobile-menu {
+            transition: right 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            box-shadow: -5px 0 30px rgba(0,0,0,0.15);
+        }
+        
+        .dropdown-mobile button {
+            background: transparent;
+            outline: none;
+        }
+        
+        /* FIX: Ensure mobile buttons are hidden on desktop */
+        @media (min-width: 768px) {
+            .mobile-only-buttons {
+                display: none !important;
+            }
+        }
+        
         @media (max-width: 768px) {
             .hero-video-container {
                 height: 70vh;
@@ -86,7 +120,7 @@
         }
     </style>
 </head>
-<body class="bg-white text-gray-800 overflow-x-auto">
+<body class="bg-white text-gray-800">
 
 <!-- Topbar -->
 <div class="bg-[#0f172a] text-gray-200 text-sm py-2.5">
@@ -108,8 +142,9 @@
 <!-- Navbar (Sticky) -->
 <nav class="sticky top-0 z-50 bg-[#fef9e6] shadow-md border-b border-gray-200">
     <div class="container mx-auto px-5 max-w-7xl flex justify-between items-center h-20">
-        <a href="index.html" class="flex items-center gap-3">
-            <img src="images/logo.jpeg" width="55" height="55" class="rounded-xl shadow-sm" alt="Logo">
+        <a href="index.html" class="flex items-center gap-3 shrink-0">
+            <!-- Fallback logo if image missing -->
+            <div class="w-[55px] h-[55px] rounded-xl shadow-sm bg-gradient-to-br from-indigo-100 to-indigo-200 flex items-center justify-center text-indigo-700 font-bold text-xl">BHS</div>
             <div>
                 <h4 class="font-extrabold text-xl bg-gradient-to-r from-indigo-800 to-indigo-600 bg-clip-text text-transparent">BRISTOL HIGH SCHOOL</h4>
                 <small class="text-gray-500 text-xs">"Education Leads to victory"</small>
@@ -146,43 +181,55 @@
             <a href="pages/e-learning.html" class="bg-indigo-700 hover:bg-indigo-800 text-white font-bold px-5 py-2 rounded-full transition shadow-md">eLearning</a>
         </div>
         
-        <!-- Mobile Menu Buttons -->
-        <button id="open-menu-btn" class="md:hidden text-3xl text-gray-700"><i class="uil uil-bars"></i></button>
-        <button id="close-menu-btn" class="md:hidden text-3xl text-gray-700 hidden"><i class="uil uil-multiply"></i></button>
+        <!-- FIXED: Mobile Menu Buttons - Wrapped in container that hides on desktop -->
+        <div class="mobile-only-buttons flex md:hidden items-center gap-2">
+            <button id="open-menu-btn" class="text-3xl text-gray-700 focus:outline-none" aria-label="Open Menu">
+                <i class="uil uil-bars"></i>
+            </button>
+            <button id="close-menu-btn" class="text-3xl text-gray-700 hidden focus:outline-none" aria-label="Close Menu">
+                <i class="uil uil-multiply"></i>
+            </button>
+        </div>
     </div>
     
+    <!-- Mobile Menu Overlay (click outside to close) -->
+    <div id="mobile-menu-overlay" class="fixed inset-0 bg-black/50 z-30 hidden transition-all duration-300 md:hidden"></div>
+    
     <!-- Mobile Menu Slider -->
-    <ul id="mobile-menu" class="fixed top-20 right-[-100%] w-72 h-[calc(100vh-5rem)] bg-[#fef9e6] shadow-2xl flex flex-col z-40 transition-all duration-300 ease-in-out px-6 py-6 gap-4 font-medium md:hidden overflow-y-auto">
-        <li><a href="index.html" class="block py-2 border-b border-gray-200">Home</a></li>
-        <li><a href="pages/about.html" class="block py-2 border-b border-gray-200">About BHS</a></li>
-        <li><a href="pages/courses.html" class="block py-2 border-b border-gray-200">Courses</a></li>
-        <li class="dropdown-mobile">
-            <button class="dropbtn-mobile w-full text-left py-2 flex justify-between items-center">Explore <i class="uil uil-angle-down"></i></button>
-            <div class="mobile-dropdown-content hidden pl-4 flex flex-col gap-2 mt-1">
-                <a href="pages/documents.html" class="py-1.5 text-gray-600">Fees, Rules & Calendar</a>
-                <a href="pages/students_leadership.html" class="py-1.5 text-gray-600">Student Leadership</a>
-                <a href="pages/staff.html" class="py-1.5 text-gray-600">Our Staff</a>
-                <a href="pages/gallery.html" class="py-1.5 text-gray-600">Gallery</a>
+    <ul id="mobile-menu" class="fixed top-20 right-[-100%] w-80 h-[calc(100vh-5rem)] bg-[#fef9e6] shadow-2xl flex flex-col z-40 transition-all duration-300 ease-in-out px-6 py-6 gap-4 font-medium md:hidden overflow-y-auto">
+        <li><a href="index.html" class="block py-2 border-b border-gray-200 text-gray-800 hover:text-indigo-700">Home</a></li>
+        <li><a href="pages/about.html" class="block py-2 border-b border-gray-200 text-gray-800 hover:text-indigo-700">About BHS</a></li>
+        <li><a href="pages/courses.html" class="block py-2 border-b border-gray-200 text-gray-800 hover:text-indigo-700">Courses</a></li>
+        <li class="dropdown-mobile border-b border-gray-200">
+            <button class="dropbtn-mobile w-full text-left py-2 flex justify-between items-center text-gray-800 font-medium">
+                Explore <i class="uil uil-angle-down transition-transform duration-200"></i>
+            </button>
+            <div class="mobile-dropdown-content hidden pl-4 flex flex-col gap-2 mt-1 pb-2">
+                <a href="pages/documents.html" class="py-1.5 text-gray-600 hover:text-indigo-600">Fees, Rules & Calendar</a>
+                <a href="pages/students_leadership.html" class="py-1.5 text-gray-600 hover:text-indigo-600">Student Leadership</a>
+                <a href="pages/staff.html" class="py-1.5 text-gray-600 hover:text-indigo-600">Our Staff</a>
+                <a href="pages/gallery.html" class="py-1.5 text-gray-600 hover:text-indigo-600">Gallery</a>
             </div>
         </li>
-        <li class="dropdown-mobile">
-            <button class="dropbtn-mobile w-full text-left py-2 flex justify-between items-center">eCampus <i class="uil uil-angle-down"></i></button>
-            <div class="mobile-dropdown-content hidden pl-4 flex flex-col gap-2 mt-1">
-                <a href="pages/e-library.html" class="py-1.5 text-gray-600">e-Library</a>
-                <a href="pages/e-learning.html" class="py-1.5 text-gray-600">e-Teaching</a>
+        <li class="dropdown-mobile border-b border-gray-200">
+            <button class="dropbtn-mobile w-full text-left py-2 flex justify-between items-center text-gray-800 font-medium">
+                eCampus <i class="uil uil-angle-down transition-transform duration-200"></i>
+            </button>
+            <div class="mobile-dropdown-content hidden pl-4 flex flex-col gap-2 mt-1 pb-2">
+                <a href="pages/e-library.html" class="py-1.5 text-gray-600 hover:text-indigo-600">e-Library</a>
+                <a href="pages/e-learning.html" class="py-1.5 text-gray-600 hover:text-indigo-600">e-Teaching</a>
             </div>
         </li>
-        <li><a href="pages/uniform.html" class="block py-2">Uniform</a></li>
-        <div class="flex flex-col gap-3 mt-4">
-            <a href="pages/admissions.html" class="bg-amber-400 text-center font-bold py-2 rounded-full">Admissions</a>
-            <a href="pages/e-learning.html" class="bg-indigo-700 text-white text-center font-bold py-2 rounded-full">eLearning</a>
+        <li><a href="pages/uniform.html" class="block py-2 border-b border-gray-200 text-gray-800 hover:text-indigo-700">Uniform</a></li>
+        <div class="flex flex-col gap-3 mt-6">
+            <a href="pages/admissions.html" class="bg-amber-400 text-center font-bold py-2.5 rounded-full text-gray-900">Admissions</a>
+            <a href="pages/e-learning.html" class="bg-indigo-700 text-white text-center font-bold py-2.5 rounded-full">eLearning</a>
         </div>
     </ul>
 </nav>
 
-<!-- VIDEO HERO SECTION - Full Window Span (100vh) with clearer video -->
+<!-- VIDEO HERO SECTION -->
 <div class="hero-video-container">
-    <!-- YouTube video with higher quality & better visibility -->
     <iframe src="https://www.youtube.com/embed/IA01wPc-mm0?autoplay=1&mute=1&loop=1&playlist=IA01wPc-mm0&controls=0&showinfo=0&modestbranding=1&rel=0&quality=hd1080" title="Bristol High School Hero Video" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
     <div class="absolute inset-0 z-10 flex items-center justify-center px-4 bg-black/30">
         <div class="text-center backdrop-blur-md bg-black/40 p-8 md:p-10 rounded-3xl border border-white/20 max-w-3xl">
@@ -201,12 +248,12 @@
             <a href="pages/courses.html" class="inline-flex items-center gap-2 bg-indigo-700 hover:bg-indigo-800 text-white font-semibold px-7 py-3 rounded-full mt-6 transition shadow-lg">Get Started <i class="uil uil-arrow-right"></i></a>
         </div>
         <div class="rounded-2xl overflow-hidden shadow-2xl">
-            <img src="images/NZE_1543.jpg" alt="header" class="w-full h-auto object-cover" loading="lazy">
+            <img src="images/NZE_1543.jpg" alt="header" class="w-full h-auto object-cover" loading="lazy" onerror="this.src='https://placehold.co/600x400?text=Bristol+High'">
         </div>
     </div>
 </header>
 
-<!-- School Leadership Section (Cards) -->
+<!-- School Leadership Section -->
 <section class="py-16 bg-white">
     <div class="container mx-auto px-5 max-w-7xl">
         <div class="text-center mb-12">
@@ -217,34 +264,31 @@
             <div class="bg-white rounded-2xl shadow-xl overflow-hidden hover:-translate-y-2 transition duration-300 border border-gray-100">
                 <div class="p-6 text-center">
                     <div class="w-32 h-32 rounded-full mx-auto overflow-hidden bg-indigo-100 mb-4 ring-4 ring-indigo-100">
-                        <img src="images/staff/Director_result.webp" class="w-full h-full object-cover" alt="Director">
+                        <img src="images/staff/Director_result.webp" class="w-full h-full object-cover" alt="Director" onerror="this.src='https://placehold.co/200x200?text=Mr.+Kagimu'">
                     </div>
                     <h5 class="text-xl font-bold">Mr. Kagimu Deogratious</h5>
                     <small class="text-indigo-600 font-semibold">Director</small>
                     <p class="text-gray-500 text-sm mt-3">A visionary education leader committed to institutional growth, integrity and academic excellence.</p>
-                    <a href="#" class="inline-block mt-4 text-indigo-700 font-medium hover:underline">Read More →</a>
                 </div>
             </div>
             <div class="bg-white rounded-2xl shadow-xl overflow-hidden hover:-translate-y-2 transition duration-300">
                 <div class="p-6 text-center">
                     <div class="w-32 h-32 rounded-full mx-auto overflow-hidden bg-indigo-100 mb-4 ring-4 ring-indigo-100">
-                        <img src="images/staff/mumbere_result.webp" class="w-full h-full object-cover" alt="Head Teacher">
+                        <img src="images/staff/mumbere_result.webp" class="w-full h-full object-cover" alt="Head Teacher" onerror="this.src='https://placehold.co/200x200?text=Mr.+Mumbere'">
                     </div>
                     <h5 class="text-xl font-bold">Mr. Mumbere Brean</h5>
                     <small class="text-indigo-600 font-semibold">Head Teacher</small>
                     <p class="text-gray-500 text-sm mt-3">A visionary leader ensuring academic excellence and student development programs.</p>
-                    <a href="#" class="inline-block mt-4 text-indigo-700 font-medium hover:underline">Read More →</a>
                 </div>
             </div>
             <div class="bg-white rounded-2xl shadow-xl overflow-hidden hover:-translate-y-2 transition duration-300">
                 <div class="p-6 text-center">
                     <div class="w-32 h-32 rounded-full mx-auto overflow-hidden bg-indigo-100 mb-4 ring-4 ring-indigo-100">
-                        <img src="images/staff/bursar_result.webp" class="w-full h-full object-cover" alt="Bursar">
+                        <img src="images/staff/bursar_result.webp" class="w-full h-full object-cover" alt="Bursar" onerror="this.src='https://placehold.co/200x200?text=Mrs.+Nakintu'">
                     </div>
                     <h5 class="text-xl font-bold">Mrs. Nakintu Jennifer</h5>
                     <small class="text-indigo-600 font-semibold">Bursar</small>
                     <p class="text-gray-500 text-sm mt-3">Financial stewardship and operational excellence driving institutional growth.</p>
-                    <a href="#" class="inline-block mt-4 text-indigo-700 font-medium hover:underline">Read More →</a>
                 </div>
             </div>
         </div>
@@ -260,92 +304,17 @@
         </div>
         <div class="slider-container">
             <div class="slider-track" id="sliderTrack">
-                <!-- Slide 1 -->
-                <div class="min-w-[280px] md:min-w-[320px] bg-white rounded-2xl shadow-lg overflow-hidden flex-shrink-0">
-                    <img src="images/cultural day_result.webp" class="h-48 w-full object-cover" alt="Cultural day">
-                    <div class="p-5">
-                        <span class="bg-indigo-100 text-indigo-800 text-xs font-semibold px-3 py-1 rounded-full">Academic</span>
-                        <h3 class="font-bold text-xl mt-2">Cultural Day</h3>
-                        <p class="text-gray-500 text-sm">Students showcase vibrant cultural heritage and traditions.</p>
-                    </div>
-                </div>
-                <!-- Slide 2 -->
-                <div class="min-w-[280px] md:min-w-[320px] bg-white rounded-2xl shadow-lg overflow-hidden flex-shrink-0">
-                    <img src="images/sports day_result.webp" class="h-48 w-full object-cover" alt="Sports">
-                    <div class="p-5">
-                        <span class="bg-green-100 text-green-800 text-xs font-semibold px-3 py-1 rounded-full">Facilities</span>
-                        <h3 class="font-bold text-xl mt-2">Sports Champions</h3>
-                        <p class="text-gray-500 text-sm">Our teams dominate inter-school competitions.</p>
-                    </div>
-                </div>
-                <!-- Slide 3 -->
-                <div class="min-w-[280px] md:min-w-[320px] bg-white rounded-2xl shadow-lg overflow-hidden flex-shrink-0">
-                    <img src="images/mdd_result.webp" class="h-48 w-full object-cover" alt="Music Dance Drama">
-                    <div class="p-5">
-                        <span class="bg-purple-100 text-purple-800 text-xs font-semibold px-3 py-1 rounded-full">Arts</span>
-                        <h3 class="font-bold text-xl mt-2">Music, Dance & Drama</h3>
-                        <p class="text-gray-500 text-sm">Exceptional performances in national festivals.</p>
-                    </div>
-                </div>
-                <!-- Slide 4 -->
-                <div class="min-w-[280px] md:min-w-[320px] bg-white rounded-2xl shadow-lg overflow-hidden flex-shrink-0">
-                    <img src="images/pta_result.webp" class="h-48 w-full object-cover" alt="PTA">
-                    <div class="p-5">
-                        <span class="bg-amber-100 text-amber-800 text-xs font-semibold px-3 py-1 rounded-full">Community</span>
-                        <h3 class="font-bold text-xl mt-2">Parent Teachers Meeting</h3>
-                        <p class="text-gray-500 text-sm">Strengthening家校 collaboration.</p>
-                    </div>
-                </div>
-                <!-- Slide 5 -->
-                <div class="min-w-[280px] md:min-w-[320px] bg-white rounded-2xl shadow-lg overflow-hidden flex-shrink-0">
-                    <img src="images/NZE_1562_result.webp" class="h-48 w-full object-cover" alt="Innovation Hub">
-                    <div class="p-5">
-                        <span class="bg-cyan-100 text-cyan-800 text-xs font-semibold px-3 py-1 rounded-full">Campus</span>
-                        <h3 class="font-bold text-xl mt-2">Innovation Hub</h3>
-                        <p class="text-gray-500 text-sm">State-of-the-art tech lab launched.</p>
-                    </div>
-                </div>
-                <!-- Duplicate slides for seamless looping -->
-                <div class="min-w-[280px] md:min-w-[320px] bg-white rounded-2xl shadow-lg overflow-hidden flex-shrink-0">
-                    <img src="images/cultural day_result.webp" class="h-48 w-full object-cover" alt="Cultural day">
-                    <div class="p-5">
-                        <span class="bg-indigo-100 text-indigo-800 text-xs font-semibold px-3 py-1 rounded-full">Academic</span>
-                        <h3 class="font-bold text-xl mt-2">Cultural Day</h3>
-                        <p class="text-gray-500 text-sm">Students showcase vibrant cultural heritage and traditions.</p>
-                    </div>
-                </div>
-                <div class="min-w-[280px] md:min-w-[320px] bg-white rounded-2xl shadow-lg overflow-hidden flex-shrink-0">
-                    <img src="images/sports day_result.webp" class="h-48 w-full object-cover" alt="Sports">
-                    <div class="p-5">
-                        <span class="bg-green-100 text-green-800 text-xs font-semibold px-3 py-1 rounded-full">Facilities</span>
-                        <h3 class="font-bold text-xl mt-2">Sports Champions</h3>
-                        <p class="text-gray-500 text-sm">Our teams dominate inter-school competitions.</p>
-                    </div>
-                </div>
-                <div class="min-w-[280px] md:min-w-[320px] bg-white rounded-2xl shadow-lg overflow-hidden flex-shrink-0">
-                    <img src="images/mdd_result.webp" class="h-48 w-full object-cover" alt="Music Dance Drama">
-                    <div class="p-5">
-                        <span class="bg-purple-100 text-purple-800 text-xs font-semibold px-3 py-1 rounded-full">Arts</span>
-                        <h3 class="font-bold text-xl mt-2">Music, Dance & Drama</h3>
-                        <p class="text-gray-500 text-sm">Exceptional performances in national festivals.</p>
-                    </div>
-                </div>
-                <div class="min-w-[280px] md:min-w-[320px] bg-white rounded-2xl shadow-lg overflow-hidden flex-shrink-0">
-                    <img src="images/pta_result.webp" class="h-48 w-full object-cover" alt="PTA">
-                    <div class="p-5">
-                        <span class="bg-amber-100 text-amber-800 text-xs font-semibold px-3 py-1 rounded-full">Community</span>
-                        <h3 class="font-bold text-xl mt-2">Parent Teachers Meeting</h3>
-                        <p class="text-gray-500 text-sm">Strengthening家校 collaboration.</p>
-                    </div>
-                </div>
-                <div class="min-w-[280px] md:min-w-[320px] bg-white rounded-2xl shadow-lg overflow-hidden flex-shrink-0">
-                    <img src="images/NZE_1562_result.webp" class="h-48 w-full object-cover" alt="Innovation Hub">
-                    <div class="p-5">
-                        <span class="bg-cyan-100 text-cyan-800 text-xs font-semibold px-3 py-1 rounded-full">Campus</span>
-                        <h3 class="font-bold text-xl mt-2">Innovation Hub</h3>
-                        <p class="text-gray-500 text-sm">State-of-the-art tech lab launched.</p>
-                    </div>
-                </div>
+                <div class="min-w-[280px] md:min-w-[320px] bg-white rounded-2xl shadow-lg overflow-hidden flex-shrink-0"><img src="images/cultural day_result.webp" class="h-48 w-full object-cover" alt="Cultural day" onerror="this.src='https://placehold.co/400x200?text=Cultural+Day'"><div class="p-5"><span class="bg-indigo-100 text-indigo-800 text-xs font-semibold px-3 py-1 rounded-full">Academic</span><h3 class="font-bold text-xl mt-2">Cultural Day</h3><p class="text-gray-500 text-sm">Students showcase vibrant cultural heritage and traditions.</p></div></div>
+                <div class="min-w-[280px] md:min-w-[320px] bg-white rounded-2xl shadow-lg overflow-hidden flex-shrink-0"><img src="images/sports day_result.webp" class="h-48 w-full object-cover" alt="Sports" onerror="this.src='https://placehold.co/400x200?text=Sports+Day'"><div class="p-5"><span class="bg-green-100 text-green-800 text-xs font-semibold px-3 py-1 rounded-full">Facilities</span><h3 class="font-bold text-xl mt-2">Sports Champions</h3><p class="text-gray-500 text-sm">Our teams dominate inter-school competitions.</p></div></div>
+                <div class="min-w-[280px] md:min-w-[320px] bg-white rounded-2xl shadow-lg overflow-hidden flex-shrink-0"><img src="images/mdd_result.webp" class="h-48 w-full object-cover" alt="MDD" onerror="this.src='https://placehold.co/400x200?text=Music+Dance'"><div class="p-5"><span class="bg-purple-100 text-purple-800 text-xs font-semibold px-3 py-1 rounded-full">Arts</span><h3 class="font-bold text-xl mt-2">Music, Dance & Drama</h3><p class="text-gray-500 text-sm">Exceptional performances in national festivals.</p></div></div>
+                <div class="min-w-[280px] md:min-w-[320px] bg-white rounded-2xl shadow-lg overflow-hidden flex-shrink-0"><img src="images/pta_result.webp" class="h-48 w-full object-cover" alt="PTA" onerror="this.src='https://placehold.co/400x200?text=PTA+Meeting'"><div class="p-5"><span class="bg-amber-100 text-amber-800 text-xs font-semibold px-3 py-1 rounded-full">Community</span><h3 class="font-bold text-xl mt-2">Parent Teachers Meeting</h3><p class="text-gray-500 text-sm">Strengthening collaboration.</p></div></div>
+                <div class="min-w-[280px] md:min-w-[320px] bg-white rounded-2xl shadow-lg overflow-hidden flex-shrink-0"><img src="images/NZE_1562_result.webp" class="h-48 w-full object-cover" alt="Innovation Hub" onerror="this.src='https://placehold.co/400x200?text=Innovation+Hub'"><div class="p-5"><span class="bg-cyan-100 text-cyan-800 text-xs font-semibold px-3 py-1 rounded-full">Campus</span><h3 class="font-bold text-xl mt-2">Innovation Hub</h3><p class="text-gray-500 text-sm">State-of-the-art tech lab launched.</p></div></div>
+                <!-- Duplicates for seamless loop -->
+                <div class="min-w-[280px] md:min-w-[320px] bg-white rounded-2xl shadow-lg overflow-hidden flex-shrink-0"><img src="images/cultural day_result.webp" class="h-48 w-full object-cover" alt="Cultural day"><div class="p-5"><span class="bg-indigo-100 text-indigo-800 text-xs font-semibold px-3 py-1 rounded-full">Academic</span><h3 class="font-bold text-xl mt-2">Cultural Day</h3><p class="text-gray-500 text-sm">Students showcase vibrant cultural heritage.</p></div></div>
+                <div class="min-w-[280px] md:min-w-[320px] bg-white rounded-2xl shadow-lg overflow-hidden flex-shrink-0"><img src="images/sports day_result.webp" class="h-48 w-full object-cover" alt="Sports"><div class="p-5"><span class="bg-green-100 text-green-800 text-xs font-semibold px-3 py-1 rounded-full">Facilities</span><h3 class="font-bold text-xl mt-2">Sports Champions</h3><p class="text-gray-500 text-sm">Our teams dominate competitions.</p></div></div>
+                <div class="min-w-[280px] md:min-w-[320px] bg-white rounded-2xl shadow-lg overflow-hidden flex-shrink-0"><img src="images/mdd_result.webp" class="h-48 w-full object-cover" alt="MDD"><div class="p-5"><span class="bg-purple-100 text-purple-800 text-xs font-semibold px-3 py-1 rounded-full">Arts</span><h3 class="font-bold text-xl mt-2">Music, Dance & Drama</h3><p class="text-gray-500 text-sm">Exceptional performances.</p></div></div>
+                <div class="min-w-[280px] md:min-w-[320px] bg-white rounded-2xl shadow-lg overflow-hidden flex-shrink-0"><img src="images/pta_result.webp" class="h-48 w-full object-cover" alt="PTA"><div class="p-5"><span class="bg-amber-100 text-amber-800 text-xs font-semibold px-3 py-1 rounded-full">Community</span><h3 class="font-bold text-xl mt-2">Parent Teachers Meeting</h3><p class="text-gray-500 text-sm">Collaboration focus.</p></div></div>
+                <div class="min-w-[280px] md:min-w-[320px] bg-white rounded-2xl shadow-lg overflow-hidden flex-shrink-0"><img src="images/NZE_1562_result.webp" class="h-48 w-full object-cover" alt="Innovation Hub"><div class="p-5"><span class="bg-cyan-100 text-cyan-800 text-xs font-semibold px-3 py-1 rounded-full">Campus</span><h3 class="font-bold text-xl mt-2">Innovation Hub</h3><p class="text-gray-500 text-sm">Tech lab launched.</p></div></div>
             </div>
         </div>
     </div>
@@ -356,38 +325,14 @@
     <div class="container mx-auto px-5 max-w-7xl">
         <h2 class="text-3xl font-bold text-center mb-12 text-gray-900">Latest News</h2>
         <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-7" id="newsGrid">
-            <article class="news__card bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition group cursor-pointer" data-id="1">
-                <div class="relative h-48 overflow-hidden"><img src="images/giants_result.webp" class="w-full h-full object-cover group-hover:scale-105 transition duration-300"><span class="absolute top-3 left-3 bg-indigo-600 text-white text-xs px-2 py-1 rounded-full">Academics</span></div>
-                <div class="p-4"><h4 class="font-bold text-lg">School Achieves Top Rankings</h4><p class="text-gray-500 text-sm mt-1">Bristol High School ranked among the top schools...</p><button class="text-indigo-700 font-semibold text-sm mt-3 read-more-btn">Read More →</button></div>
-            </article>
-            <article class="news__card bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition group" data-id="2">
-                <div class="relative h-48"><img src="images/sports day_result.webp" class="w-full h-full object-cover"><span class="absolute top-3 left-3 bg-green-600 text-white text-xs px-2 py-1 rounded-full">Sports</span></div>
-                <div class="p-4"><h4 class="font-bold text-lg">Annual Sports Day Celebrations</h4><p class="text-gray-500 text-sm">Students showcase athletic prowess at inter-house competitions.</p><button class="text-indigo-700 font-semibold text-sm mt-3 read-more-btn">Read More →</button></div>
-            </article>
-            <article class="news__card bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition group" data-id="3">
-                <div class="relative h-48"><img src="images/sports_result.webp" class="w-full h-full object-cover"><span class="absolute top-3 left-3 bg-blue-600 text-white text-xs px-2 py-1 rounded-full">Science</span></div>
-                <div class="p-4"><h4 class="font-bold text-lg">Science Exhibition Success</h4><p class="text-gray-500 text-sm">Students present innovative projects exploring technology.</p><button class="text-indigo-700 font-semibold text-sm mt-3 read-more-btn">Read More →</button></div>
-            </article>
-            <article class="news__card bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition group" data-id="4">
-                <div class="relative h-48"><img src="images/cultural day_result.webp" class="w-full h-full object-cover"><span class="absolute top-3 left-3 bg-rose-600 text-white text-xs px-2 py-1 rounded-full">Culture</span></div>
-                <div class="p-4"><h4 class="font-bold text-lg">Cultural Festival Highlights</h4><p class="text-gray-500 text-sm">Diverse cultural performances celebrating talents.</p><button class="text-indigo-700 font-semibold text-sm mt-3 read-more-btn">Read More →</button></div>
-            </article>
-            <article class="news__card bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition group" data-id="5">
-                <div class="relative h-48"><img src="images/elected prefects.jpg" class="w-full h-full object-cover"><span class="absolute top-3 left-3 bg-amber-600 text-white text-xs px-2 py-1 rounded-full">Milestone</span></div>
-                <div class="p-4"><h4 class="font-bold text-lg">Leaders elected</h4><p class="text-gray-500 text-sm">Leadership, Responsibility, and Service.</p><button class="text-indigo-700 font-semibold text-sm mt-3 read-more-btn">Read More →</button></div>
-            </article>
-            <article class="news__card bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition group" data-id="6">
-                <div class="relative h-48"><img src="images/jubilating_result.webp" class="w-full h-full object-cover"><span class="absolute top-3 left-3 bg-teal-600 text-white text-xs px-2 py-1 rounded-full">Recognition</span></div>
-                <div class="p-4"><h4 class="font-bold text-lg">S4 candidates jubilating</h4><p class="text-gray-500 text-sm">Outstanding students receive prestigious scholarships.</p><button class="text-indigo-700 font-semibold text-sm mt-3 read-more-btn">Read More →</button></div>
-            </article>
-            <article class="news__card bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition group" data-id="7">
-                <div class="relative h-48"><img src="images/awards_result.webp" class="w-full h-full object-cover"><span class="absolute top-3 left-3 bg-indigo-600 text-white text-xs px-2 py-1 rounded-full">Community</span></div>
-                <div class="p-4"><h4 class="font-bold text-lg">Best candidates Awards</h4><p class="text-gray-500 text-sm">Students engage in meaningful community outreach programs.</p><button class="text-indigo-700 font-semibold text-sm mt-3 read-more-btn">Read More →</button></div>
-            </article>
-            <article class="news__card bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition group" data-id="8">
-                <div class="relative h-48"><img src="images/prefect2.webp" class="w-full h-full object-cover"><span class="absolute top-3 left-3 bg-slate-700 text-white text-xs px-2 py-1 rounded-full">Facilities</span></div>
-                <div class="p-4"><h4 class="font-bold text-lg">Former Prefectorial Body</h4><p class="text-gray-500 text-sm">Architects of the Future.</p><button class="text-indigo-700 font-semibold text-sm mt-3 read-more-btn">Read More →</button></div>
-            </article>
+            <article class="news__card bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition group cursor-pointer" data-id="1"><div class="relative h-48 overflow-hidden"><img src="images/giants_result.webp" class="w-full h-full object-cover group-hover:scale-105 transition duration-300" onerror="this.src='https://placehold.co/400x300?text=Top+Rankings'"><span class="absolute top-3 left-3 bg-indigo-600 text-white text-xs px-2 py-1 rounded-full">Academics</span></div><div class="p-4"><h4 class="font-bold text-lg">School Achieves Top Rankings</h4><p class="text-gray-500 text-sm mt-1">Bristol High School ranked among the top schools...</p><button class="text-indigo-700 font-semibold text-sm mt-3 read-more-btn">Read More →</button></div></article>
+            <article class="news__card bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition group cursor-pointer" data-id="2"><div class="relative h-48"><img src="images/sports day_result.webp" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/400x300?text=Sports+Day'"><span class="absolute top-3 left-3 bg-green-600 text-white text-xs px-2 py-1 rounded-full">Sports</span></div><div class="p-4"><h4 class="font-bold text-lg">Annual Sports Day Celebrations</h4><p class="text-gray-500 text-sm">Students showcase athletic prowess.</p><button class="text-indigo-700 font-semibold text-sm mt-3 read-more-btn">Read More →</button></div></article>
+            <article class="news__card bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition group cursor-pointer" data-id="3"><div class="relative h-48"><img src="images/sports_result.webp" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/400x300?text=Science+Exhibition'"><span class="absolute top-3 left-3 bg-blue-600 text-white text-xs px-2 py-1 rounded-full">Science</span></div><div class="p-4"><h4 class="font-bold text-lg">Science Exhibition Success</h4><p class="text-gray-500 text-sm">Students present innovative projects.</p><button class="text-indigo-700 font-semibold text-sm mt-3 read-more-btn">Read More →</button></div></article>
+            <article class="news__card bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition group cursor-pointer" data-id="4"><div class="relative h-48"><img src="images/cultural day_result.webp" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/400x300?text=Cultural+Festival'"><span class="absolute top-3 left-3 bg-rose-600 text-white text-xs px-2 py-1 rounded-full">Culture</span></div><div class="p-4"><h4 class="font-bold text-lg">Cultural Festival Highlights</h4><p class="text-gray-500 text-sm">Diverse cultural performances.</p><button class="text-indigo-700 font-semibold text-sm mt-3 read-more-btn">Read More →</button></div></article>
+            <article class="news__card bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition group cursor-pointer" data-id="5"><div class="relative h-48"><img src="images/elected prefects.jpg" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/400x300?text=Leaders+Elected'"><span class="absolute top-3 left-3 bg-amber-600 text-white text-xs px-2 py-1 rounded-full">Milestone</span></div><div class="p-4"><h4 class="font-bold text-lg">Leaders elected</h4><p class="text-gray-500 text-sm">Leadership, Responsibility, and Service.</p><button class="text-indigo-700 font-semibold text-sm mt-3 read-more-btn">Read More →</button></div></article>
+            <article class="news__card bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition group cursor-pointer" data-id="6"><div class="relative h-48"><img src="images/jubilating_result.webp" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/400x300?text=Jubilation'"><span class="absolute top-3 left-3 bg-teal-600 text-white text-xs px-2 py-1 rounded-full">Recognition</span></div><div class="p-4"><h4 class="font-bold text-lg">S4 candidates jubilating</h4><p class="text-gray-500 text-sm">Outstanding students receive scholarships.</p><button class="text-indigo-700 font-semibold text-sm mt-3 read-more-btn">Read More →</button></div></article>
+            <article class="news__card bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition group cursor-pointer" data-id="7"><div class="relative h-48"><img src="images/awards_result.webp" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/400x300?text=Awards'"><span class="absolute top-3 left-3 bg-indigo-600 text-white text-xs px-2 py-1 rounded-full">Community</span></div><div class="p-4"><h4 class="font-bold text-lg">Best candidates Awards</h4><p class="text-gray-500 text-sm">Students engage in meaningful outreach.</p><button class="text-indigo-700 font-semibold text-sm mt-3 read-more-btn">Read More →</button></div></article>
+            <article class="news__card bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition group cursor-pointer" data-id="8"><div class="relative h-48"><img src="images/prefect2.webp" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/400x300?text=Prefects'"><span class="absolute top-3 left-3 bg-slate-700 text-white text-xs px-2 py-1 rounded-full">Facilities</span></div><div class="p-4"><h4 class="font-bold text-lg">Former Prefectorial Body</h4><p class="text-gray-500 text-sm">Architects of the Future.</p><button class="text-indigo-700 font-semibold text-sm mt-3 read-more-btn">Read More →</button></div></article>
         </div>
     </div>
 </section>
@@ -417,22 +362,70 @@
 </footer>
 
 <script>
-    // Mobile menu logic
+    // FIXED: Mobile menu logic with proper open/close
     const openBtn = document.getElementById('open-menu-btn');
     const closeBtn = document.getElementById('close-menu-btn');
     const mobileMenu = document.getElementById('mobile-menu');
-    if(openBtn && closeBtn && mobileMenu) {
-        openBtn.onclick = () => { mobileMenu.style.right = '0'; openBtn.style.display = 'none'; closeBtn.style.display = 'inline-block'; };
-        closeBtn.onclick = () => { mobileMenu.style.right = '-100%'; openBtn.style.display = 'inline-block'; closeBtn.style.display = 'none'; };
+    const body = document.body;
+    const overlay = document.getElementById('mobile-menu-overlay');
+    
+    function openMobileMenu() {
+        if(mobileMenu) {
+            mobileMenu.style.right = '0';
+            openBtn.style.display = 'none';
+            closeBtn.style.display = 'inline-block';
+            body.classList.add('menu-open');
+            if(overlay) overlay.classList.remove('hidden');
+        }
     }
-    // Mobile dropdowns
+    
+    function closeMobileMenu() {
+        if(mobileMenu) {
+            mobileMenu.style.right = '-100%';
+            openBtn.style.display = 'inline-block';
+            closeBtn.style.display = 'none';
+            body.classList.remove('menu-open');
+            if(overlay) overlay.classList.add('hidden');
+        }
+    }
+    
+    if(openBtn && closeBtn && mobileMenu) {
+        openBtn.onclick = (e) => {
+            e.stopPropagation();
+            openMobileMenu();
+        };
+        closeBtn.onclick = (e) => {
+            e.stopPropagation();
+            closeMobileMenu();
+        };
+        // Click outside overlay to close
+        if(overlay) {
+            overlay.onclick = closeMobileMenu;
+        }
+        // Prevent closing when clicking inside mobile menu
+        mobileMenu.addEventListener('click', (e) => e.stopPropagation());
+    }
+    
+    // Mobile dropdown toggles with arrow rotation
     document.querySelectorAll('.dropdown-mobile button').forEach(btn => {
         btn.addEventListener('click', (e) => {
-            const content = btn.nextElementSibling;
-            if(content) content.classList.toggle('hidden');
+            e.preventDefault();
+            const parentLi = btn.closest('.dropdown-mobile');
+            const content = parentLi.querySelector('.mobile-dropdown-content');
+            const icon = btn.querySelector('.uil-angle-down');
+            if(content) {
+                content.classList.toggle('hidden');
+                if(icon) {
+                    if(content.classList.contains('hidden')) {
+                        icon.style.transform = 'rotate(0deg)';
+                    } else {
+                        icon.style.transform = 'rotate(180deg)';
+                    }
+                }
+            }
         });
     });
-
+    
     // Modal logic for news cards
     const modal = document.getElementById('news-modal');
     const modalImg = document.getElementById('modal-image');
@@ -440,29 +433,36 @@
     const modalDesc = document.getElementById('modal-description');
     const modalFull = document.getElementById('modal-full-text');
     const closeModal = document.getElementById('close-modal');
+    
     const newsData = {
         1: {title:"School Achieves Top Rankings", desc:"Bristol High School ranked among the top schools nationally.", full:"Our institution has been recognized for outstanding academic performance, teacher dedication, and student success stories. We continue to raise the bar."},
         2: {title:"Annual Sports Day Celebrations", desc:"Students showcase athletic prowess at inter-house competitions.", full:"The annual sports day brought together students, parents and staff for a day full of energy, teamwork and competitive spirit. Many records were broken."},
-        3: {title:"Science Exhibition Success", desc:"Students present innovative projects exploring technology.", full:"The science exhibition featured robotics, renewable energy models and AI demonstrations. Young innovators impressed guests from the tech industry."},
-        4: {title:"Cultural Festival Highlights", desc:"Diverse cultural performances celebrating talents.", full:"From traditional dances to modern theater, our cultural festival highlighted the rich diversity of our student body and promoted unity."},
-        5: {title:"Leaders elected", desc:"We congratulate each newly elected prefect. We look forward to supporting your growth as you execute your duties and inspire your fellow students.", full:""Leadership is the capacity to translate vision into reality."We are thrilled to officially introduce our newly elected student leaders! Selected by their peers and teachers, this dynamic team is ready to step up, speak out, and lead our school community into a bright future. We have complete confidence in your ability to guide us with integrity and excellence. Let the journey begin! "},
-        6: {title:"S4 candidates jubilating", desc:"Outstanding students receive prestigious scholarships.", full:"Our S4 candidates celebrated exceptional results with scholarships from several universities. We are immensely proud of their dedication."},
-        7: {title:"Best candidates Awards", desc:"Students engage in meaningful community outreach.", full:"Award ceremony recognized top performers across all disciplines. Their hard work and discipline set a benchmark for peers."},
-        8: {title:"Former Prefectorial Body", desc:"True leaders don't create followers; they create more leaders. To the prefects who have walked our halls, shaped our traditions, and laid the foundation of excellence we stand upon today—your legacy continues to inspire every generation.", full:"You upheld the values and rules that keep our community grounded, proving that discipline and respect are the cornerstones of greatness. Through your tireless service and empathetic guidance, you brought students together, fostered school spirit, and built a welcoming home for all. The time, passion, and wisdom you poured into your roles set a standard of excellence that will drive our institution forward for years to come."}
+        3: {title:"Science Exhibition Success", desc:"Students present innovative projects exploring technology.", full:"The science exhibition featured robotics, renewable energy models and AI demonstrations. Young innovators impressed guests."},
+        4: {title:"Cultural Festival Highlights", desc:"Diverse cultural performances celebrating talents.", full:"From traditional dances to modern theater, our cultural festival highlighted the rich diversity of our student body."},
+        5: {title:"Leaders elected", desc:"We congratulate each newly elected prefect. We look forward to supporting your growth.", full:"Leadership is the capacity to translate vision into reality. We are thrilled to officially introduce our newly elected student leaders! Selected by their peers and teachers, this dynamic team is ready to step up and lead."},
+        6: {title:"S4 candidates jubilating", desc:"Outstanding students receive prestigious scholarships.", full:"Our S4 candidates celebrated exceptional results with scholarships from several universities."},
+        7: {title:"Best candidates Awards", desc:"Students engage in meaningful community outreach.", full:"Award ceremony recognized top performers across all disciplines. Their hard work sets a benchmark."},
+        8: {title:"Former Prefectorial Body", desc:"True leaders don't create followers; they create more leaders.", full:"You upheld the values and rules that keep our community grounded, proving that discipline and respect are cornerstones."}
     };
+    
     document.querySelectorAll('.news__card').forEach(card => {
         const id = card.getAttribute('data-id');
-        card.querySelector('.read-more-btn')?.addEventListener('click', () => {
-            if(id && newsData[id]) {
-                const imgSrc = card.querySelector('img')?.src || '';
-                modalImg.src = imgSrc;
-                modalTitle.innerText = newsData[id].title;
-                modalDesc.innerText = newsData[id].desc;
-                modalFull.innerText = newsData[id].full;
-                modal.classList.add('show');
-            }
-        });
+        const readBtn = card.querySelector('.read-more-btn');
+        if(readBtn) {
+            readBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                if(id && newsData[id]) {
+                    const imgSrc = card.querySelector('img')?.src || '';
+                    modalImg.src = imgSrc;
+                    modalTitle.innerText = newsData[id].title;
+                    modalDesc.innerText = newsData[id].desc;
+                    modalFull.innerText = newsData[id].full;
+                    modal.classList.add('show');
+                }
+            });
+        }
     });
+    
     if(closeModal) closeModal.onclick = () => modal.classList.remove('show');
     window.onclick = (e) => { if(e.target === modal) modal.classList.remove('show'); };
 </script>
