@@ -10,11 +10,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
     <style>
-        * {
+
+             * {
             font-family: 'Poppins', sans-serif;
         }
-        
-        /* Custom dropdown styles (desktop) */
+
+        /* Custom dropdown styles (desktop) - FIXED z-index */
         .dropdown:hover .dropdown-menu {
             display: block;
             opacity: 1;
@@ -25,26 +26,30 @@
             opacity: 0;
             visibility: hidden;
             transition: all 0.2s ease;
+            z-index: 9999;
+            /* Ensure dropdown is above everything */
+            position: absolute;
+            background: white;
         }
-        
+
         /* Modal styles */
         .news__modal {
             display: none;
             position: fixed;
-            z-index: 9999;
+            z-index: 99999;
             left: 0;
             top: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0,0,0,0.85);
+            background-color: rgba(0, 0, 0, 0.85);
             align-items: center;
             justify-content: center;
         }
         .news__modal.show {
             display: flex;
         }
-        
-         /* Auto-scrolling slider styles */
+
+        /* Auto-scrolling slider styles */
         .slider-container {
             overflow: hidden;
             position: relative;
@@ -67,8 +72,8 @@
                 transform: translateX(-50%);
             }
         }
-        
-        
+
+
         /* Full-screen video container */
         .hero-video-container {
             position: relative;
@@ -88,91 +93,116 @@
             pointer-events: none;
             border: none;
         }
-        
+
         /* Mobile menu styles */
         body.menu-open {
             overflow: hidden;
         }
-        
+
         #mobile-menu {
             transition: right 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            box-shadow: -5px 0 30px rgba(0,0,0,0.15);
+            box-shadow: -5px 0 30px rgba(0, 0, 0, 0.15);
+            z-index: 9998;
+            /* Ensure mobile menu is above announcement bar */
         }
-        
+
         .dropdown-mobile button {
             background: transparent;
             outline: none;
         }
-        
+
         /* FIX: Ensure mobile buttons are hidden on desktop */
         @media (min-width: 768px) {
             .mobile-only-buttons {
                 display: none !important;
             }
         }
-        
+
         @media (max-width: 768px) {
             .hero-video-container {
                 height: 70vh;
             }
             @keyframes scroll {
-                0% { transform: translateX(0); }
-                100% { transform: translateX(-50%); }
+                0% {
+                    transform: translateX(0);
+                }
+                100% {
+                    transform: translateX(-50%);
+                }
             }
         }
 
-        /* Announcement Bar */
-.announcement-container {
-    width: 100%;
-    background: linear-gradient(90deg, #004080, #0066cc);
-    color: white;
-    overflow: hidden;
-    height: 50px;
-    display: flex;
-    align-items: center;
-    border-bottom: 3px solid #ffd700;
-    position: relative;
-    z-index: 1000;
-}
+        /* Announcement Bar - FIXED z-index to be below dropdowns */
+        .announcement-container {
+            width: 100%;
+            background: linear-gradient(90deg, #004080, #0066cc);
+            color: white;
+            overflow: hidden;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            border-bottom: 3px solid #ffd700;
+            position: relative;
+            z-index: 100;
+            /* Lower than dropdowns and mobile menu */
+        }
 
-.announcement-slider {
-    white-space: nowrap;
-    font-size: 16px;
-    font-weight: 500;
-    padding-left: 100%;
-    animation: slideMessage 50s linear infinite;
-}
+        .announcement-slider {
+            white-space: nowrap;
+            font-size: 16px;
+            font-weight: 500;
+            padding-left: 100%;
+            animation: slideMessage 100s linear infinite;
+        }
 
-.announcement-slider strong {
-    color: #ffd700;
-}
+        .announcement-slider strong {
+            color: #ffd700;
+        }
 
-@keyframes slideMessage {
-    from {
-        transform: translateX(0);
-    }
-    to {
-        transform: translateX(-100%);
-    }
-}
+        @keyframes slideMessage {
+            from {
+                transform: translateX(0);
+            }
+            to {
+                transform: translateX(-100%);
+            }
+        }
 
-.announcement-slider:hover {
-    animation-play-state: paused;
-    cursor: pointer;
-}
-/* Mobile Responsive */
-@media (max-width: 768px) {
-    .announcement-container {
-        height: 45px;
-    }
+        .announcement-slider:hover {
+            animation-play-state: paused;
+            cursor: pointer;
+        }
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .announcement-container {
+                height: 45px;
+            }
 
-    .announcement-slider {
-        font-size: 14px;
-    }
-}
+            .announcement-slider {
+                font-size: 14px;
+            }
+        }
+
+        /* Fix for navbar to have higher z-index than announcement */
+        nav.sticky {
+            z-index: 1000;
+            /* Higher than announcement bar */
+        }
+
+        /* Ensure dropdowns in navbar are above everything */
+        .dropdown-menu {
+            z-index: 9999 !important;
+        }
+
+        /* Fix mobile overlay */
+        #mobile-menu-overlay {
+            z-index: 9997;
+        }
+     
     </style>
 </head>
 <body class="bg-white text-gray-800">
+
 
 <!-- Topbar -->
 <div class="bg-[#0f172a] text-gray-200 text-sm py-2.5">
@@ -190,6 +220,18 @@
         </div>
     </div>
 </div>
+
+  <!-- Sliding Announcement Bar - MOVED BELOW TOPBAR BUT ABOVE NAV -->
+    <div class="announcement-container">
+        <div class="announcement-slider">
+            We are excited to announce that our school now offers official Directorate of Industrial Training (DIT) courses to equip your child with practical, employment-ready skills.Students can now gain hands-on training in highly rewarding fields, including Phone Repair, Tailoring, Hair Dressing, Carpentry, and Music. Alongside their regular academic studies, your child will master marketable crafts and earn a recognized professional certificate. This specialized curriculum bridges the gap between classroom theory and real-world success, giving graduates a massive competitive edge.Spaces are limited. Contact the school administration today to enroll your child in their preferred vocational track.
+        </div>
+    </div>
+
+    <!-- Navbar (Sticky) - FIXED z-index -->
+    <nav class="sticky top-0 z-[1000] bg-[#fef9e6] shadow-md border-b border-gray-200">
+        <div class="container mx-auto px-5 max-w-7xl flex justify-between items-center h-20">
+
 
 <!-- Navbar (Sticky) -->
 <nav class="sticky top-0 z-50 bg-[#fef9e6] shadow-md border-b border-gray-200">
@@ -282,12 +324,7 @@
 </nav>
 
 
-<!-- Sliding Announcement Bar -->
-<div class="announcement-container">
-    <div class="announcement-slider">
-        📢 We are excited to announce that our school now offers official Directorate of Industrial Training (DIT) courses to equip your child with practical, employment-ready skills.Students can now gain hands-on training in highly rewarding fields, including Phone Repair, Tailoring, Hair Dressing, Carpentry, and Music. Alongside their regular academic studies, your child will master marketable crafts and earn a recognized professional certificate. This specialized curriculum bridges the gap between classroom theory and real-world success, giving graduates a massive competitive edge.Spaces are limited. Contact the school administration today to enroll your child in their preferred vocational track.
-    </div>
-</div>
+
 
 <!-- VIDEO HERO SECTION (with slightly reduced height to show announcement) -->
 <div class="hero-video-container" style="height: calc(100vh - 48px);">
