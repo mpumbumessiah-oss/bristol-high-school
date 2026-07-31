@@ -198,6 +198,66 @@
         #mobile-menu-overlay {
             z-index: 9997;
         }
+
+         /* ----- NEW: Welcome slider styles ----- */
+        .welcome-slider-container {
+            overflow: hidden;
+            border-radius: 1rem;
+            box-shadow: 0 20px 40px -12px rgba(0,0,0,0.3);
+            position: relative;
+            background: #f8fafc;
+        }
+        .welcome-slider-track {
+            display: flex;
+            width: 300%; /* 3 images = 300% */
+            animation: welcomeScroll 18s ease-in-out infinite;
+        }
+        .welcome-slider-track:hover {
+            animation-play-state: paused;
+        }
+        .welcome-slide {
+            width: 33.3333%;
+            flex-shrink: 0;
+        }
+        .welcome-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        @keyframes welcomeScroll {
+            0% { transform: translateX(0); }
+            28% { transform: translateX(0); }
+            33% { transform: translateX(-33.3333%); }
+            61% { transform: translateX(-33.3333%); }
+            66% { transform: translateX(-66.6666%); }
+            94% { transform: translateX(-66.6666%); }
+            100% { transform: translateX(0); }
+        }
+        .welcome-slider-container {
+            height: 100%;
+            min-height: 320px;
+            max-height: 450px;
+        }
+        .welcome-slider-track,
+        .welcome-slide {
+            height: 100%;
+        }
+        @media (max-width: 640px) {
+            .welcome-slider-container {
+                min-height: 220px;
+                max-height: 300px;
+            }
+        }
+        /* fallback gradient if images missing */
+        .welcome-slide {
+            background: linear-gradient(135deg, #e0e7ff, #c7d2fe);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #4f46e5;
+            font-weight: 600;
+        }
     </style>
 </head>
 <body class="bg-white text-gray-800">
@@ -330,16 +390,38 @@
         </div>
     </div>
 
-    <!-- Header / Welcome Section -->
+    <!-- ===================================================== -->
+    <!-- HEADER / WELCOME SECTION -->
+    <!-- ===================================================== -->
     <header class="py-16 md:py-20 bg-gray-50">
         <div class="container mx-auto px-5 max-w-7xl grid md:grid-cols-2 gap-12 items-center">
+            <!-- Left: text -->
             <div>
                 <h1 class="text-3xl md:text-4xl font-extrabold text-gray-900 leading-tight">Welcome to Bristol High School, Matugga</h1>
                 <p class="text-gray-600 mt-5 leading-relaxed">Bristol High School is a high-quality private secondary school founded in 2019. It is a mixed boarding school offering both Arts and Sciences at "O" and "A" Level. The College is owned by experienced and well-educated individuals with a strong commitment to excellence in academics and post-school life.</p>
                 <a href="pages/courses.html" class="inline-flex items-center gap-2 bg-indigo-700 hover:bg-indigo-800 text-white font-semibold px-7 py-3 rounded-full mt-6 transition shadow-lg">Get Started <i class="uil uil-arrow-right"></i></a>
             </div>
-            <div class="rounded-2xl overflow-hidden shadow-2xl">
-                <img src="images/NZE_1543.jpg" alt="header" class="w-full h-auto object-cover" loading="lazy" onerror="this.src='https://placehold.co/600x400?text=Bristol+High'">
+            <!-- Right: slider with multiple images -->
+            <div class="welcome-slider-container">
+                <div class="welcome-slider-track">
+                    <!-- Slide 1 -->
+                    <div class="welcome-slide">
+                        <img src="images/classes/hello.jpeg" alt="School campus 1" loading="lazy" onerror="this.src='https://placehold.co/800x500/4f46e5/ffffff?text=Bristol+High+1'">
+                    </div>
+                    <!-- Slide 2 -->
+                    <div class="welcome-slide">
+                        <img src="images/classes/hello2.jpeg" alt="Cultural day" loading="lazy" onerror="this.src='https://placehold.co/800x500/4f46e5/ffffff?text=Bristol+High+2'">
+                    </div>
+                    <!-- Slide 3 -->
+                    <div class="welcome-slide">
+                        <img src="images/classes/hello3.jpeg" alt="Sports day" loading="lazy" onerror="this.src='https://placehold.co/800x500/4f46e5/ffffff?text=Bristol+High+3'">
+                    </div>
+                    <!-- extra duplicate for seamless loop (optional but smooth) -->
+                    <!-- Slide 1 duplicate -->
+                    <div class="welcome-slide">
+                        <img src="images/classes/senior 1 west.jpeg" alt="School campus 1" loading="lazy" onerror="this.src='https://placehold.co/800x500/4f46e5/ffffff?text=Bristol+High+1'">
+                    </div>
+                </div>
             </div>
         </div>
     </header>
