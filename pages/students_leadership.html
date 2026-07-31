@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Leadership | Bristol High School - Future Leaders</title>
+    <title>Our Staff | Bristol High School - Meet Our Team</title>
     <!-- Tailwind CSS + Google Fonts + Unicons -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -24,29 +24,18 @@
         html {
             scroll-behavior: smooth;
         }
-        /* Custom animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        .animate-fade-up {
-            animation: fadeInUp 0.6s ease-out forwards;
-        }
-        .delay-100 { animation-delay: 0.1s; }
-        .delay-200 { animation-delay: 0.2s; }
-        .delay-300 { animation-delay: 0.3s; }
-        /* Leadership card hover */
-        .leadership-card {
+        /* Profile card hover effect */
+        .profile-card {
             transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
         }
-        .leadership-card:hover {
-            transform: translateY(-5px);
+        .profile-card:hover {
+            transform: translateY(-6px);
+        }
+        .avatar-frame {
+            transition: transform 0.3s ease;
+        }
+        .profile-card:hover .avatar-frame {
+            transform: scale(1.02);
         }
     </style>
 </head>
@@ -89,8 +78,8 @@
                 <button class="flex items-center gap-1 hover:text-indigo-700">Explore <i class="uil uil-angle-down"></i></button>
                 <div class="dropdown-menu absolute top-full left-0 w-56 bg-white shadow-xl rounded-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 py-2 border border-gray-100">
                     <a href="../pages/documents.html" class="block px-5 py-2.5 hover:bg-indigo-50 transition">Fees, Rules & Calendar</a>
-                    <a href="../pages/students_leadership.html" class="block px-5 py-2.5 hover:bg-indigo-50 transition font-semibold text-indigo-700">Student Leadership</a>
-                    <a href="../pages/staff.html" class="block px-5 py-2.5 hover:bg-indigo-50 transition">Our Staff</a>
+                    <a href="../pages/students_leadership.html" class="block px-5 py-2.5 hover:bg-indigo-50 transition">Student Leadership</a>
+                    <a href="../pages/staff.html" class="block px-5 py-2.5 hover:bg-indigo-50 transition font-semibold text-indigo-700">Our Staff</a>
                     <a href="../pages/gallery.html" class="block px-5 py-2.5 hover:bg-indigo-50 transition">Gallery</a>
                 </div>
             </li>
@@ -124,8 +113,8 @@
             <button class="dropbtn-mobile w-full text-left py-2 flex justify-between items-center">Explore <i class="uil uil-angle-down"></i></button>
             <div class="mobile-dropdown-content hidden pl-4 flex flex-col gap-2 mt-1">
                 <a href="../pages/documents.html" class="py-1.5 text-gray-600">Fees, Rules & Calendar</a>
-                <a href="../pages/students_leadership.html" class="py-1.5 text-gray-600 font-semibold text-indigo-700">Student Leadership</a>
-                <a href="../pages/staff.html" class="py-1.5 text-gray-600">Our Staff</a>
+                <a href="../pages/students_leadership.html" class="py-1.5 text-gray-600">Student Leadership</a>
+                <a href="../pages/staff.html" class="py-1.5 text-gray-600 font-semibold text-indigo-700">Our Staff</a>
                 <a href="../pages/gallery.html" class="py-1.5 text-gray-600">Gallery</a>
             </div>
         </li>
@@ -144,25 +133,15 @@
     </ul>
 </nav>
 
-<!-- Announcement Banner -->
-<div class="bg-gradient-to-r from-indigo-900 to-indigo-800 text-white py-3">
-    <div class="container mx-auto px-5 max-w-7xl">
-        <div class="flex items-center justify-center gap-3 flex-wrap">
-            <span class="inline-flex items-center justify-center w-6 h-6 bg-amber-400 text-indigo-900 rounded-full text-sm font-bold">!</span>
-            <p class="text-sm md:text-base"><strong class="font-semibold">Latest Announcement:</strong> Bristol High School proudly announces the official launch of our Vocational Studies (DIT) program in 2026!</p>
-        </div>
-    </div>
-</div>
-
-<!-- Hero Section -->
-<section class="relative bg-gradient-to-r from-indigo-900 via-indigo-800 to-indigo-900 py-20 md:py-28 overflow-hidden">
+<!-- Hero Banner -->
+<section class="relative bg-gradient-to-r from-indigo-900 via-indigo-800 to-indigo-900 py-20 md:py-24 overflow-hidden">
     <div class="absolute inset-0 opacity-10 bg-[url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"%3E%3Cpolygon points="100,0 120,80 200,80 135,130 160,210 100,160 40,210 65,130 0,80 80,80" fill="white"/%3E%3C/svg%3E')] bg-repeat"></div>
     <div class="container mx-auto px-5 max-w-7xl text-center relative z-10">
         <div class="inline-block bg-amber-400/20 backdrop-blur-sm rounded-full px-6 py-2 mb-6">
-            <span class="text-amber-300 font-semibold text-sm tracking-wide"><i class="uil uil-star text-base mr-1"></i> Future Leaders</span>
+            <span class="text-amber-300 font-semibold text-sm tracking-wide"><i class="uil uil-users-alt text-base mr-1"></i> Meet Our Dedicated Students Leadership</span>
         </div>
-        <h1 class="text-5xl md:text-6xl font-extrabold text-white mb-5 drop-shadow-lg">Student Leadership</h1>
-        <p class="text-indigo-100 text-lg md:text-xl max-w-2xl mx-auto">Meet the student leaders, their roles, and shared media.</p>
+        <h1 class="text-5xl md:text-6xl font-extrabold text-white mb-5 drop-shadow-lg">Service for All</h1>
+        <p class="text-indigo-100 text-lg md:text-xl max-w-2xl mx-auto">Meet our dedicated team of professionals committed to discipline of all students.</p>
         <div class="flex justify-center gap-3 mt-8">
             <div class="w-16 h-1 bg-amber-400 rounded-full"></div>
             <div class="w-8 h-1 bg-indigo-300 rounded-full"></div>
@@ -170,127 +149,284 @@
     </div>
 </section>
 
-<!-- Main Content Sections -->
-<main class="py-16 md:py-20">
-    <div class="container mx-auto px-5 max-w-6xl">
-        
-        <!-- Leadership Body Section -->
-        <div class="grid md:grid-cols-2 gap-12 items-center mb-20 animate-fade-up">
-            <div class="order-2 md:order-1">
-                <div class="rounded-2xl overflow-hidden shadow-xl">
-                    <img src="../images/NZE_1562_result.webp" loading="lazy" alt="Students Leadership Group Photo" class="w-full h-auto object-cover">
-                </div>
+<!-- ADMINISTRATORS Section -->
+<section class="py-12 md:py-16">
+    <div class="container mx-auto px-5 max-w-7xl">
+        <div class="text-center mb-10">
+            <div class="inline-flex items-center gap-3 bg-white rounded-full px-6 py-2 shadow-md border border-gray-100">
+                <span class="w-2 h-2 bg-amber-500 rounded-full"></span>
+                <span class="text-gray-700 font-semibold tracking-wide">Top Leaders</span>
+                <span class="w-2 h-2 bg-indigo-500 rounded-full"></span>
             </div>
-            <div class="order-1 md:order-2">
-                <div class="inline-block bg-indigo-100 text-indigo-700 text-xs font-semibold px-3 py-1 rounded-full mb-4">Leadership Structure</div>
-                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">An Organized Students' Leadership Body</h2>
-                <p class="text-gray-600 leading-relaxed mb-4">An organized students' leadership body is essential for promoting order, unity, and effective communication within a school. It is made up of committed student leaders who work together in a structured system to support the administration and represent the interests of the student community.</p>
-                <div class="flex flex-wrap gap-3 mt-6">
-                    <span class="bg-gray-100 text-gray-600 text-sm px-3 py-1 rounded-full">Accountability</span>
-                    <span class="bg-gray-100 text-gray-600 text-sm px-3 py-1 rounded-full">Unity</span>
-                    <span class="bg-gray-100 text-gray-600 text-sm px-3 py-1 rounded-full">Representation</span>
-                </div>
-            </div>
+            <p class="text-gray-500 mt-3 text-sm">Meet our leadership team guiding the institution with vision and dedication.</p>
         </div>
         
-        <!-- Head Prefect Section -->
-        <div class="grid md:grid-cols-2 gap-12 items-center mb-20 animate-fade-up delay-100">
-            <div>
-                <div class="inline-block bg-amber-100 text-amber-700 text-xs font-semibold px-3 py-1 rounded-full mb-4">Leadership Spotlight</div>
-                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Head Prefect</h2>
-                <p class="text-gray-600 leading-relaxed mb-4">Our student leadership team works closely with teachers and administrators to maintain discipline, lead events, and support the wider student body. The Head Prefect serves as the primary liaison between students and school administration.</p>
-                <ul class="space-y-2 mt-4">
-                    <li class="flex items-center gap-3"><i class="uil uil-check-circle text-green-500"></i> <span>Coordinates all prefect activities</span></li>
-                    <li class="flex items-center gap-3"><i class="uil uil-check-circle text-green-500"></i> <span>Chairs student council meetings</span></li>
-                    <li class="flex items-center gap-3"><i class="uil uil-check-circle text-green-500"></i> <span>Represents students at school events</span></li>
-                </ul>
-            </div>
-            <div class="rounded-2xl overflow-hidden shadow-xl">
-                <img src="../images/NZE_1562_result.webp" loading="lazy" alt="Head Prefect Leadership" class="w-full h-auto object-cover">
-            </div>
-        </div>
-        
-        <!-- Leadership Team Cards -->
-        <div class="mt-12 animate-fade-up delay-200">
-            <div class="text-center mb-10">
-                <h2 class="text-3xl font-bold text-gray-800 mb-2">Our Leadership Team</h2>
-                <p class="text-gray-500">Dedicated student leaders serving the school community</p>
-                <div class="w-20 h-0.5 bg-amber-400 mx-auto mt-4"></div>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
+            <!-- Card 1 - Director -->
+            <div class="profile-card bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all">
+                <div class="bg-gradient-to-r from-indigo-500 to-indigo-600 p-4 text-center">
+                    <div class="avatar-frame w-32 h-32 rounded-full overflow-hidden mx-auto border-4 border-white shadow-lg">
+                        <img src="../images/prefects/head prefect.jpeg" loading="lazy" alt="Head prefect" class="w-full h-full object-cover">
+                    </div>
+                </div>
+                <div class="p-6 text-center">
+                    <h3 class="text-xl font-bold text-gray-800">Mrs. Kirabo Mitchelle</h3>
+                    <p class="text-indigo-600 font-semibold text-sm mt-1">HEAD PREFECT</p>
+                    <p class="text-gray-500 text-sm mt-3">Visionary leader driving academic excellence and institutional growth.</p>
+                </div>
             </div>
             
-            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                <!-- Card 1 - Head Prefect -->
-                <div class="leadership-card bg-white rounded-2xl shadow-lg overflow-hidden">
-                    <div class="bg-gradient-to-r from-indigo-600 to-indigo-700 p-4 text-center">
-                        <div class="w-28 h-28 rounded-full overflow-hidden mx-auto border-4 border-white shadow-lg bg-white">
-                            <img src="../images/staff/Director_result.webp" alt="Head Prefect" class="w-full h-full object-cover">
-                        </div>
-                    </div>
-                    <div class="p-5 text-center">
-                        <h3 class="font-bold text-gray-800 text-lg">Mukasa John</h3>
-                        <p class="text-indigo-600 font-semibold text-sm">Head Prefect</p>
-                        <p class="text-gray-500 text-xs mt-2">Senior 6 • Science</p>
+            <!-- Card 2 - Headteacher -->
+            <div class="profile-card bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all">
+                <div class="bg-gradient-to-r from-emerald-500 to-emerald-600 p-4 text-center">
+                    <div class="avatar-frame w-32 h-32 rounded-full overflow-hidden mx-auto border-4 border-white shadow-lg">
+                        <img src="../images/prefects/head boy.jpeg" loading="lazy" alt="HEAD BOY" class="w-full h-full object-cover">
                     </div>
                 </div>
-                
-                <!-- Card 2 - Deputy Head Prefect -->
-                <div class="leadership-card bg-white rounded-2xl shadow-lg overflow-hidden">
-                    <div class="bg-gradient-to-r from-emerald-500 to-emerald-600 p-4 text-center">
-                        <div class="w-28 h-28 rounded-full overflow-hidden mx-auto border-4 border-white shadow-lg bg-white">
-                            <img src="../images/staff/mumbere_result.webp" alt="Deputy Head Prefect" class="w-full h-full object-cover">
-                        </div>
-                    </div>
-                    <div class="p-5 text-center">
-                        <h3 class="font-bold text-gray-800 text-lg">Nakato Sarah</h3>
-                        <p class="text-emerald-600 font-semibold text-sm">Deputy Head Prefect</p>
-                        <p class="text-gray-500 text-xs mt-2">Senior 5 • Arts</p>
-                    </div>
-                </div>
-                
-                <!-- Card 3 - Academic Prefect -->
-                <div class="leadership-card bg-white rounded-2xl shadow-lg overflow-hidden">
-                    <div class="bg-gradient-to-r from-amber-500 to-amber-600 p-4 text-center">
-                        <div class="w-28 h-28 rounded-full overflow-hidden mx-auto border-4 border-white shadow-lg bg-white">
-                            <img src="../images/staff/chemistry_result.webp" alt="Academic Prefect" class="w-full h-full object-cover">
-                        </div>
-                    </div>
-                    <div class="p-5 text-center">
-                        <h3 class="font-bold text-gray-800 text-lg">Okello David</h3>
-                        <p class="text-amber-600 font-semibold text-sm">Academic Prefect</p>
-                        <p class="text-gray-500 text-xs mt-2">Senior 6 • Science</p>
-                    </div>
-                </div>
-                
-                <!-- Card 4 - Discipline Prefect -->
-                <div class="leadership-card bg-white rounded-2xl shadow-lg overflow-hidden">
-                    <div class="bg-gradient-to-r from-purple-500 to-purple-600 p-4 text-center">
-                        <div class="w-28 h-28 rounded-full overflow-hidden mx-auto border-4 border-white shadow-lg bg-white">
-                            <img src="../images/staff/biology_result.webp" alt="Discipline Prefect" class="w-full h-full object-cover">
-                        </div>
-                    </div>
-                    <div class="p-5 text-center">
-                        <h3 class="font-bold text-gray-800 text-lg">Nabatanzi Grace</h3>
-                        <p class="text-purple-600 font-semibold text-sm">Discipline Prefect</p>
-                        <p class="text-gray-500 text-xs mt-2">Senior 5 • Arts</p>
-                    </div>
+                <div class="p-6 text-center">
+                    <h3 class="text-xl font-bold text-gray-800">Mr. Wonyaka Arinda Paul</h3>
+                    <p class="text-emerald-600 font-semibold text-sm mt-1">HEAD BOY</p>
+                    <p class="text-gray-500 text-sm mt-3">Leading academic operations and student development initiatives.</p>
                 </div>
             </div>
-        </div>
-        
-        <!-- Values Section -->
-        <div class="mt-20 bg-gradient-to-r from-indigo-50 to-indigo-100/50 rounded-3xl p-8 md:p-10 text-center animate-fade-up delay-300">
-            <i class="uil uil-award text-5xl text-indigo-600 mb-4 block"></i>
-            <h3 class="text-2xl font-bold text-gray-800 mb-3">Leadership Values</h3>
-            <p class="text-gray-600 max-w-2xl mx-auto">Our student leaders are guided by integrity, service, excellence, and teamwork — values that prepare them for future leadership roles.</p>
-            <div class="flex flex-wrap justify-center gap-4 mt-6">
-                <div class="bg-white rounded-full px-5 py-2 shadow-sm text-indigo-700 font-semibold text-sm">Integrity</div>
-                <div class="bg-white rounded-full px-5 py-2 shadow-sm text-indigo-700 font-semibold text-sm">Service</div>
-                <div class="bg-white rounded-full px-5 py-2 shadow-sm text-indigo-700 font-semibold text-sm">Excellence</div>
-                <div class="bg-white rounded-full px-5 py-2 shadow-sm text-indigo-700 font-semibold text-sm">Teamwork</div>
+            
+            <!-- Card 3 - Bursar -->
+            <div class="profile-card bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all">
+                <div class="bg-gradient-to-r from-amber-500 to-amber-600 p-4 text-center">
+                    <div class="avatar-frame w-32 h-32 rounded-full overflow-hidden mx-auto border-4 border-white shadow-lg">
+                        <img src="../images/prefects/head girl.jpeg" loading="lazy" alt="HEAD GIRL" class="w-full h-full object-cover">
+                    </div>
+                </div>
+                <div class="p-6 text-center">
+                    <h3 class="text-xl font-bold text-gray-800">Mrs. Ssuubi Majorine</h3>
+                    <p class="text-amber-600 font-semibold text-sm mt-1">HEAD GIRL</p>
+                    <p class="text-gray-500 text-sm mt-3">Managing financial operations and institutional resources.</p>
+                </div>
             </div>
         </div>
     </div>
-</main>
+</section>
+
+<!-- Teaching Staff Section -->
+<section class="py-12 md:py-16 bg-white">
+    <div class="container mx-auto px-5 max-w-7xl">
+        <div class="text-center mb-10">
+            <div class="inline-flex items-center gap-3 bg-white rounded-full px-6 py-2 shadow-md border border-gray-100">
+                <span class="w-2 h-2 bg-amber-500 rounded-full"></span>
+                <span class="text-gray-700 font-semibold tracking-wide">OTHER LEADERS</span>
+                <span class="w-2 h-2 bg-indigo-500 rounded-full"></span>
+            </div>
+            <p class="text-gray-500 mt-3 text-sm">Dedicated educators committed to nurturing young minds.</p>
+        </div>
+        
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            <!-- Teacher 1 -->
+            <div class="profile-card bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-all">
+                <div class="bg-indigo-50 p-4 text-center">
+                    <div class="avatar-frame w-28 h-28 rounded-full overflow-hidden mx-auto border-3 border-indigo-200">
+                        <img src="../images/prefects/academics.jpeg" loading="lazy" alt="ACADEMICS" class="w-full h-full object-cover">
+                    </div>
+                </div>
+                <div class="p-4 text-center">
+                    <h3 class="font-bold text-gray-800">Mr. Ssaazi Jessy</h3>
+                    <p class="text-indigo-500 text-xs font-semibold">ACADEMICS</p>
+                </div>
+            </div>
+            
+            <!-- Teacher 2 -->
+            <div class="profile-card bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-all">
+                <div class="bg-emerald-50 p-4 text-center">
+                    <div class="avatar-frame w-28 h-28 rounded-full overflow-hidden mx-auto border-3 border-emerald-200">
+                        <img src="../images/prefects/chief judge.jpeg" loading="lazy" alt="chief judge" class="w-full h-full object-cover">
+                    </div>
+                </div>
+                <div class="p-4 text-center">
+                    <h3 class="font-bold text-gray-800">Mrs. Asiimwe Abigail</h3>
+                    <p class="text-emerald-500 text-xs font-semibold">CHIEF JUDGE</p>
+                </div>
+            </div>
+            
+            <!-- Teacher 3 -->
+            <div class="profile-card bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-all">
+                <div class="bg-amber-50 p-4 text-center">
+                    <div class="avatar-frame w-28 h-28 rounded-full overflow-hidden mx-auto border-3 border-amber-200">
+                        <img src="../images/prefects/games girls.jpeg" loading="lazy" alt="games and sports" class="w-full h-full object-cover">
+                    </div>
+                </div>
+                <div class="p-4 text-center">
+                    <h3 class="font-bold text-gray-800">Mrs. Nakku Sarah Mercy</h3>
+                    <p class="text-amber-500 text-xs font-semibold">ENTERTAINMENT & SPORTS GIRLS</p>
+                </div>
+            </div>
+            
+            <!-- Teacher 4 -->
+            <div class="profile-card bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-all">
+                <div class="bg-purple-50 p-4 text-center">
+                    <div class="avatar-frame w-28 h-28 rounded-full overflow-hidden mx-auto border-3 border-purple-200">
+                        <img src="../images/prefects/games.jpeg" loading="lazy" alt="Mr. games boys" class="w-full h-full object-cover">
+                    </div>
+                </div>
+                <div class="p-4 text-center">
+                    <h3 class="font-bold text-gray-800">Mr. Ngoobi Francis</h3>
+                    <p class="text-purple-500 text-xs font-semibold">ENTERTAINMENT & SPORTS BOYS</p>
+                </div>
+            </div>
+            
+            <!-- Teacher 5 -->
+            <div class="profile-card bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-all">
+                <div class="bg-rose-50 p-4 text-center">
+                    <div class="avatar-frame w-28 h-28 rounded-full overflow-hidden mx-auto border-3 border-rose-200">
+                        <img src="../images/prefects/general duties.jpeg" loading="lazy" alt="general duties" class="w-full h-full object-cover">
+                    </div>
+                </div>
+                <div class="p-4 text-center">
+                    <h3 class="font-bold text-gray-800">Mrs. Namuwonge Shagirah</h3>
+                    <p class="text-rose-500 text-xs font-semibold">GENERAL DUTIES</p>
+                </div>
+            </div>
+            
+            <!-- Teacher 6 -->
+            <div class="profile-card bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-all">
+                <div class="bg-cyan-50 p-4 text-center">
+                    <div class="avatar-frame w-28 h-28 rounded-full overflow-hidden mx-auto border-3 border-cyan-200">
+                        <img src="../images/prefects/health boys.jpeg" loading="lazy" alt="health & sanitation boys" class="w-full h-full object-cover">
+                    </div>
+                </div>
+                <div class="p-4 text-center">
+                    <h3 class="font-bold text-gray-800">Mr. Lubangakene Emmanuel James</h3>
+                    <p class="text-cyan-500 text-xs font-semibold">HEALTH & SANITATION BOYS</p>
+                </div>
+            </div>
+            
+            <!-- Teacher 7 -->
+            <div class="profile-card bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-all">
+                <div class="bg-blue-50 p-4 text-center">
+                    <div class="avatar-frame w-28 h-28 rounded-full overflow-hidden mx-auto border-3 border-blue-200">
+                        <img src="../images/prefects/health girls.jpeg" loading="lazy" alt="health girls" class="w-full h-full object-cover">
+                    </div>
+                </div>
+                <div class="p-4 text-center">
+                    <h3 class="font-bold text-gray-800">Mrs. Nanteza Shamirah Hairat</h3>
+                    <p class="text-blue-500 text-xs font-semibold">HEALTH & SANITATION GIRLS</p>
+                </div>
+            </div>
+            
+            <!-- Teacher 8 -->
+            <div class="profile-card bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-all">
+                <div class="bg-green-50 p-4 text-center">
+                    <div class="avatar-frame w-28 h-28 rounded-full overflow-hidden mx-auto border-3 border-green-200">
+                        <img src="../images/prefects/information.jpeg" loading="lazy" alt="information" class="w-full h-full object-cover">
+                    </div>
+                </div>
+                <div class="p-4 text-center">
+                    <h3 class="font-bold text-gray-800">Mrs. Wanyana Alvin</h3>
+                    <p class="text-green-500 text-xs font-semibold">INFORMATION</p>
+                </div>
+            </div>
+            
+            <!-- Teacher 9 -->
+            <div class="profile-card bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-all">
+                <div class="bg-slate-50 p-4 text-center">
+                    <div class="avatar-frame w-28 h-28 rounded-full overflow-hidden mx-auto border-3 border-slate-200">
+                        <img src="../images/prefects/liturgy.jpeg" loading="lazy" alt="liturgy" class="w-full h-full object-cover">
+                    </div>
+                </div>
+                <div class="p-4 text-center">
+                    <h3 class="font-bold text-gray-800">Mrs. Nabukeera Prisca</h3>
+                    <p class="text-slate-500 text-xs font-semibold">LITURGY</p>
+                </div>
+            </div>
+            
+            <!-- Teacher 10 -->
+            <div class="profile-card bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-all">
+                <div class="bg-teal-50 p-4 text-center">
+                    <div class="avatar-frame w-28 h-28 rounded-full overflow-hidden mx-auto border-3 border-teal-200">
+                        <img src="../images/prefects/speaker.jpeg" loading="lazy" alt="speaker" class="w-full h-full object-cover">
+                    </div>
+                </div>
+                <div class="p-4 text-center">
+                    <h3 class="font-bold text-gray-800">Mrs. Alal Michell</h3>
+                    <p class="text-teal-500 text-xs font-semibold">SPEAKER</p>
+                </div>
+            </div>
+            
+            <!-- Teacher 11 -->
+            <div class="profile-card bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-all">
+                <div class="bg-orange-50 p-4 text-center">
+                    <div class="avatar-frame w-28 h-28 rounded-full overflow-hidden mx-auto border-3 border-orange-200">
+                        <img src="../images/prefects/time keeper.jpeg" loading="lazy" alt="Time Keeper" class="w-full h-full object-cover">
+                    </div>
+                </div>
+                <div class="p-4 text-center">
+                    <h3 class="font-bold text-gray-800">Mr. Bwambale Dickluck</h3>
+                    <p class="text-orange-500 text-xs font-semibold">TIME KEEPER</p>
+                </div>
+            </div>
+            
+            <!-- Teacher 12 -->
+            <div class="profile-card bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-all">
+                <div class="bg-pink-50 p-4 text-center">
+                    <div class="avatar-frame w-28 h-28 rounded-full overflow-hidden mx-auto border-3 border-pink-200">
+                        <img src="../images/prefects/welfare.jpeg" loading="lazy" alt="welfare" class="w-full h-full object-cover">
+                    </div>
+                </div>
+                <div class="p-4 text-center">
+                    <h3 class="font-bold text-gray-800">Mrs. Nagita Rihannah</h3>
+                    <p class="text-pink-500 text-xs font-semibold">WELFARE</p>
+                </div>
+            </div>
+              <!-- Teacher 12 -->
+            <div class="profile-card bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-all">
+                <div class="bg-pink-50 p-4 text-center">
+                    <div class="avatar-frame w-28 h-28 rounded-full overflow-hidden mx-auto border-3 border-pink-200">
+                        <img src="../images/prefects/dormitory girls.jpeg" loading="lazy" alt="dormitory" class="w-full h-full object-cover">
+                    </div>
+                </div>
+                <div class="p-4 text-center">
+                    <h3 class="font-bold text-gray-800">Mrs. Namutebi Sudat</h3>
+                    <p class="text-pink-500 text-xs font-semibold">DORMITORY GIRLS</p>
+                </div>
+            </div>
+              <!-- Teacher 12 -->
+            <div class="profile-card bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-all">
+                <div class="bg-pink-50 p-4 text-center">
+                    <div class="avatar-frame w-28 h-28 rounded-full overflow-hidden mx-auto border-3 border-pink-200">
+                        <img src="../images/prefects/dormitory girls (2).jpeg" loading="lazy" alt="dormitory" class="w-full h-full object-cover">
+                    </div>
+                </div>
+                <div class="p-4 text-center">
+                    <h3 class="font-bold text-gray-800">Mrs. Nakato Nambasa Resty</h3>
+                    <p class="text-pink-500 text-xs font-semibold">DORMITORY GIRLS</p>
+                </div>
+            </div>
+              <!-- Teacher 12 -->
+            <div class="profile-card bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-all">
+                <div class="bg-pink-50 p-4 text-center">
+                    <div class="avatar-frame w-28 h-28 rounded-full overflow-hidden mx-auto border-3 border-pink-200">
+                        <img src="../images/prefects/dormitory boys 1.jpeg" loading="lazy" alt="dormitory" class="w-full h-full object-cover">
+                    </div>
+                </div>
+                <div class="p-4 text-center">
+                    <h3 class="font-bold text-gray-800">Mr. Serugo Victor</h3>
+                    <p class="text-pink-500 text-xs font-semibold">DORMITORY BOYS</p>
+                </div>
+            </div>
+              <!-- Teacher 12 -->
+            <div class="profile-card bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-all">
+                <div class="bg-pink-50 p-4 text-center">
+                    <div class="avatar-frame w-28 h-28 rounded-full overflow-hidden mx-auto border-3 border-pink-200">
+                        <img src="../images/prefects/dormitory boys 2.jpeg" loading="lazy" alt="dormitory" class="w-full h-full object-cover">
+                    </div>
+                </div>
+                <div class="p-4 text-center">
+                    <h3 class="font-bold text-gray-800">Mr. Tumukunde Erick</h3>
+                    <p class="text-pink-500 text-xs font-semibold">DORMITORY BOYS</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
 
 <!-- Footer -->
 <footer class="bg-[#0f172a] text-gray-300 pt-14 pb-8">
