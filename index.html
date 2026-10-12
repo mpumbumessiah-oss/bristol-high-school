@@ -27,7 +27,6 @@
             visibility: hidden;
             transition: all 0.2s ease;
             z-index: 9999;
-            /* Ensure dropdown is above everything */
             position: absolute;
             background: white;
         }
@@ -49,7 +48,7 @@
             display: flex;
         }
 
-        /* Auto-scrolling slider styles */
+        /* Auto-scrolling slider styles (featured posts) */
         .slider-container {
             overflow: hidden;
             position: relative;
@@ -72,7 +71,6 @@
                 transform: translateX(-50%);
             }
         }
-
 
         /* Full-screen video container */
         .hero-video-container {
@@ -103,7 +101,6 @@
             transition: right 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             box-shadow: -5px 0 30px rgba(0, 0, 0, 0.15);
             z-index: 9998;
-            /* Ensure mobile menu is above announcement bar */
         }
 
         .dropdown-mobile button {
@@ -111,7 +108,6 @@
             outline: none;
         }
 
-        /* FIX: Ensure mobile buttons are hidden on desktop */
         @media (min-width: 768px) {
             .mobile-only-buttons {
                 display: none !important;
@@ -122,17 +118,9 @@
             .hero-video-container {
                 height: 70vh;
             }
-            @keyframes scroll {
-                0% {
-                    transform: translateX(0);
-                }
-                100% {
-                    transform: translateX(-50%);
-                }
-            }
         }
 
-        /* Announcement Bar - FIXED z-index to be below dropdowns */
+        /* Announcement Bar */
         .announcement-container {
             width: 100%;
             background: linear-gradient(90deg, #004080, #0066cc);
@@ -144,7 +132,6 @@
             border-bottom: 3px solid #ffd700;
             position: relative;
             z-index: 100;
-            /* Lower than dropdowns and mobile menu */
         }
 
         .announcement-slider {
@@ -172,34 +159,26 @@
             animation-play-state: paused;
             cursor: pointer;
         }
-        /* Mobile Responsive */
         @media (max-width: 768px) {
             .announcement-container {
                 height: 45px;
             }
-
             .announcement-slider {
                 font-size: 14px;
             }
         }
 
-        /* Fix for navbar to have higher z-index than announcement */
         nav.sticky {
             z-index: 1000;
-            /* Higher than announcement bar */
         }
-
-        /* Ensure dropdowns in navbar are above everything */
         .dropdown-menu {
             z-index: 9999 !important;
         }
-
-        /* Fix mobile overlay */
         #mobile-menu-overlay {
             z-index: 9997;
         }
 
-         /* ----- NEW: Welcome slider styles ----- */
+        /* Welcome photo slider */
         .welcome-slider-container {
             overflow: hidden;
             border-radius: 1rem;
@@ -209,30 +188,18 @@
         }
         .welcome-slider-track {
             display: flex;
-            width: 300%; /* 3 images = 300% */
-            animation: welcomeScroll 18s ease-in-out infinite;
-        }
-        .welcome-slider-track:hover {
-            animation-play-state: paused;
+            width: 100%;
+            transition: transform 700ms ease-in-out;
         }
         .welcome-slide {
-            width: 33.3333%;
-            flex-shrink: 0;
+            flex: 0 0 100%;
+            width: 100%;
         }
         .welcome-slide img {
             width: 100%;
             height: 100%;
             object-fit: cover;
             display: block;
-        }
-        @keyframes welcomeScroll {
-            0% { transform: translateX(0); }
-            28% { transform: translateX(0); }
-            33% { transform: translateX(-33.3333%); }
-            61% { transform: translateX(-33.3333%); }
-            66% { transform: translateX(-66.6666%); }
-            94% { transform: translateX(-66.6666%); }
-            100% { transform: translateX(0); }
         }
         .welcome-slider-container {
             height: 100%;
@@ -266,7 +233,7 @@
     <div class="bg-[#0f172a] text-gray-200 text-sm py-2.5 relative z-10">
         <div class="container mx-auto px-5 flex flex-wrap justify-between items-center gap-3 max-w-7xl">
             <div class="flex flex-wrap items-center gap-5">
-                <a href="tel:+256775831844" class="flex items-center gap-2 hover:text-amber-400 transition"><i class="uil uil-phone"></i> 0784498669/0704995230</a>
+                <a href="tel:+256775831844" class="flex items-center gap-2 hover:text-amber-400 transition"><i class="uil uil-phone"></i> +256-775-831844</a>
                 <a href="mailto:info@bristolhighschool.com" class="flex items-center gap-2 hover:text-amber-400 transition"><i class="uil uil-envelope"></i> info@bristolhighschool.com</a>
             </div>
             <div class="flex items-center gap-3">
@@ -279,19 +246,18 @@
         </div>
     </div>
 
-    <!-- Sliding Announcement Bar - MOVED BELOW TOPBAR BUT ABOVE NAV -->
+    <!-- Sliding Announcement Bar -->
     <div class="announcement-container">
         <div class="announcement-slider">
             We are excited to announce that our school now offers official Directorate of Industrial Training (DIT) courses to equip your child with practical, employment-ready skills.Students can now gain hands-on training in highly rewarding fields, including Phone Repair, Tailoring, Hair Dressing, Carpentry, and Music. Alongside their regular academic studies, your child will master marketable crafts and earn a recognized professional certificate. This specialized curriculum bridges the gap between classroom theory and real-world success, giving graduates a massive competitive edge.Spaces are limited. Contact the school administration today to enroll your child in their preferred vocational track.
         </div>
     </div>
 
-    <!-- Navbar (Sticky) - FIXED z-index -->
+    <!-- Navbar (Sticky) -->
     <nav class="sticky top-0 z-[1000] bg-[#fef9e6] shadow-md border-b border-gray-200">
         <div class="container mx-auto px-5 max-w-7xl flex justify-between items-center h-20">
             <a href="index.html" class="flex items-center gap-3 shrink-0">
                 <img src="images/logo.jpeg" alt="Bristol High School Logo" class="w-[55px] h-[55px] rounded-xl shadow-sm object-cover" onerror="this.style.display='none'">
-                <!-- Fallback logo if image missing -->
                 <div class="w-[55px] h-[55px] rounded-xl shadow-sm bg-gradient-to-br from-indigo-100 to-indigo-200 flex items-center justify-center text-indigo-700 font-bold text-xl">BHS</div>
                 <div>
                     <h4 class="font-extrabold text-xl bg-gradient-to-r from-indigo-800 to-indigo-600 bg-clip-text text-transparent">BRISTOL HIGH SCHOOL</h4>
@@ -329,7 +295,7 @@
                 <a href="pages/e-learning.html" class="bg-indigo-700 hover:bg-indigo-800 text-white font-bold px-5 py-2 rounded-full transition shadow-md">eLearning</a>
             </div>
 
-            <!-- FIXED: Mobile Menu Buttons - Wrapped in container that hides on desktop -->
+            <!-- Mobile Menu Buttons -->
             <div class="mobile-only-buttons flex md:hidden items-center gap-2">
                 <button id="open-menu-btn" class="text-3xl text-gray-700 focus:outline-none" aria-label="Open Menu">
                     <i class="uil uil-bars"></i>
@@ -340,10 +306,10 @@
             </div>
         </div>
 
-        <!-- Mobile Menu Overlay (click outside to close) -->
+        <!-- Mobile Menu Overlay -->
         <div id="mobile-menu-overlay" class="fixed inset-0 bg-black/50 z-[9997] hidden transition-all duration-300 md:hidden"></div>
 
-        <!-- Mobile Menu Slider - FIXED z-index -->
+        <!-- Mobile Menu Slider -->
         <ul id="mobile-menu" class="fixed top-20 right-[-100%] w-80 h-[calc(100vh-5rem)] bg-[#fef9e6] shadow-2xl flex flex-col z-[9998] transition-all duration-300 ease-in-out px-6 py-6 gap-4 font-medium md:hidden overflow-y-auto">
             <li><a href="index.html" class="block py-2 border-b border-gray-200 text-gray-800 hover:text-indigo-700">Home</a></li>
             <li><a href="pages/about.html" class="block py-2 border-b border-gray-200 text-gray-800 hover:text-indigo-700">About BHS</a></li>
@@ -390,8 +356,7 @@
         </div>
     </div>
 
-    
-<!-- ===================================================== -->
+    <!-- ===================================================== -->
     <!-- HEADER / WELCOME SECTION with CONTINUOUS IMAGE SLIDER -->
     <!-- ===================================================== -->
     <header class="py-16 md:py-20 bg-gray-50">
@@ -402,31 +367,70 @@
                 <p class="text-gray-600 mt-5 leading-relaxed">Bristol High School is a high-quality private secondary school founded in 2019. It is a mixed boarding school offering both Arts and Sciences at "O" and "A" Level. The College is owned by experienced and well-educated individuals with a strong commitment to excellence in academics and post-school life.</p>
                 <a href="pages/courses.html" class="inline-flex items-center gap-2 bg-indigo-700 hover:bg-indigo-800 text-white font-semibold px-7 py-3 rounded-full mt-6 transition shadow-lg">Get Started <i class="uil uil-arrow-right"></i></a>
             </div>
-            <!-- Right: slider with multiple images -->
-            <div class="welcome-slider-container">
+            <!-- Right: slider featuring photos from the image-slider folder -->
+            <div class="welcome-slider-container" aria-label="Bristol High School photo slideshow">
                 <div class="welcome-slider-track">
-                    <!-- Slide 1 -->
                     <div class="welcome-slide">
-                        <img src="images/classes/hello.jpeg" alt="School campus 1" loading="lazy" onerror="this.src='https://placehold.co/800x500/4f46e5/ffffff?text=Bristol+High+1'">
+                        <img src="images/image-slider/WhatsApp%20Image%202026-09-24%20at%2014.51..jpeg" alt="Bristol High School photo 1" loading="lazy" onerror="this.src='https://placehold.co/800x500/4f46e5/ffffff?text=Bristol+High+1'">
                     </div>
-                    <!-- Slide 2 -->
                     <div class="welcome-slide">
-                        <img src="images/classes/hello2.jpeg" alt="Cultural day" loading="lazy" onerror="this.src='https://placehold.co/800x500/4f46e5/ffffff?text=Bristol+High+2'">
+                        <img src="images/image-slider/WhatsApp%20Image%202026-09-24%20at%2014.51.1.jpeg" alt="Bristol High School photo 2" loading="lazy" onerror="this.src='https://placehold.co/800x500/4f46e5/ffffff?text=Bristol+High+2'">
                     </div>
-                    <!-- Slide 3 -->
                     <div class="welcome-slide">
-                        <img src="images/classes/hello3.jpeg" alt="Sports day" loading="lazy" onerror="this.src='https://placehold.co/800x500/4f46e5/ffffff?text=Bristol+High+3'">
+                        <img src="images/image-slider/WhatsApp%20Image%202026-09-24%20at%2014.51.13.jpeg" alt="Bristol High School photo 3" loading="lazy" onerror="this.src='https://placehold.co/800x500/4f46e5/ffffff?text=Bristol+High+3'">
                     </div>
-                    <!-- extra duplicate for seamless loop (optional but smooth) -->
-                    <!-- Slide 1 duplicate -->
                     <div class="welcome-slide">
-                        <img src="images/classes/senior 1 west.jpeg" alt="School campus 1" loading="lazy" onerror="this.src='https://placehold.co/800x500/4f46e5/ffffff?text=Bristol+High+1'">
+                        <img src="images/image-slider/WhatsApp%20Image%202026-09-24%20at%2014.51.14.jpeg" alt="Bristol High School photo 4" loading="lazy" onerror="this.src='https://placehold.co/800x500/4f46e5/ffffff?text=Bristol+High+4'">
+                    </div>
+                    <div class="welcome-slide">
+                        <img src="images/image-slider/WhatsApp%20Image%202026-09-24%20at%2014.51.145.jpeg" alt="Bristol High School photo 5" loading="lazy" onerror="this.src='https://placehold.co/800x500/4f46e5/ffffff?text=Bristol+High+5'">
+                    </div>
+                    <div class="welcome-slide">
+                        <img src="images/image-slider/WhatsApp%20Image%202026-09-24%20at%2014.51.15.jpeg" alt="Bristol High School photo 6" loading="lazy" onerror="this.src='https://placehold.co/800x500/4f46e5/ffffff?text=Bristol+High+6'">
+                    </div>
+                    <div class="welcome-slide">
+                        <img src="images/image-slider/WhatsApp%20Image%202026-09-24%20at%2014.51.154.jpeg" alt="Bristol High School photo 7" loading="lazy" onerror="this.src='https://placehold.co/800x500/4f46e5/ffffff?text=Bristol+High+7'">
+                    </div>
+                    <div class="welcome-slide">
+                        <img src="images/image-slider/WhatsApp%20Image%202026-09-24%20at%2014.51.155.jpeg" alt="Bristol High School photo 8" loading="lazy" onerror="this.src='https://placehold.co/800x500/4f46e5/ffffff?text=Bristol+High+8'">
+                    </div>
+                    <div class="welcome-slide">
+                        <img src="images/image-slider/WhatsApp%20Image%202026-09-24%20at%2014.51.1555.jpeg" alt="Bristol High School photo 9" loading="lazy" onerror="this.src='https://placehold.co/800x500/4f46e5/ffffff?text=Bristol+High+9'">
+                    </div>
+                    <div class="welcome-slide">
+                        <img src="images/image-slider/WhatsApp%20Image%202026-09-24%20at%2014.51.16.jpeg" alt="Bristol High School photo 10" loading="lazy" onerror="this.src='https://placehold.co/800x500/4f46e5/ffffff?text=Bristol+High+10'">
+                    </div>
+                    <div class="welcome-slide">
+                        <img src="images/image-slider/WhatsApp%20Image%202026-09-24%20at%2014.51.164.jpeg" alt="Bristol High School photo 11" loading="lazy" onerror="this.src='https://placehold.co/800x500/4f46e5/ffffff?text=Bristol+High+11'">
+                    </div>
+                    <div class="welcome-slide">
+                        <img src="images/image-slider/WhatsApp%20Image%202026-09-24%20at%2014.51.165.jpeg" alt="Bristol High School photo 12" loading="lazy" onerror="this.src='https://placehold.co/800x500/4f46e5/ffffff?text=Bristol+High+12'">
+                    </div>
+                    <div class="welcome-slide">
+                        <img src="images/image-slider/WhatsApp%20Image%202026-09-24%20at%2014.51.1655.jpeg" alt="Bristol High School photo 13" loading="lazy" onerror="this.src='https://placehold.co/800x500/4f46e5/ffffff?text=Bristol+High+13'">
+                    </div>
+                    <div class="welcome-slide">
+                        <img src="images/image-slider/WhatsApp%20Image%202026-09-24%20at%2014.51.17.jpeg" alt="Bristol High School photo 14" loading="lazy" onerror="this.src='https://placehold.co/800x500/4f46e5/ffffff?text=Bristol+High+14'">
+                    </div>
+                    <div class="welcome-slide">
+                        <img src="images/image-slider/WhatsApp%20Image%202026-09-24%20at%2014.51.175.jpeg" alt="Bristol High School photo 15" loading="lazy" onerror="this.src='https://placehold.co/800x500/4f46e5/ffffff?text=Bristol+High+15'">
+                    </div>
+                    <div class="welcome-slide">
+                        <img src="images/image-slider/WhatsApp%20Image%202026-09-24%20at%2014.51.17555.jpeg" alt="Bristol High School photo 16" loading="lazy" onerror="this.src='https://placehold.co/800x500/4f46e5/ffffff?text=Bristol+High+16'">
+                    </div>
+                    <div class="welcome-slide">
+                        <img src="images/image-slider/WhatsApp%20Image%202026-09-24%20at%2014.51.18.jpeg" alt="Bristol High School photo 17" loading="lazy" onerror="this.src='https://placehold.co/800x500/4f46e5/ffffff?text=Bristol+High+17'">
+                    </div>
+                    <div class="welcome-slide">
+                        <img src="images/image-slider/WhatsApp%20Image%202026-09-24%20at%2014.51.186.jpeg" alt="Bristol High School photo 18" loading="lazy" onerror="this.src='https://placehold.co/800x500/4f46e5/ffffff?text=Bristol+High+18'">
+                    </div>
+                    <div class="welcome-slide">
+                        <img src="images/image-slider/WhatsApp%20Image%202026-09-24%20at%2014.51.187.jpeg" alt="Bristol High School photo 19" loading="lazy" onerror="this.src='https://placehold.co/800x500/4f46e5/ffffff?text=Bristol+High+19'">
                     </div>
                 </div>
             </div>
         </div>
     </header>
-    
 
     <!-- School Leadership Section -->
     <section class="py-16 bg-white">
@@ -509,7 +513,7 @@
                             <p class="text-gray-500 text-sm">State-of-the-art tech lab launched.</p>
                         </div>
                     </div>
-                    <!-- Duplicates for seamless loop -->
+                    <!-- duplicates for seamless loop -->
                     <div class="min-w-[280px] md:min-w-[320px] bg-white rounded-2xl shadow-lg overflow-hidden flex-shrink-0"><img src="images/cultural day_result.webp" class="h-48 w-full object-cover" alt="Cultural day">
                         <div class="p-5"><span class="bg-indigo-100 text-indigo-800 text-xs font-semibold px-3 py-1 rounded-full">Academic</span>
                             <h3 class="font-bold text-xl mt-2">Cultural Day</h3>
@@ -551,7 +555,7 @@
             <h2 class="text-3xl font-bold text-center mb-12 text-gray-900">Latest News</h2>
             <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-7" id="newsGrid">
                 <article class="news__card bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition group cursor-pointer" data-id="1">
-                    <div class="relative h-48 overflow-hidden"><img src="images/classes/prefects.jpeg" class="w-full h-full object-cover group-hover:scale-105 transition duration-300" onerror="this.src='https://placehold.co/400x300?text=Top+Rankings'"><span class="absolute top-3 left-3 bg-indigo-600 text-white text-xs px-2 py-1 rounded-full">Academics</span></div>
+                    <div class="relative h-48 overflow-hidden"><img src="images/giants_result.webp" class="w-full h-full object-cover group-hover:scale-105 transition duration-300" onerror="this.src='https://placehold.co/400x300?text=Top+Rankings'"><span class="absolute top-3 left-3 bg-indigo-600 text-white text-xs px-2 py-1 rounded-full">Academics</span></div>
                     <div class="p-4">
                         <h4 class="font-bold text-lg">School Achieves Top Rankings</h4>
                         <p class="text-gray-500 text-sm mt-1">Bristol High School ranked among the top schools...</p>
@@ -659,7 +663,7 @@
                 <h3 class="text-white text-xl font-bold mb-4">Location & Contact</h3>
                 <p>Matugga, Wakiso District, Uganda</p>
                 <p class="mt-2 font-semibold">Call Info Line:</p>
-                <a href="tel:+256775831844" class="text-amber-400">0784498669/0704995230</a>
+                <a href="tel:+256775831844" class="text-amber-400">+256-775-831844</a>
                 <div class="flex gap-4 mt-4">
                     <a href="#" class="text-xl hover:text-amber-400"><i class="uil uil-music-note"></i></a>
                     <a href="#" class="text-xl hover:text-amber-400"><i class="uil uil-twitter"></i></a>
@@ -671,7 +675,7 @@
     </footer>
 
     <script>
-        // FIXED: Mobile menu logic with proper open/close
+        // Mobile menu logic
         const openBtn = document.getElementById('open-menu-btn');
         const closeBtn = document.getElementById('close-menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
@@ -707,15 +711,50 @@
                 e.stopPropagation();
                 closeMobileMenu();
             };
-            // Click outside overlay to close
             if (overlay) {
                 overlay.onclick = closeMobileMenu;
             }
-            // Prevent closing when clicking inside mobile menu
             mobileMenu.addEventListener('click', (e) => e.stopPropagation());
         }
 
-        // Mobile dropdown toggles with arrow rotation
+        // Cycle through the welcome-section photos and loop seamlessly.
+        const welcomeSlider = document.querySelector('.welcome-slider-container');
+        const welcomeTrack = welcomeSlider?.querySelector('.welcome-slider-track');
+        if (welcomeSlider && welcomeTrack) {
+            const welcomeSlides = welcomeTrack.querySelectorAll('.welcome-slide');
+            const firstSlide = welcomeSlides[0]?.cloneNode(true);
+            if (firstSlide) {
+                welcomeTrack.appendChild(firstSlide);
+                let welcomeSlideIndex = 0;
+                let welcomeTimer;
+
+                const advanceWelcomeSlide = () => {
+                    welcomeSlideIndex += 1;
+                    welcomeTrack.style.transform = `translateX(-${welcomeSlideIndex * 100}%)`;
+                    if (welcomeSlideIndex === welcomeSlides.length) {
+                        welcomeTrack.addEventListener('transitionend', () => {
+                            welcomeTrack.style.transition = 'none';
+                            welcomeTrack.style.transform = 'translateX(0)';
+                            welcomeSlideIndex = 0;
+                            requestAnimationFrame(() => {
+                                requestAnimationFrame(() => {
+                                    welcomeTrack.style.transition = '';
+                                });
+                            });
+                        }, { once: true });
+                    }
+                };
+
+                const startWelcomeTimer = () => {
+                    welcomeTimer = window.setInterval(advanceWelcomeSlide, 2000);
+                };
+                welcomeSlider.addEventListener('mouseenter', () => window.clearInterval(welcomeTimer));
+                welcomeSlider.addEventListener('mouseleave', startWelcomeTimer);
+                startWelcomeTimer();
+            }
+        }
+
+        // Mobile dropdown toggles
         document.querySelectorAll('.dropdown-mobile button').forEach(btn => {
             btn.addEventListener('click', (e) => {
                 e.preventDefault();
